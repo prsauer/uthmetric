@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-BROKER_URL = 'redis://ansred.tbagab.0001.usw2.cache.amazonaws.com'
+#BROKER_URL = ''
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
