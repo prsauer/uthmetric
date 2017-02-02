@@ -36,7 +36,6 @@ def leaders(request, realm=None):
 	return TemplateResponse(request, 'leaders.html', cdict)
 
 def render_leaders(request):
-	info.log("Rendered")
 	client = boto3.client('s3')
 	client.put_object(
 		ACL='public-read',
