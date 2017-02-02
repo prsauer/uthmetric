@@ -11,7 +11,7 @@ logger = logging.getLogger('django')
 def say_hello(request):
 	logger.info(request.body)
 	jdata = json.loads(request.body)
-	logger.info(jdata)
+	jdata = jdata['Item']
 	try:
 		p = Player.objects.get(rawname=jdata['Raw'].get('Name'))
 	except Player.DoesNotExist:
