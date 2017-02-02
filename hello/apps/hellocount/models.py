@@ -20,6 +20,7 @@ class Player(models.Model):
     raw_data = models.CharField(max_length=512)
     rps = models.BigIntegerField(null=True)
     xp = models.BigIntegerField(null=True)
+    level = models.IntegerField(null=True)
 
     def redigest(self):
         try:
@@ -36,6 +37,7 @@ class Player(models.Model):
             self.classname = jdata['ClassName']
             self.racename = jdata['RaceName']
             self.realmrank = jdata['RealmRank']
+            self.level = jdata['Level']
             self.guildname = jdata['Raw'].get('GuildName')
             self.realmname = realms[jdata['Raw'].get('Realm',0)]
             self.rps = jdata['Raw'].get('RP',0)
