@@ -22,6 +22,7 @@ def post_data(request):
 	p.update_from_json(jdata)
 	return HttpResponse("")
 
+
 def leaders(request, realm=None):
 	if realm is not None and realm not in ["Albion","Midgard","Hibernia"]:
 		return HttpResponse("404")
@@ -31,20 +32,23 @@ def leaders(request, realm=None):
 		players = Player.objects.all().order_by('-rps').filter(realmname=realm)[0:25].values()
 
 	cdict =  {'realm': realm, 'players': players}
+	
+	return TemplateResponse(request, 'leaders.html', cdict)
 
+def render_leaders(request):
 	t = get_template('leaders.html')
 	c = Context(cdict)
 
 	client = boto3.client('s3')
 	client.put_object(
 		ACL='public-read',
-		Body=t.render(c),
+		Body=leaders(request,'Midgard'),
 		Bucket='uthgard.riftmetric.com',
 		Key='leaders_test.html',
 		CacheControl='max-age= 60',
 		ContentType='text/html',
 	)
-	return TemplateResponse(request, 'leaders.html', cdict)
+	return HttpResponse("")
 
 @csrf_exempt
 def get_by_name(request, rawname):
