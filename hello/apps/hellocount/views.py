@@ -38,7 +38,7 @@ def by_guild(request):
 			gdata.append(this_g)
 	gdata.sort(key=lambda x: x['rps'])
 	gdata.reverse()
-	cdict =  {'guilds': gdata[0:25],realm='by Guild'}
+	cdict =  {'guilds': gdata[0:25], 'realm': 'by Guild'}
 	return TemplateResponse(request, 'guilds.html', cdict)
 
 def leaders(request, realm=None):
