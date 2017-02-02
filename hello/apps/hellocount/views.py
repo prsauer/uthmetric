@@ -25,7 +25,7 @@ def post_data(request):
 def charts(request):
 	context = {}
 	context['data_rows'] = []
-	for idx in xrange(0,50,5):
+	for idx in xrange(1,51,5):
 		min_l = idx
 		max_l = idx+4
 		count = Player.objects.filter(level__gte=min_l, level__lte=max_l).count()
