@@ -18,7 +18,15 @@
 * {font-family: 'Roboto', sans-serif;}
 td {text-align: center;}
 th {text-align: center;}
-.rankL {font-size: 13pt;}
+.realm_Midgard {
+  color: blue;
+}
+.realm_Hibernia {
+  color: green;
+}
+.realm_Albion {
+  color: red;
+}
 </style>
 
 <body>
@@ -41,7 +49,7 @@ th {text-align: center;}
           <tr>
             <td>{{g.rank}}</td>
             <td>{{g.guildname}}</td>
-            <td>{{g.realmname}}</td>
+            <td class="realm_{{p.realmname}}">{{g.realmname}}</td>
             <td>{{g.rps|intcomma}}</td>
             <td>{{g.size}}</td>
           </tr>
