@@ -23,7 +23,7 @@ def post_data(request):
 	return HttpResponse("")
 
 def charts(request):
-	return TemplateResponse(request, 'charts.html', {})
+	return TemplateResponse(request, 'charts.html', {'data': "['2015', 1170, 460, 250]"})
 
 def get_by_name(request, rawname):
 	try:
