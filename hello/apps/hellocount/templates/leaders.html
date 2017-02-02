@@ -48,6 +48,7 @@ th {text-align: center;}
           <th>Guild</th>
           <th>Class</th>
           <th>RPs</th>
+          <th>Delta</th>
           <th>RealmRank</th>
         </thead>
         <tbody>
@@ -59,6 +60,7 @@ th {text-align: center;}
             <td>{{p.guildname}}</td>
             <td>{{p.classname}}</td>
             <td>{{p.rps|intcomma}}</td>
+            <td>{{p.delta}}</td>
             <td>{{p.realmrank|floatformat:1}}</td>
           </tr>
           {% endfor %}

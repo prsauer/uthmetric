@@ -33,6 +33,11 @@ def leaders(request, realm=None):
 
 	for i in xrange(0, len(players)):
 		players[i]['rank'] = i+1
+		lastrps = players[i].history.order_by('-history_date')[1].rps or 0
+		if lastrps > 0:
+			players[i]['delta'] = players[i].rps - lastrps
+		else:
+			players[i]['delta'] = '-'
 
 	cdict =  {'realm': realm, 'players': players}
 	
