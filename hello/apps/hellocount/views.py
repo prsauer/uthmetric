@@ -32,9 +32,12 @@ def by_guild(request):
 			this_g = {}
 			this_g['guildname'] = g
 			this_g['rank'] = 0
+			this_g['realmname'] = players.first().realmname
 			this_g['rps'] = sum(players.values_list('rps',flat=True))
 			this_g['size'] = players.count()
 			gdata.append(this_g)
+	gdata.sort(key=lambda x: x['rps'])
+	gdata.reverse()
 	cdict =  {'guilds': gdata[0:10],}
 	return TemplateResponse(request, 'guilds.html', cdict)
 
