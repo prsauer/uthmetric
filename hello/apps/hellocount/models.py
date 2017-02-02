@@ -7,7 +7,7 @@ logger = logging.getLogger('django')
 realms = ["","Albion","Midgard","Hibernia"]
 
 class Player(models.Model):
-    self.rank = 0
+    rank = 0
 
     history = HistoricalRecords()
 

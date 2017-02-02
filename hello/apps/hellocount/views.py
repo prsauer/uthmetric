@@ -32,7 +32,7 @@ def leaders(request, realm=None):
 		players = Player.objects.all().order_by('-rps').filter(realmname=realm)[0:25].values()
 
 	for i in xrange(0, len(players)):
-		players[i].Meta.rank = i
+		players[i].rank = i
 
 	cdict =  {'realm': realm, 'players': players}
 	
