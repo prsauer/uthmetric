@@ -27,7 +27,7 @@ def leaders(request, realm=None):
 		players = Player.objects.all().order_by('-rps')[0:10].values()
 	else:
 		players = Player.objects.all().order_by('-rps').filter(realmname=realm)[0:10].values()
-	return TemplateResponse(request, 'leaders.html', {'players': players})
+	return TemplateResponse(request, 'leaders.html', {'realm': realm, 'players': players})
 
 @csrf_exempt
 def get_by_name(request, rawname):
