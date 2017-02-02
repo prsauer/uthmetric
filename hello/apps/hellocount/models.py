@@ -30,9 +30,10 @@ class Player(models.Model):
             self.realmname = realms[jdata['Raw'].get('Realm',0)]
             self.raw_data = res
         except:
-            logger.error("Couldnt decode %s"%(res))
+            logger.info("Couldnt decode %s"%(res))
         else:
             self.save()
+            logger.info("Saved %s"%(res))
 
     def refresh_from_uth(self):
         req = requests.get('https://uthgard.org/herald/api/player/%s'%self.rawname)
