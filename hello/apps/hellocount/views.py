@@ -22,6 +22,9 @@ def post_data(request):
 	p.update_from_json(jdata)
 	return HttpResponse("")
 
+def contrib(request):
+	return TemplateResponse(request, 'contrib.html', {})
+
 def charts(request):
 	context = {'realm': 'Distribution', 'charts': []}
 	chart = {
