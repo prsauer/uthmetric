@@ -52,19 +52,21 @@ def leaders(request, realm=None):
 	return TemplateResponse(request, 'leaders.html', cdict)
 
 def render_leaders(request):
-	tr = leaders(request,'Albion')
-	tr.render()
-	output = tr.content
+	realms = [("alb","Albion"),("mid","Midgard"),("hib","Hibernia")]
+	for r in realms:
+		tr = leaders(request,r[1])
+		tr.render()
+		output = tr.content
 
-	client = boto3.client('s3')
-	client.put_object(
-		ACL='public-read',
-		Body=output,
-		Bucket='uthgard.riftmetric.com',
-		Key='leaders_test.html',
-		CacheControl='max-age= 1',
-		ContentType='text/html',
-	)
+		client = boto3.client('s3')
+		client.put_object(
+			ACL='public-read',
+			Body=output,
+			Bucket='uthgard.riftmetric.com',
+			Key='leaders_test_%s.html'%r[0],
+			CacheControl='max-age= 1',
+			ContentType='text/html',
+		)
 	return HttpResponse("")
 
 @csrf_exempt
