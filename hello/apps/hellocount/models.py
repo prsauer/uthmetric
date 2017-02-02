@@ -22,7 +22,7 @@ class Player(models.Model):
 
     def redigest(self):
         try:
-            self.update_from_json(json.loads(self.raw_data)
+            self.update_from_json(json.loads(self.raw_data))
         except Exception as e:
             print "Exception on item %s",self.id
             print self.raw_data
