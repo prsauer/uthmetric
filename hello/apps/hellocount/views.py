@@ -33,7 +33,7 @@ def leaders(request, realm=None):
 	cdict =  {'realm': realm, 'players': players}
 
 	t = get_template('leaders.html')
-	c = Context(cdict})
+	c = Context(cdict)
 
 	f = open('/srv/leaders.html','w')
 	f.write(t.render())
