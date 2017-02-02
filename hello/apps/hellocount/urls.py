@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^leaders/(?P<realm>[a-zA-Z]+)/$', views.leaders, name='leaders'),
     url(r'^leaders/$', views.leaders, name='leaders_all'),
     url(r'^render_leaders/$', views.render_leaders, name='render'),
+    url(r'^guilds/$', views.by_guild, name='guilds'),
 ]

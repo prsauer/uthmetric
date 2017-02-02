@@ -23,6 +23,21 @@ def post_data(request):
 	return HttpResponse("")
 
 
+def by_guild(request):
+	guilds = Player.objects.values('guildname').distinct()
+	gdata = []
+	for g in guilds:
+		if g:
+			players = Player.objects.filter(guildname=g)
+			this_g = {}
+			this_g['guildname'] = g
+			this_g['rank'] = 0
+			this_g['rps'] = sum(players.values_list('rps',flat=True))
+			this_g['size'] = players.count()
+			gdata.append(this_g)
+	cdict =  {'guilds': gdata[0:10],}
+	return TemplateResponse(request, 'guilds.html', cdict)
+
 def leaders(request, realm=None):
 	if realm is not None and realm not in ["Albion","Midgard","Hibernia"]:
 		return HttpResponse("404")
