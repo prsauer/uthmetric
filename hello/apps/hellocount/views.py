@@ -31,7 +31,7 @@ def leaders(request, realm=None):
 	else:
 		db_players = Player.objects.all().order_by('-rps').filter(realmname=realm)[0:25]
 
-	fields = ['fullname','classname','guildname','realmname','rps']
+	fields = ['rawname','classname','guildname','realmname','rps', 'realmrank']
 	players = [{},]*len(db_players)
 	for i in xrange(0, len(db_players)):
 		players[i]['rank'] = i+1
