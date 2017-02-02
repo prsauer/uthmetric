@@ -21,7 +21,7 @@ def post_data(request):
 	return HttpResponse("")
 
 def leaders(request, realm):
-	players = Player.objects.all()[0:10].values('name')
+	players = Player.objects.all()[0:10].values()
 	return TemplateResponse(request, 'leaders.html', {'players': players})
 
 @csrf_exempt
