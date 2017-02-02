@@ -32,8 +32,9 @@ def leaders(request, realm=None):
 		db_players = list(Player.objects.all().order_by('-rps').filter(realmname=realm)[0:25])
 
 	fields = ['rawname','classname','guildname','realmname','rps', 'realmrank']
-	players = [{},]*len(db_players)
+	players = []
 	for i in xrange(0, len(db_players)):
+		players.append({})
 		players[i]['rank'] = i+1
 		for f in fields:
 			players[i][f] = getattr(db_players[i],f)
