@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from hellocount.models import Player
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import json
 
 import logging
 logger = logging.getLogger('django')
 
 @csrf_exempt
-def say_hello(request):
+def post_data(request):
 	logger.info(request.body)
 	jdata = json.loads(request.body)
 	jdata = jdata['Item']
@@ -18,3 +18,11 @@ def say_hello(request):
 		p = Player()
 	p.update_from_json(jdata)
 	return HttpResponse("")
+
+@csrf_exempt
+def get_by_name(request, rawname):
+	try:
+		p = Player.objects.get(rawname=rawname)
+		return JsonResponse(p.raw_data)
+	except Player.DoesNotExist:
+		return JsonResponse({})
