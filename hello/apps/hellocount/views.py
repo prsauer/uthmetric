@@ -70,7 +70,7 @@ def leaders(request, realm=None):
 	return TemplateResponse(request, 'leaders.html', cdict)
 
 def render_leaders(request):
-	realms = [("alb","Albion"),("mid","Midgard"),("hib","Hibernia")]
+	realms = [("",None),("_alb","Albion"),("_mid","Midgard"),("_hib","Hibernia")]
 	for r in realms:
 		tr = leaders(request,r[1])
 		tr.render()
@@ -81,7 +81,7 @@ def render_leaders(request):
 			ACL='public-read',
 			Body=output,
 			Bucket='uthgard.riftmetric.com',
-			Key='leaders_test_%s.html'%r[0],
+			Key='test_leaders%s.html'%r[0],
 			CacheControl='max-age= 1',
 			ContentType='text/html',
 		)
@@ -96,7 +96,7 @@ def render_leaders(request):
 		ACL='public-read',
 		Body=output,
 		Bucket='uthgard.riftmetric.com',
-		Key='guilds_test.html',
+		Key='guilds.html',
 		CacheControl='max-age= 1',
 		ContentType='text/html',
 	)
