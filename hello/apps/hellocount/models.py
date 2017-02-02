@@ -15,7 +15,7 @@ class Player(models.Model):
     racename = models.CharField(max_length=128)
     realmrank = models.CharField(max_length=128)
     guildname = models.CharField(max_length=128)
-    realmname = models.CharField(max_length=16)
+    realmname = models.CharField(max_length=16,null=True)
     raw_data = models.CharField(max_length=512)
 
     def update_from_json(self, res):
