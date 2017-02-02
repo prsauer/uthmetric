@@ -24,15 +24,50 @@ def post_data(request):
 
 def charts(request):
 	context = {'charts': []}
-	chart = {}
-	chart['data'] = []
-	chart['title'] = 'Albion Distribution by Level'
-	chart['element_id'] = 'albion_data'
+	chart = {
+		'data': [], 
+		'title': "Albion Distribution by Level",
+		"element_id": "albion_data",
+	}
 	for idx in xrange(1,51,5):
 		min_l = idx
 		max_l = idx+4
 		count = Player.objects.filter(
 			realmname='Albion',
+			level__gte=min_l,
+			level__lte=max_l,
+		).count()
+		row = "['%s-%s', %s]"%(min_l,max_l,count)
+		chart['data'].append(row)
+	context['charts'].append(chart)
+	
+	chart = {
+		'data': [], 
+		'title': "Hibernia Distribution by Level",
+		"element_id": "hibernia_data",
+	}
+	for idx in xrange(1,51,5):
+		min_l = idx
+		max_l = idx+4
+		count = Player.objects.filter(
+			realmname='Hibernia',
+			level__gte=min_l,
+			level__lte=max_l,
+		).count()
+		row = "['%s-%s', %s]"%(min_l,max_l,count)
+		chart['data'].append(row)
+	context['charts'].append(chart)
+	
+	chart = {
+		'data': [], 
+		'title': "Midgard Distribution by Level",
+		"element_id": "midgard_data",
+	}
+	for idx in xrange(1,51,5):
+		min_l = idx
+		max_l = idx+4
+		count = Player.objects.filter(
+			realmname='Midgard',
 			level__gte=min_l,
 			level__lte=max_l,
 		).count()
