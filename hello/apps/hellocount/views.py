@@ -38,7 +38,7 @@ def leaders(request, realm=None):
 	client = boto3.client('s3')
 	client.put_object(
 		ACL='public-read',
-		Body=t.render(),
+		Body=t.render(c),
 		Bucket='uthgard.riftmetric.com',
 		Key='leaders_test.html',
 		CacheControl='max-age= 60',
