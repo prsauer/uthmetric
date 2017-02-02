@@ -36,10 +36,14 @@ def leaders(request, realm=None):
 	return TemplateResponse(request, 'leaders.html', cdict)
 
 def render_leaders(request):
+	tr = leaders(request,'Albion')
+	tr.render()
+	output = tr.content
+
 	client = boto3.client('s3')
 	client.put_object(
 		ACL='public-read',
-		Body=leaders(request,'Albion').render(),
+		Body=output,
 		Bucket='uthgard.riftmetric.com',
 		Key='leaders_test.html',
 		CacheControl='max-age= 1',
