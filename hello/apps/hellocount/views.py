@@ -22,6 +22,12 @@ def post_data(request):
 	p.update_from_json(jdata)
 	return HttpResponse("")
 
+def get_by_name(request, rawname):
+	try:
+		p = Player.objects.get(rawname=rawname)
+		return JsonResponse(json.loads(p.raw_data))
+	except Player.DoesNotExist:
+		return HttpResponse("Failed %s"%rawname)
 
 def by_guild(request):
 	guilds = Player.objects.values('guildname').distinct()
@@ -107,10 +113,3 @@ def render_leaders(request):
 	)
 	return HttpResponse("")
 
-@csrf_exempt
-def get_by_name(request, rawname):
-	try:
-		p = Player.objects.get(rawname=rawname)
-		return JsonResponse(json.loads(p.raw_data))
-	except Player.DoesNotExist:
-		return HttpResponse("Failed %s"%rawname)
