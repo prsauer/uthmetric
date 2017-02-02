@@ -38,7 +38,10 @@ def leaders(request, realm=None):
 		players[i]['rank'] = i+1
 		for f in fields:
 			players[i][f] = getattr(db_players[i],f)
-		lastrps = db_players[i].history.order_by('-history_date')[1].rps or 0
+		his = db_players[i].history.order_by('-history_date')
+		lastrps = 0
+		if len(his) > 1:
+			lastrps = db_players[i].history.order_by('-history_date')[1].rps or 0
 		if lastrps > 0:
 			players[i]['delta'] = db_players[i].rps - lastrps
 		else:
