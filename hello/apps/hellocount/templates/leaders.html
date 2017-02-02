@@ -1,0 +1,72 @@
+
+<html>
+<head>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-91056124-1', 'auto');ga('send', 'pageview');
+</script>
+    <title></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<style>
+* {font-family: 'Roboto', sans-serif;}
+td {text-align: center;}
+th {text-align: center;}
+.rankL {font-size: 13pt;}
+</style>
+
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="leaders.html">All</a></li>
+              <li class=""><a href="guilds.html">Guild</a></li>
+              <li class=""><a href="leaders_alb.html">Albion</a></li>
+              <li class=""><a href="leaders_hib.html">Hibernia</a></li>
+              <li class=""><a href="leaders_mid.html">Midgard</a></li>
+            </ul>
+          </div>
+      </div>
+    </nav>
+    <title>RP Leaderboard</title>
+    <div class="container">
+    <h1>RP Leaderboard</h1>
+    <h4>data by Armsperson</h4>
+
+    <div class="col-md-8 col-md-offset-2">
+      <table id="eader" class="table table-striped">
+        <thead>
+          <th>#</th>
+          <th>Name</th>
+          <th>Realm</th>
+          <th>Guild</th>
+          <th>Class</th>
+          <th>RPs</th>
+          <th>RealmRank</th>
+        </thead>
+        <tbody>
+          {% for p in players %}
+          <tr>
+            <td>{p.name}</td>
+            <td>{p.realm}</td>
+            <td>{p.guild}</td>
+            <td>{p.class}</td>
+            <td>{p.RP}</td>
+            <td>{p.realmrank}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <h3> Want to add data? Record /chatlog with /who data and submit to armsperson@gmail.com</h3>
+    </div>
+  </div>
+</body>
+</html>
