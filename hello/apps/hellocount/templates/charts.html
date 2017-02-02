@@ -7,7 +7,7 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Range', 'Count'],
-          {% for row in data_rows %}
+          {% for row in albion_data %}
             {{row|safe}},
           {% endfor %}
         ]);

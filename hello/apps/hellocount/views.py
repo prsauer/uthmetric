@@ -28,7 +28,11 @@ def charts(request):
 	for idx in xrange(1,51,5):
 		min_l = idx
 		max_l = idx+4
-		count = Player.objects.filter(realmname='Albion', level__gte=min_l, level__lte=max_l).count()
+		count = Player.objects.filter(
+			realmname='Albion',
+			level__gte=min_l,
+			level__lte=max_l,
+		).count()
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
 		context['albion_data'].append(row)
 	return TemplateResponse(request, 'charts.html', context)
