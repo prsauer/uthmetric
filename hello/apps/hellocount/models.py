@@ -10,7 +10,7 @@ class Player(models.Model):
     history = HistoricalRecords()
 
     fullname = models.CharField(max_length=128)
-    rawname = models.CharField(max_length=128)
+    rawname = models.CharField(max_length=128, unique=True)
     classname = models.CharField(max_length=128)
     racename = models.CharField(max_length=128)
     realmrank = models.CharField(max_length=128)
