@@ -18,6 +18,7 @@ class Player(models.Model):
     realmname = models.CharField(max_length=16,null=True)
     raw_data = models.CharField(max_length=512)
     rps = models.IntegerField(null=True)
+    xp = models.IntegerField(null=True)
 
     def redigest(self):
         self.udpate_from_json(json.loads(self.raw_data))
@@ -32,6 +33,7 @@ class Player(models.Model):
             self.guildname = jdata['Raw'].get('GuildName')
             self.realmname = realms[jdata['Raw'].get('Realm',0)]
             self.rps = jdata['Raw'].get('RP',0)
+            self.xp = jdata['Raw'].get('XP',0)
             self.raw_data = json.dumps(jdata)
         except:
             logger.info("Couldnt decode %s"%(jdata))
