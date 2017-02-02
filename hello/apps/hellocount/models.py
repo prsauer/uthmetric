@@ -7,6 +7,9 @@ logger = logging.getLogger('django')
 realms = ["","Albion","Midgard","Hibernia"]
 
 class Player(models.Model):
+    class Meta:
+        rank = 0
+
     history = HistoricalRecords()
 
     fullname = models.CharField(max_length=128)
