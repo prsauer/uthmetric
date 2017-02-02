@@ -15,7 +15,7 @@ class Player(models.Model):
     classname = models.CharField(max_length=128)
     racename = models.CharField(max_length=128)
     realmrank = models.CharField(max_length=128)
-    guildname = models.CharField(max_length=128)
+    guildname = models.CharField(max_length=128,null=True)
     realmname = models.CharField(max_length=16,null=True)
     raw_data = models.CharField(max_length=512)
     rps = models.BigIntegerField(null=True)
