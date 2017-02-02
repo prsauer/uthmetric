@@ -21,7 +21,7 @@ class Player(models.Model):
     xp = models.IntegerField(null=True)
 
     def redigest(self):
-        self.udpate_from_json(json.loads(self.raw_data))
+        self.update_from_json(json.loads(self.raw_data))
 
     def update_from_json(self, jdata):
         try:
