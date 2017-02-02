@@ -42,6 +42,7 @@ def leaders(request, realm=None):
 		Bucket='uthgard.riftmetric.com',
 		Key='leaders_test.html',
 		CacheControl='max-age= 60',
+		ContentType='text/html',
 	)
 	return TemplateResponse(request, 'leaders.html', cdict)
 
