@@ -39,7 +39,7 @@ def render_leaders(request):
 	client = boto3.client('s3')
 	client.put_object(
 		ACL='public-read',
-		Body=leaders(request,'Albion'),
+		Body=leaders(request,'Albion').render(),
 		Bucket='uthgard.riftmetric.com',
 		Key='leaders_test.html',
 		CacheControl='max-age= 1',
