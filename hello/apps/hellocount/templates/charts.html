@@ -4,9 +4,10 @@
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
 
-      {% for chart in charts %}
+      
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
+        {% for chart in charts %}
           var data = google.visualization.arrayToDataTable([
             ['Bracket', 'Players Observed'],
             {% for row in chart.data %}
@@ -22,8 +23,9 @@
 
           var chart = new google.charts.Bar(document.getElementById('{{chart.element_id}}'));
           chart.draw(data, options);
+        {% endfor %}
         }
-      {% endfor %}
+      
     </script>
   </head>
   <body>
