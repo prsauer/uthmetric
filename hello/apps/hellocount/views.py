@@ -20,8 +20,13 @@ def post_data(request):
 	p.update_from_json(jdata)
 	return HttpResponse("")
 
-def leaders(request, realm):
-	players = Player.objects.all()[0:10].values()
+def leaders(request, realm=None):
+	if realm is not None and realm not in ["Albion","Midgard","Hibernia"]:
+		return HttpResponse("404")
+	if not realm:
+		players = Player.objects.all()[0:10].values()
+	else:
+		players = Player.objects.filter(realmname=realm)[0:10].values()
 	return TemplateResponse(request, 'leaders.html', {'players': players})
 
 @csrf_exempt
