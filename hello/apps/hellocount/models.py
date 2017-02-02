@@ -27,7 +27,7 @@ class Player(models.Model):
             self.realmrank = jdata['RealmRank']
             self.guildname = jdata['Raw'].get('GuildName')
             self.realmname = realms[jdata['Raw'].get('Realm',0)]
-            self.raw_data = res
+            self.raw_data = json.dumps(jdata)
         except:
             logger.info("Couldnt decode %s"%(res))
         else:
