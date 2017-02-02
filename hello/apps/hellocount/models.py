@@ -1,6 +1,37 @@
+import requests,json,logging
 from django.db import models
+from simple_history.models import HistoricalRecords
 
-class Visit(models.Model):
-    visit_stamp = models.DateTimeField(auto_now_add=True)
-    user_agent = models.CharField(max_length=255)
+logger = logging.getLogger('django')
+
+class Player(models.Model):
+    history = HistoricalRecords()
+
+    fullname = models.CharField(max_length=128)
+    rawname = models.CharField(max_length=128)
+    classname = models.CharField(max_length=128)
+    racename = models.CharField(max_length=128)
+    realmrank = models.CharField(max_length=128)
+    guildname = models.CharField(max_length=128)
+
+    raw_data = models.CharField(max_length=512)
+
+    def update_from_json(self, res):
+        try:
+            jdata = json.loads(res)
+            self.fullname = jdata['FullName']
+            self.rawname = jdata['Raw'].get('Name')
+            self.classname = jdata['ClassName']
+            self.racename = jdata['RaceName']
+            self.realmrank = jdata['RealmRank']
+            self.guildname = jdata['Raw'].get('GuildName')
+            self.raw_data = res
+        except:
+            logger.error("Couldnt decode %s"%(res))
+        else:
+            self.save()
+
+    def refresh_from_uth(self):
+        req = requests.get('https://uthgard.org/herald/api/player/%s'%self.rawname)
+        self.update_from_json(req.content)
 
