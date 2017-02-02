@@ -21,7 +21,12 @@ class Player(models.Model):
     xp = models.IntegerField(null=True)
 
     def redigest(self):
-        self.update_from_json(json.loads(self.raw_data))
+        try:
+            self.update_from_json(json.loads(self.raw_data)
+        except Exception as e:
+            print "Exception on item %s",self.id
+            print self.raw_data
+            print e,e.message
 
     def update_from_json(self, jdata):
         try:
