@@ -27,15 +27,19 @@ def leaders(request, realm=None):
 	if realm is not None and realm not in ["Albion","Midgard","Hibernia"]:
 		return HttpResponse("404")
 	if not realm:
-		players = Player.objects.all().order_by('-rps')[0:25].values()
+		db_players = Player.objects.all().order_by('-rps')[0:25]
 	else:
-		players = Player.objects.all().order_by('-rps').filter(realmname=realm)[0:25].values()
+		db_players = Player.objects.all().order_by('-rps').filter(realmname=realm)[0:25]
 
-	for i in xrange(0, len(players)):
+	fields = ['fullname','classname','guildname','realmname','rps']
+	players = [{},]*len(db_players)
+	for i in xrange(0, len(db_players)):
 		players[i]['rank'] = i+1
-		lastrps = players[i].history.order_by('-history_date')[1].rps or 0
+		for f in fields:
+			players[i][f] = getattr(db_players[i],f)
+		lastrps = db_players[i].history.order_by('-history_date')[1].rps or 0
 		if lastrps > 0:
-			players[i]['delta'] = players[i].rps - lastrps
+			players[i]['delta'] = db_players[i].rps - lastrps
 		else:
 			players[i]['delta'] = '-'
 
