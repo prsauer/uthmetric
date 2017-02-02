@@ -3,6 +3,8 @@ from hellocount.models import Player
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
+from django.template import Template, Context
+from django.template.loader import get_template
 
 import json, logging
 
@@ -27,7 +29,17 @@ def leaders(request, realm=None):
 		players = Player.objects.all().order_by('-rps')[0:10].values()
 	else:
 		players = Player.objects.all().order_by('-rps').filter(realmname=realm)[0:10].values()
-	return TemplateResponse(request, 'leaders.html', {'realm': realm, 'players': players})
+
+	cdict =  {'realm': realm, 'players': players}
+
+	t = get_template('leaders.html')
+	c = Context(cdict})
+
+	f = open('/srv/leaders.html','w')
+	f.write(t.render())
+	f.close()
+
+	return TemplateResponse(request, 'leaders.html', cdict)
 
 @csrf_exempt
 def get_by_name(request, rawname):
