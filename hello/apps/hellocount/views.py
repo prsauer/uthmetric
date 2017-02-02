@@ -25,4 +25,4 @@ def get_by_name(request, rawname):
 		p = Player.objects.get(rawname=rawname)
 		return JsonResponse(p.raw_data)
 	except Player.DoesNotExist:
-		return JsonResponse({})
+		return HttpResponse("Failed %s"%rawname)
