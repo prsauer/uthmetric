@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^leaders/$', views.leaders, name='leaders_all'),
     url(r'^render_leaders/$', views.render_leaders, name='render'),
     url(r'^guilds/$', views.by_guild, name='guilds'),
+    url(r'^charts/$', views.charts, name='charts'),
 ]

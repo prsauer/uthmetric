@@ -22,6 +22,9 @@ def post_data(request):
 	p.update_from_json(jdata)
 	return HttpResponse("")
 
+def charts(request):
+	return TemplateResponse(request, 'charts.html', {})
+
 def get_by_name(request, rawname):
 	try:
 		p = Player.objects.get(rawname=rawname)
