@@ -7,4 +7,7 @@ logger = logging.getLogger('django')
 
 def say_hello(request):
 	logger.info(request.POST)
+	f = open('/srv/output.txt', 'w')
+	f.write(str(request.POST))
+	f.close()
 
