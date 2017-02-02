@@ -6,7 +6,7 @@ from django.template.response import TemplateResponse
 from django.template import Template, Context
 from django.template.loader import get_template
 
-import json, logging
+import json, logging, boto3
 
 logger = logging.getLogger('django')
 
@@ -35,10 +35,14 @@ def leaders(request, realm=None):
 	t = get_template('leaders.html')
 	c = Context(cdict)
 
-	f = open('/srv/leaders.html','w')
-	f.write(t.render())
-	f.close()
-
+	client = boto3.client('s3')
+	client.put_object(
+		ACL='public-read',
+		Body=t.render(),
+		Bucket='uthgard.riftmetric.com',
+		Key='leaders_test.html',
+		CacheControl='max-age= 60',
+	)
 	return TemplateResponse(request, 'leaders.html', cdict)
 
 @csrf_exempt

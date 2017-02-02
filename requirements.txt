@@ -61,3 +61,4 @@ django-simple-history==1.8.1
 workdays==1.4
 coreapi==2.0.9
 pynamodb==2.0.3
+boto3=1.4.4
