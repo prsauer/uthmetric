@@ -23,8 +23,11 @@ def post_data(request):
 	return HttpResponse("")
 
 def charts(request):
-	context = {}
-	context['albion_data'] = []
+	context = {'charts': []}
+	chart = {}
+	chart['data'] = []
+	chart['title'] = 'Albion Distribution by Level'
+	chart['element_id'] = 'albion_data'
 	for idx in xrange(1,51,5):
 		min_l = idx
 		max_l = idx+4
@@ -34,7 +37,8 @@ def charts(request):
 			level__lte=max_l,
 		).count()
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
-		context['albion_data'].append(row)
+		chart['data'].append(row)
+	context['charts'].append(chart)
 	return TemplateResponse(request, 'charts.html', context)
 
 def get_by_name(request, rawname):
