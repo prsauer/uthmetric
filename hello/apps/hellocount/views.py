@@ -168,5 +168,35 @@ def render_leaders(request):
 		CacheControl='max-age= 1',
 		ContentType='text/html',
 	)
+
+	# Render charts page
+	tr = charts(request)
+	tr.render()
+	output = tr.content
+
+	client = boto3.client('s3')
+	client.put_object(
+		ACL='public-read',
+		Body=output,
+		Bucket='uthgard.riftmetric.com',
+		Key='charts.html',
+		CacheControl='max-age= 1',
+		ContentType='text/html',
+	)
+
+	# Render contrib page
+	tr = contrib(request)
+	tr.render()
+	output = tr.content
+
+	client = boto3.client('s3')
+	client.put_object(
+		ACL='public-read',
+		Body=output,
+		Bucket='uthgard.riftmetric.com',
+		Key='contrib.html',
+		CacheControl='max-age= 1',
+		ContentType='text/html',
+	)
 	return HttpResponse("")
 
