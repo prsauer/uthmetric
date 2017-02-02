@@ -18,9 +18,8 @@ class Player(models.Model):
     realmname = models.CharField(max_length=16,null=True)
     raw_data = models.CharField(max_length=512)
 
-    def update_from_json(self, res):
+    def update_from_json(self, jdata):
         try:
-            jdata = json.loads(res)
             self.fullname = jdata['FullName']
             self.rawname = jdata['Raw'].get('Name')
             self.classname = jdata['ClassName']
@@ -37,5 +36,5 @@ class Player(models.Model):
 
     def refresh_from_uth(self):
         req = requests.get('https://uthgard.org/herald/api/player/%s'%self.rawname)
-        self.update_from_json(req.content)
+        self.update_from_json(json.loads(req.content))
 
