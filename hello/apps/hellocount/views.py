@@ -38,6 +38,11 @@ def by_guild(request):
 			gdata.append(this_g)
 	gdata.sort(key=lambda x: x['rps'])
 	gdata.reverse()
+	gdata = gdata[0:25]
+
+	for i in xrange(0, len(gdata)):
+		gdata[i]['rank'] = i+1
+
 	cdict =  {'guilds': gdata[0:25], 'realm': 'by Guild'}
 	return TemplateResponse(request, 'guilds.html', cdict)
 
