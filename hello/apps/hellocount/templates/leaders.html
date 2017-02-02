@@ -1,3 +1,4 @@
+{% load humanize %}
 
 <html>
 <head>
@@ -57,8 +58,8 @@ th {text-align: center;}
             <td>{{p.realmname}}</td>
             <td>{{p.guildname}}</td>
             <td>{{p.classname}}</td>
-            <td>{{p.rps|floatformat:2}}</td>
-            <td>{{p.realmrank}}</td>
+            <td>{{p.rps|intcomma}}</td>
+            <td>{{p.realmrank|floatformat:2}}</td>
           </tr>
           {% endfor %}
         </tbody>
