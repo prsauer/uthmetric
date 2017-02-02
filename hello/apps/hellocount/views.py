@@ -8,5 +8,5 @@ logger = logging.getLogger('django')
 
 @csrf_exempt
 def say_hello(request):
-	logger.info(request.POST)
+	logger.info(request.body)
 	return HttpResponse("")
