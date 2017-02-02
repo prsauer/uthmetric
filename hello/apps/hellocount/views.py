@@ -24,9 +24,9 @@ def leaders(request, realm=None):
 	if realm is not None and realm not in ["Albion","Midgard","Hibernia"]:
 		return HttpResponse("404")
 	if not realm:
-		players = Player.objects.all()[0:10].values()
+		players = Player.objects.all().order_by('rps')[0:10].values()
 	else:
-		players = Player.objects.filter(realmname=realm)[0:10].values()
+		players = Player.objects.all().order_by('rps').filter(realmname=realm)[0:10].values()
 	return TemplateResponse(request, 'leaders.html', {'players': players})
 
 @csrf_exempt
