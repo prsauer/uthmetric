@@ -20,19 +20,7 @@ th {text-align: center;}
 </style>
 
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="{% if not realm %}active{% endif %}"><a href="leaders.html">All</a></li>
-              <li class="{% if realm == 'by Guild' %}active{% endif %}"><a href="guilds.html">Guild</a></li>
-              <li class="{% if realm == 'Albion' %}active{% endif %}"><a href="leaders_alb.html">Albion</a></li>
-              <li class="{% if realm == 'Hibernia' %}active{% endif %}"><a href="leaders_hib.html">Hibernia</a></li>
-              <li class="{% if realm == 'Midgard' %}active{% endif %}"><a href="leaders_mid.html">Midgard</a></li>
-            </ul>
-          </div>
-      </div>
-    </nav>
+    {% include "navbar.html" %}
     <title>RP Leaderboard</title>
     <div class="container">
     <h1>RP Leaderboard {% if realm %}{{realm}}{%endif%}</h1>
