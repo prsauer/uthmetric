@@ -81,7 +81,7 @@ def render_leaders(request):
 			ACL='public-read',
 			Body=output,
 			Bucket='uthgard.riftmetric.com',
-			Key='test_leaders%s.html'%r[0],
+			Key='leaders%s.html'%r[0],
 			CacheControl='max-age= 1',
 			ContentType='text/html',
 		)
