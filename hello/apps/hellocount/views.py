@@ -16,5 +16,5 @@ def say_hello(request):
 		p = Player.objects.get(rawname=jdata['Raw'].get('Name'))
 	except Player.DoesNotExist:
 		p = Player()
-	p.update_from_json(request.body)
+	p.update_from_json(str(jdata))
 	return HttpResponse("")
