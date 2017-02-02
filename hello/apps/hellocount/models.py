@@ -4,6 +4,8 @@ from simple_history.models import HistoricalRecords
 
 logger = logging.getLogger('django')
 
+realms = ["","Albion","Midgard","Hibernia"]
+
 class Player(models.Model):
     history = HistoricalRecords()
 
@@ -13,7 +15,7 @@ class Player(models.Model):
     racename = models.CharField(max_length=128)
     realmrank = models.CharField(max_length=128)
     guildname = models.CharField(max_length=128)
-
+    realmname = models.CharField(max_length=16)
     raw_data = models.CharField(max_length=512)
 
     def update_from_json(self, res):
@@ -25,6 +27,7 @@ class Player(models.Model):
             self.racename = jdata['RaceName']
             self.realmrank = jdata['RealmRank']
             self.guildname = jdata['Raw'].get('GuildName')
+            self.realmname = realms[jdata['Raw'].get('Realm',0)]
             self.raw_data = res
         except:
             logger.error("Couldnt decode %s"%(res))
