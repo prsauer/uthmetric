@@ -26,7 +26,7 @@ def post_data(request):
 def by_guild(request):
 	guilds = Player.objects.values('guildname').distinct()
 	gdata = []
-	for g in guilds:
+	for g in [g['guildname'] for g in guilds]:
 		if g:
 			players = Player.objects.filter(guildname=g)
 			this_g = {}
