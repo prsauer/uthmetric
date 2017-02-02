@@ -6,11 +6,10 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses', 'Profit'],
-          {{data|safe}},
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]
+          ['Range', 'Count'],
+          {% for row in data_rows %}
+            {{row|safe}},
+          {% endfor %}
         ]);
 
         var options = {
