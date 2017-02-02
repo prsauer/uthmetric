@@ -150,7 +150,7 @@ def render_leaders(request):
 			Body=output,
 			Bucket='uthgard.riftmetric.com',
 			Key='leaders%s.html'%r[0],
-			CacheControl='max-age= 1',
+			CacheControl='max-age= 60',
 			ContentType='text/html',
 		)
 
@@ -165,7 +165,7 @@ def render_leaders(request):
 		Body=output,
 		Bucket='uthgard.riftmetric.com',
 		Key='guilds.html',
-		CacheControl='max-age= 1',
+		CacheControl='max-age= 60',
 		ContentType='text/html',
 	)
 
@@ -180,7 +180,7 @@ def render_leaders(request):
 		Body=output,
 		Bucket='uthgard.riftmetric.com',
 		Key='charts.html',
-		CacheControl='max-age= 1',
+		CacheControl='max-age= 60',
 		ContentType='text/html',
 	)
 
@@ -195,7 +195,7 @@ def render_leaders(request):
 		Body=output,
 		Bucket='uthgard.riftmetric.com',
 		Key='contrib.html',
-		CacheControl='max-age= 1',
+		CacheControl='max-age= 60',
 		ContentType='text/html',
 	)
 	return HttpResponse("")
