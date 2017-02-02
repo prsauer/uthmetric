@@ -23,7 +23,7 @@ def post_data(request):
 	return HttpResponse("")
 
 def charts(request):
-	context = {'charts': []}
+	context = {'realm': 'Distribution', 'charts': []}
 	chart = {
 		'data': [], 
 		'title': "Albion Distribution by Level",
