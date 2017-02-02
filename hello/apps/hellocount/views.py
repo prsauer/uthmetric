@@ -23,12 +23,15 @@ def post_data(request):
 	return HttpResponse("")
 
 def charts(request):
+	context = {}
+	context['data_rows'] = []
 	for idx in xrange(0,50,5):
 		min_l = idx
 		max_l = idx+4
 		count = Player.objects.filter(level__gte=min_l, level__lte=max_l).count()
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
-	return TemplateResponse(request, 'charts.html', {'data_rows': ["['0-5', 250]","['6-10', 11]"]})
+		context['data_rows'].append(row)
+	return TemplateResponse(request, 'charts.html', context)
 
 def get_by_name(request, rawname):
 	try:
