@@ -21,6 +21,7 @@ def post_data(request):
 
 @csrf_exempt
 def get_by_name(request, rawname):
+	logger.info("Req: %s"%rawname)
 	try:
 		p = Player.objects.get(rawname=rawname)
 		return JsonResponse(p.raw_data)
