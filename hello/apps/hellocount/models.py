@@ -17,8 +17,8 @@ class Player(models.Model):
     guildname = models.CharField(max_length=128)
     realmname = models.CharField(max_length=16,null=True)
     raw_data = models.CharField(max_length=512)
-    rps = models.IntegerField(null=True)
-    xp = models.IntegerField(null=True)
+    rps = models.BigIntegerField(null=True)
+    xp = models.BigIntegerField(null=True)
 
     def redigest(self):
         try:
