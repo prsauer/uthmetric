@@ -1,6 +1,7 @@
 import requests,json,logging
 from django.db import models
 from simple_history.models import HistoricalRecords
+from datetime import datetime
 
 logger = logging.getLogger('django')
 
@@ -21,6 +22,7 @@ class Player(models.Model):
     rps = models.BigIntegerField(null=True)
     xp = models.BigIntegerField(null=True)
     level = models.IntegerField(null=True)
+    lastupdated = models.DateTimeField(null=True)
 
     def redigest(self):
         try:
@@ -42,6 +44,7 @@ class Player(models.Model):
             self.realmname = realms[jdata['Raw'].get('Realm',0)]
             self.rps = jdata['Raw'].get('RP',0)
             self.xp = jdata['Raw'].get('XP',0)
+            self.lastupdated = datetime.fromtimestamp(int(jdata['Raw']['LastUpdated']))
             self.raw_data = json.dumps(jdata)
         except:
             logger.info("Couldnt decode %s"%(jdata))

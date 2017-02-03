@@ -6,6 +6,7 @@ from django.template.response import TemplateResponse
 from django.template import Template, Context
 from django.template.loader import get_template
 
+from datetime import datetime
 import json, logging, boto3
 
 logger = logging.getLogger('django')
