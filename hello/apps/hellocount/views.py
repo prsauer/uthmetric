@@ -12,7 +12,7 @@ import json, logging, boto3
 logger = logging.getLogger('django')
 
 def most_recent():
-	return Player.objects.order_by('lastupdated').first().lastupdated
+	return Player.objects.order_by('-lastupdated').first().lastupdated
 
 @csrf_exempt
 def post_data(request):
