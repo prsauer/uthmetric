@@ -96,6 +96,7 @@ def charts(request):
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
 		chart['data'].append(row)
 	context['charts'].append(chart)
+	context['timestamp'] = most_recent()
 	return TemplateResponse(request, 'charts.html', context)
 
 def get_by_name(request, rawname):
@@ -125,7 +126,7 @@ def by_guild(request):
 	for i in xrange(0, len(gdata)):
 		gdata[i]['rank'] = i+1
 
-	cdict =  {'guilds': gdata[0:25], 'realm': 'by Guild'}
+	cdict =  {'timestamp': most_recent(), 'guilds': gdata[0:25], 'realm': 'by Guild'}
 	return TemplateResponse(request, 'guilds.html', cdict)
 
 def leaders(request, realm=None):
