@@ -32,7 +32,7 @@ def push_name(request, name):
 			p = Player()
 			p.rawname = name
 			p.refresh_from_uth()
-			return HttpResponse("Observing new player...")
+			return HttpResponse("Observing new player... %s"%p.raw_data)
 		except Exception as e:
 			pass
 	return HttpResponse("Error adding player -- Check Uthgard api for name first!")
