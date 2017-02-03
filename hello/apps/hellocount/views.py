@@ -42,7 +42,7 @@ def push_name(request, rawname):
 	return HttpResponse("Error adding player -- Check Uthgard api for name first!")
 
 def contrib(request):
-	return TemplateResponse(request, 'contrib.html', {})
+	return TemplateResponse(request, 'contrib.html', {'timestamp': most_recent()})
 
 def charts(request):
 	context = {'realm': 'Distribution', 'charts': []}
