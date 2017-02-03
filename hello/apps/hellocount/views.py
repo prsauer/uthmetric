@@ -23,7 +23,7 @@ def post_data(request):
 	return HttpResponse("")
 
 @csrf_exempt
-def push_name(request, name):
+def push_name(request, rawname):
 	try:
 		p = Player.objects.get(rawname=name)
 		return HttpResponse("Already observed")
