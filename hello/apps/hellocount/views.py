@@ -11,6 +11,9 @@ import json, logging, boto3
 
 logger = logging.getLogger('django')
 
+def most_recent():
+	return Player.objects.order_by('lastupdated').first().lastupdated
+
 @csrf_exempt
 def post_data(request):
 	logger.info(request.body)
@@ -149,7 +152,7 @@ def leaders(request, realm=None):
 		else:
 			players[i]['delta'] = '-'
 
-	cdict =  {'realm': realm, 'players': players}
+	cdict =  {'timestamp': most_recent(), 'realm': realm, 'players': players}
 	
 	return TemplateResponse(request, 'leaders.html', cdict)
 
