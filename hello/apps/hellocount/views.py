@@ -22,6 +22,21 @@ def post_data(request):
 	p.update_from_json(jdata)
 	return HttpResponse("")
 
+@csrf_exempt
+def push_name(request, name):
+	try:
+		p = Player.objects.get(rawname=name)
+		return HttpResponse("Already observed")
+	except Player.DoesNotExist:
+		try:
+			p = Player()
+			p.rawname = name
+			p.refresh_from_uth()
+			return HttpResponse("Observing new player...")
+		except Exception e:
+			pass
+	return HttpResponse("Error adding player -- Check Uthgard api for name first!")
+
 def contrib(request):
 	return TemplateResponse(request, 'contrib.html', {})
 
