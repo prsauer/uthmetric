@@ -25,12 +25,12 @@ def post_data(request):
 @csrf_exempt
 def push_name(request, rawname):
 	try:
-		p = Player.objects.get(rawname=name)
+		p = Player.objects.get(rawname=rawname)
 		return HttpResponse("Already observed")
 	except Player.DoesNotExist:
 		try:
 			p = Player()
-			p.rawname = name
+			p.rawname = rawname
 			p.refresh_from_uth()
 			return HttpResponse("Observing new player... %s"%p.raw_data)
 		except Exception as e:
