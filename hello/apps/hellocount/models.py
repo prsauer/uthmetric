@@ -2,6 +2,8 @@ import requests,json,logging
 from django.db import models
 from simple_history.models import HistoricalRecords
 from datetime import datetime
+from datetime import relativedelta
+from django.utils import timezone
 import pytz
 
 logger = logging.getLogger('django')
@@ -24,6 +26,9 @@ class Player(models.Model):
     xp = models.BigIntegerField(null=True)
     level = models.IntegerField(null=True)
     lastupdated = models.DateTimeField(null=True)
+
+    def age(self):
+        return (timezone.now() - self.lastupdated).total_seconds()/60/60
 
     def redigest(self):
         try:
