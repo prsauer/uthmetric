@@ -51,7 +51,7 @@ class Player(models.Model):
     def update_from_json(self, jdata):
         if json.dumps(jdata) == self.raw_data:
             # Don't save so we dont create duplicate histories
-            return
+            return False
         try:
             self.fullname = jdata['FullName']
             self.rawname = jdata['Raw'].get('Name')
@@ -70,8 +70,9 @@ class Player(models.Model):
         else:
             self.save()
             logger.info("Saved %s"%(jdata))
+        return True
 
     def refresh_from_uth(self):
         req = requests.get('https://uthgard.org/herald/api/player/%s'%self.rawname)
-        self.update_from_json(json.loads(req.content))
+        return self.update_from_json(json.loads(req.content))
 
