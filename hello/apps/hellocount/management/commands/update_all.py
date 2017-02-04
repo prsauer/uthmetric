@@ -13,6 +13,6 @@ class Command(BaseCommand):
             if p.refresh_from_uth():
                 refreshed += 1
             count += 1
-            if count%100=0:
+            if count%100 == 0:
                 print 100.0*count/total
         print "refreshed",refreshed,100.0*refreshed/total
