@@ -10,4 +10,7 @@ class Command(BaseCommand):
             if blizz.refresh_from_uth():
                 print "NEW DATA FOUND !!!!"
                 print "NEW DATA FOUND !!!!"
+                break
+            else:
+                print "old"
             time.sleep(5)
