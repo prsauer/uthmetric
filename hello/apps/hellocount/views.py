@@ -47,7 +47,7 @@ def push_name(request, rawname):
 
 def by_class(request):
 	a_data = []
-	a_title = "Alb classes"
+	a_title = "Albion Class Distribution (Level 45+)"
 	for a_cls in ALB_CLASSES:
 		a_data.append([a_cls, Player.objects.filter(classname=a_cls,level__gt=45).count()])
 	a_data.sort(key=lambda x: x[1])
