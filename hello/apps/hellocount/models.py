@@ -1,7 +1,8 @@
 import requests,json,logging
 from django.db import models
 from simple_history.models import HistoricalRecords
-from datetime import datetime, relativedelta
+from datetime import relativedelta
+from datetime import datetime
 from django.utils import timezone
 import pytz
 
