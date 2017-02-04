@@ -37,7 +37,21 @@ class Player(models.Model):
             print self.raw_data
             print e,e.message
 
+    def clean_history(self):
+        did_work = True
+        while(did_work):
+            did_work = False
+            history_items = list(self.history.order_by('history_date'))
+            for i in xrange(1, len(history_items)):
+                if history_items[i].raw_data == history_items[i-1].raw_data:
+                    history_items[i].delete()
+                    did_work = True
+                    break
+
     def update_from_json(self, jdata):
+        if json.dumps(data) == self.raw_data:
+            # Don't save so we dont create duplicate histories
+            return
         try:
             self.fullname = jdata['FullName']
             self.rawname = jdata['Raw'].get('Name')
