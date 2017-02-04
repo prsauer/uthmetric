@@ -13,4 +13,4 @@ class Command(BaseCommand):
                 break
             else:
                 print "old"
-            time.sleep(5)
+            time.sleep(60)
