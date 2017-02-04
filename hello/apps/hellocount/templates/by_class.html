@@ -1,0 +1,60 @@
+<html>
+  <head>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-91056124-1', 'auto');ga('send', 'pageview');
+  </script>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+      <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+        {% for chart in charts %}
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Players Observed'],
+            {% for row in chart.data %}
+              {{row|safe}},
+            {% endfor %}
+          ]);
+          var options = {
+            chart: {
+              title: "{{chart.title}}",
+            },
+            bars: 'vertical'
+          };
+
+          var chart = new google.charts.Bar(document.getElementById('{{chart.element_id}}'));
+          chart.draw(data, options);
+        {% endfor %}
+        }
+      
+    </script>
+  </head>
+  <body>
+      {% include "navbar.html" %}
+      <title>RP Leaderboard</title>
+      <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>This section is only accurate for <em>Albion</em> at this time. <a href="contrib.html">Contributors on Hib/Mid are badly needed!<a></h3>
+      </div>
+      <div class="col-md-8 col-md-offset-2">
+        <div id="albion_data" style="width: 900px; height: 500px;"></div>
+        <div id="hibernia_data" style="width: 900px; height: 500px;"></div>
+        <div id="midgard_data" style="width: 900px; height: 500px;"></div>
+      </div>
+      <div class="col-md-12">
+        <h3> Want to add data? Record /chatlog with /who data and submit to armsperson@gmail.com</h3>
+      </div>
+    </div>
+  </body>
+  </html>
+</html>

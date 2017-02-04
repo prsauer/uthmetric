@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^guilds/$', views.by_guild, name='guilds'),
     url(r'^charts/$', views.charts, name='charts'),
     url(r'^contrib/$', views.contrib, name='contrib'),
+    url(r'^by_class/$', views.by_class, name='by_class'),
     url(r'^add_by_name/(?P<rawname>[a-zA-Z]+)/$', views.push_name, name='push_name'),
 ]

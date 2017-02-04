@@ -11,6 +11,10 @@ import json, logging, boto3
 
 logger = logging.getLogger('django')
 
+MID_CLASSES = ['Berserker', 'Bonedancer', 'Healer', 'Shadowblade', 'Spiritmaster', 'Shaman', 'Warrior', 'Skald', 'Hunter', 'Savage', 'Thane', 'Runemaster']
+HIB_CLASSES = ['Blademaster', 'Ranger', 'Valewalker', 'Eldritch', 'Champion', 'Animist', 'Enchanter', 'Mentalist', 'Bard', 'Warden', 'Hero', 'Nightshade', 'Druid']
+ALB_CLASSES = ['Cleric', 'Mercenary', 'Paladin', 'Wizard', 'Infiltrator', 'Necromancer', 'Armsman', 'Scout', 'Sorcerer', 'Theurgist', 'Cabalist', 'Reaver', 'Minstrel', 'Friar']
+
 def most_recent():
 	return Player.objects.order_by('-lastupdated').first().lastupdated
 
@@ -40,6 +44,14 @@ def push_name(request, rawname):
 		except Exception as e:
 			pass
 	return HttpResponse("Error adding player -- Check Uthgard api for name first!")
+
+def by_class(request):
+	a_data = []
+	a_title = "Alb classes"
+	for a_cls in ALB_CLASSES:
+		a_data.append(Player.objects.filter(classname=a_cls,level__gt=45).count())
+	charts = [{data: a_data, title: a_title}]
+	return TemplateResponse(request, 'by_class.html', {'charts': charts, 'timestamp': most_recent()})
 
 def contrib(request):
 	return TemplateResponse(request, 'contrib.html', {'timestamp': most_recent()})
