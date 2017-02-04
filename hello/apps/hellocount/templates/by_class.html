@@ -20,7 +20,7 @@
         function drawChart() {
         {% for chart in charts %}
           var data = google.visualization.arrayToDataTable([
-            ['Class', 'Players Observed'],
+            ['Class', '# Observed'],
             {% for row in chart.data %}
               {{row|safe}},
             {% endfor %}
