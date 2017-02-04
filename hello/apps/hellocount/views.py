@@ -57,7 +57,7 @@ def by_class(request):
 		a_data.reverse()
 		charts.append({'data': a_data, 'title': a_title, 'element_id': '%s_data'%(r[1].lower())})
 
-	return TemplateResponse(request, 'by_class.html', {'charts': charts, 'timestamp': most_recent()})
+	return TemplateResponse(request, 'by_class.html', {'realm': 'classes', 'charts': charts, 'timestamp': most_recent()})
 
 def contrib(request):
 	return TemplateResponse(request, 'contrib.html', {'timestamp': most_recent()})
@@ -218,6 +218,21 @@ def render_leaders(request):
 		Body=output,
 		Bucket='uthgard.riftmetric.com',
 		Key='charts.html',
+		CacheControl='max-age= 60',
+		ContentType='text/html',
+	)
+
+	# Render class charts page
+	tr = by_class(request)
+	tr.render()
+	output = tr.content
+
+	client = boto3.client('s3')
+	client.put_object(
+		ACL='public-read',
+		Body=output,
+		Bucket='uthgard.riftmetric.com',
+		Key='classes.html',
 		CacheControl='max-age= 60',
 		ContentType='text/html',
 	)
