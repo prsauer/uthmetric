@@ -49,7 +49,7 @@ def by_class(request):
 	a_data = []
 	a_title = "Alb classes"
 	for a_cls in ALB_CLASSES:
-		a_data.append(Player.objects.filter(classname=a_cls,level__gt=45).count())
+		a_data.append([a_cls, Player.objects.filter(classname=a_cls,level__gt=45).count()])
 	charts = [{'data': a_data, 'title': a_title}]
 	return TemplateResponse(request, 'by_class.html', {'charts': charts, 'timestamp': most_recent()})
 
