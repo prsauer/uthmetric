@@ -50,6 +50,8 @@ def by_class(request):
 	a_title = "Alb classes"
 	for a_cls in ALB_CLASSES:
 		a_data.append([a_cls, Player.objects.filter(classname=a_cls,level__gt=45).count()])
+	a_data.sort(key=lambda x: x[1])
+	a_data.reverse()
 	charts = [{'data': a_data, 'title': a_title, 'element_id': 'albion_data'}]
 	return TemplateResponse(request, 'by_class.html', {'charts': charts, 'timestamp': most_recent()})
 
