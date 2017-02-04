@@ -30,7 +30,9 @@
               title: "{{chart.title}}",
             },
             bars: 'vertical'
+            hAxis: {slantedTextAngle: 90},
           };
+          //var options ={ hAxis: {title: "Years" , direction:-1, slantedText:true, slantedTextAngle:90 }}
 
           var chart = new google.charts.Bar(document.getElementById('{{chart.element_id}}'));
           chart.draw(data, options);
