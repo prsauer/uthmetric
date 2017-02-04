@@ -49,7 +49,7 @@ class Player(models.Model):
                     break
 
     def update_from_json(self, jdata):
-        if json.dumps(data) == self.raw_data:
+        if json.dumps(jdata) == self.raw_data:
             # Don't save so we dont create duplicate histories
             return
         try:
