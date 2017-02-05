@@ -125,7 +125,7 @@ def get_by_name(request, rawname):
 		return HttpResponse("Failed %s"%rawname)
 
 def by_guild(request):
-	guilds = Player.objects.values('guildname').distinct()
+	guilds = Player.objects.filter(realmname="Albion").values('guildname').distinct()
 	gdata = []
 	for g in [g['guildname'] for g in guilds]:
 		if g:
