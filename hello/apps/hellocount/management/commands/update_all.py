@@ -10,6 +10,8 @@ class Command(BaseCommand):
         count = 0
         refreshed = 0
         for p in Player.objects.order_by('-rps'):
+            if p.age() > 6:
+                continue
             if p.refresh_from_uth():
                 refreshed += 1
             count += 1
