@@ -52,7 +52,7 @@ def by_class(request):
 		a_data = []
 		a_title = "%s Class Distribution (Level 45+)"%r[1]
 		for a_cls in r[0]:
-			a_data.append([a_cls[0:5], Player.objects.filter(classname=a_cls,level__gt=45).count()])
+			a_data.append([a_cls[0:5], Player.objects.filter(classname=a_cls,level__gt=45, rps__gte=750).count()])
 		a_data.sort(key=lambda x: x[1])
 		a_data.reverse()
 		charts.append({'data': a_data, 'title': a_title, 'element_id': '%s_data'%(r[1].lower())})
@@ -76,7 +76,6 @@ def charts(request):
 			realmname='Albion',
 			level__gte=min_l,
 			level__lte=max_l,
-			rps__gte=2275,
 		).count()
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
 		chart['data'].append(row)
@@ -94,7 +93,6 @@ def charts(request):
 			realmname='Hibernia',
 			level__gte=min_l,
 			level__lte=max_l,
-			rps__gte=2275,
 		).count()
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
 		chart['data'].append(row)
@@ -112,7 +110,6 @@ def charts(request):
 			realmname='Midgard',
 			level__gte=min_l,
 			level__lte=max_l,
-			rps__gte=2275,
 		).count()
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
 		chart['data'].append(row)
