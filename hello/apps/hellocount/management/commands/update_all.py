@@ -10,13 +10,13 @@ class Command(BaseCommand):
         count = 0
         refreshed = 0
         for p in Player.objects.order_by('-rps'):
+            count += 1
+            if count%100 == 0:
+                print 100.0*count/total
             if p.age() < 6:
                 continue
             if p.level < 30 and p.age() < 12:
                 continue
             if p.refresh_from_uth():
                 refreshed += 1
-            count += 1
-            if count%100 == 0:
-                print 100.0*count/total
         print "refreshed",refreshed,100.0*refreshed/total
