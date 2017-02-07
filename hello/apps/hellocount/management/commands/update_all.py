@@ -15,9 +15,9 @@ class Command(BaseCommand):
                 print 100.0*count/total
             if p.age() < 6:
                 continue
-            if p.level < 10 and p.age() < 24:
+            if p.level < 20 and p.age() < 24:
                 continue
-            if p.level < 30 and p.age() < 12:
+            if p.level < 40 and p.age() < 12:
                 continue
             if p.refresh_from_uth():
                 refreshed += 1
