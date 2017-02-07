@@ -76,7 +76,7 @@ def charts(request):
 			realmname='Albion',
 			level__gte=min_l,
 			level__lte=max_l,
-			rps__gte=750,
+			rps__gte=1375,
 		).count()
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
 		chart['data'].append(row)
@@ -94,7 +94,7 @@ def charts(request):
 			realmname='Hibernia',
 			level__gte=min_l,
 			level__lte=max_l,
-			rps__gte=750,
+			rps__gte=1375,
 		).count()
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
 		chart['data'].append(row)
@@ -112,7 +112,7 @@ def charts(request):
 			realmname='Midgard',
 			level__gte=min_l,
 			level__lte=max_l,
-			rps__gte=750,
+			rps__gte=1375,
 		).count()
 		row = "['%s-%s', %s]"%(min_l,max_l,count)
 		chart['data'].append(row)
