@@ -1,3 +1,23 @@
+Log style
+
+
 {% for k in keeps %}
 <div>[{{k.lastupdated}}] Forces of {{k.owner}} have taken {{k.name}} led by {{k.leadername}}</div>
 {% endfor %}
+
+
+table style
+<table>
+  <thead>
+    <td>Keep</td>
+    <td>Realm</td>
+  </thead>
+  <tbody>
+  {% for k in keeps %}
+  <tr>
+    <td>{{k.name}}</td>
+    <td>{{k.owner}}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
