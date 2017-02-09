@@ -33,7 +33,7 @@ def update_keep(request):
 	return HttpResponse("Good")
 
 def realmwar(request):
-	return TemplateResponse(request, 'realmwar.html', {'realm': 'realmwar', 'keeps': Keep.objects.all()})
+	return TemplateResponse(request, 'realmwar.html', {'realm': 'realmwar', 'keeps': Keep.objects.all(), 'timestamp': most_recent()})
 
 def render_keeps(request):
 	tr = realmwar(request)
