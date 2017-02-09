@@ -34,10 +34,10 @@ th {text-align: center;}
     <h1>Realm War [BETA]</h1>
     <h4>data by Armsperson</h4>
     <div>
-    DF OWNER:
-    {{df.owner}}
-    {{df.lastupdated}}
-  </div>
+      Darkness Falls:
+      <span class="realm_{{df.owner}}">{{df.owner}}</span>
+      {% if df.lastupdated %} taken {{df.lastupdated}} {% endif %}
+    </div>
     <div class="col-md-8 col-md-offset-2">
       <table id="eader" class="table table-striped">
         <thead>
