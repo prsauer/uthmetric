@@ -32,11 +32,24 @@ def update_keep(request):
 		return HttpResponse("%s %s"%(e,e.message))
 	return HttpResponse("Good")
 
-def render_keeps(request):
-	pass
-
 def realmwar(request):
-	return TemplateResponse(request, 'realmwar.html', {'keeps': Keep.objects.all()})
+	return TemplateResponse(request, 'realmwar.html', {'realm': 'realmwar', 'keeps': Keep.objects.all()})
+
+def render_keeps(request):
+	tr = realmwar(request)
+	tr.render()
+	output = tr.content
+
+	client = boto3.client('s3')
+	client.put_object(
+		ACL='public-read',
+		Body=output,
+		Bucket='uthgard.riftmetric.com',
+		Key='realmwar.html',
+		CacheControl='max-age= 60',
+		ContentType='text/html',
+	)
+	return HttpResponse("Good")
 
 @csrf_exempt
 def post_data(request):
