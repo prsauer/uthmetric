@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from hellocount.models import Player,Keep
+from hellocount.models import Player,Keep,DFalls
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
