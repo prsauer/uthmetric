@@ -28,6 +28,7 @@ def update_keep(request):
 		keep.owner = jdata['owner']
 		keep.leadername = jdata['leader']
 		keep.save()
+		render_keeps(request)
 	except Exception as e:
 		return HttpResponse("%s %s"%(e,e.message))
 	return HttpResponse("Good")
@@ -40,6 +41,7 @@ def update_df(request):
 		df.owner = jdata['owner']
 		df.lastupdated = timezone.now()
 		df.save()
+		render_keeps(request)
 	except Exception as e:
 		return HttpResponse("%s %s"%(e,e.message))
 	return HttpResponse("Good")
