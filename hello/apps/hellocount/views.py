@@ -24,7 +24,7 @@ def update_keep(request):
 	jdata = json.loads(request.body)
 	try:
 		Keep.objects.all().delete()
-		keep = Keep.objects.get_or_create(name=jdata['name'])
+		keep = Keep.objects.get_or_create(name=jdata['name'])[0]
 		keep.lastupdated = timezone.now()
 		keep.owner = jdata['owner']
 		keep.leadername = jdata['leader']
