@@ -32,6 +32,18 @@ def update_keep(request):
 		return HttpResponse("%s %s"%(e,e.message))
 	return HttpResponse("Good")
 
+@csrf_exempt
+def update_df(request):
+	jdata = json.loads(request.body)
+	try:
+		df = DFalls.objects.first()
+		df.owner = jdata['owner']
+		df.lastupdated = timezone.now()
+		df.save()
+	except Exception as e:
+		return HttpResponse("%s %s"%(e,e.message))
+	return HttpResponse("Good")
+
 def realmwar(request):
 	return TemplateResponse(request, 'realmwar.html', {'realm': 'realmwar', 'keeps': Keep.objects.all(), 'timestamp': most_recent()})
 
