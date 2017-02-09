@@ -26,7 +26,7 @@ def update_keep(request):
 		keep = Keep.objects.get_or_create(name=jdata['name'])
 		keep.lastupdated = timezone.now()
 		keep.owner = jdata['owner']
-		keep.leader = jdata['leader']
+		keep.leadername = jdata['leader']
 		keep.save()
 	except Exception as e:
 		return HttpResponse("%s %s"%(e,e.message))
