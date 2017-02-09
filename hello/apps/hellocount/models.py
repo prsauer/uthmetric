@@ -9,6 +9,13 @@ logger = logging.getLogger('django')
 
 realms = ["","Albion","Midgard","Hibernia"]
 
+class Keep(models.Model):
+    history = HistoricalRecords()
+    name = models.CharField(max_length=128)
+    leadername = models.CharField(max_length=128)
+    owner = models.CharField(max_length=128)
+    lastupdated = models.DateTimeField(null=True)
+
 class Player(models.Model):
 
     history = HistoricalRecords()

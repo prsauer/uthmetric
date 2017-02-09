@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from hellocount.models import Player
+from hellocount.models import Player,Keep
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
 from django.template import Template, Context
 from django.template.loader import get_template
+from django.utils import timezone
 
 from datetime import datetime
 import json, logging, boto3
@@ -17,6 +18,25 @@ ALB_CLASSES = ['Cleric', 'Mercenary', 'Paladin', 'Wizard', 'Infiltrator', 'Necro
 
 def most_recent():
 	return Player.objects.order_by('-lastupdated').first().lastupdated
+
+@csrf_exempt
+def update_keep(request):
+	jdata = json.loads(request.body)
+	try:
+		keep = Keep.objects.get_or_create(name=jdata['name'])
+		keep.lastupdated = timezone.now()
+		keep.owner = jdata['owner']
+		keep.leader = jdata['leader']
+		keep.save()
+	except Exception as e:
+		return HttpResponse("%s %s"%(e,e.message))
+	return HttpResponse("Good")
+
+def render_keeps(request):
+	pass
+
+def realmwar(request):
+	return TemplateResponse(request, 'realmwar.html', {'keeps': Keep.objects.all()})
 
 @csrf_exempt
 def post_data(request):
