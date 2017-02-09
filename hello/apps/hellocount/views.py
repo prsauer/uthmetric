@@ -45,7 +45,10 @@ def update_df(request):
 	return HttpResponse("Good")
 
 def realmwar(request):
-	return TemplateResponse(request, 'realmwar.html', {'realm': 'realmwar', 'keeps': Keep.objects.all(), 'timestamp': most_recent()})
+	return TemplateResponse(request, 'realmwar.html', {'realm': 'realmwar',
+													   'keeps': Keep.objects.all(),
+													   'timestamp': most_recent(),
+													   'df': DFalls.objects.first()})
 
 def render_keeps(request):
 	tr = realmwar(request)
