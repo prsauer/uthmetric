@@ -89,5 +89,5 @@ class Player(models.Model):
         try:
             return self.update_from_json(json.loads(req.content))
         except ValueError:
-            logger.info("Error: %s"%req.content)
+            logger.info("Error: %s,%s"%(self.rawname,req.content))
         return False
