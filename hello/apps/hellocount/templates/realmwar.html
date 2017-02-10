@@ -51,8 +51,8 @@ th {text-align: center;}
           <tr>
             <td>{{k.name}}</td>
             <td class="realm_{{p.owner}}">{{k.owner}}</td>
-            <td>{{k.leadername}}</td>
-            <td>{{k.lastupdated}}</td>
+            <td>{% if k.leadername %}{{k.leadername}}{% else %}<i>Unknown</i>{%endif%}</td>
+            <td>{% if k.lastupdated %}{{k.lastupdated}}{% else %}<i>Unknown</i>{% endif %}</td>
           </tr>
           {% endfor %}
         </tbody>
