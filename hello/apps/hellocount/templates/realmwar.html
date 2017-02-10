@@ -1,6 +1,4 @@
-{% load tz %}
 {% load humanize %}
-{% localtime on %}
 <html>
 <head>
   <script>
@@ -37,7 +35,7 @@ th {text-align: center;}
     <div>
       Darkness Falls:
       <span class="realm_{{df.owner}}">{{df.owner}}</span>
-      {% if df.lastupdated %} taken {{df.lastupdated | timezone: "US/Eastern" }} {% endif %}
+      {% if df.lastupdated %} taken {{df.lastupdated}} {% endif %}
     </div>
     <div class="col-md-8 col-md-offset-2">
       <table id="eader" class="table table-striped">
@@ -63,4 +61,3 @@ th {text-align: center;}
   </div>
 </body>
 </html>
-{% endlocaltime %}
