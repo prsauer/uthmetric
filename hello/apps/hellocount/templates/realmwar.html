@@ -37,7 +37,7 @@ th {text-align: center;}
     <div>
       Darkness Falls:
       <span class="realm_{{df.owner}}">{{df.owner}}</span>
-      {% if df.lastupdated %} taken {{df.lastupdated}} {% endif %}
+      {% if df.lastupdated %} taken {{df.lastupdated | timezone: "US/Eastern" }} {% endif %}
     </div>
     <div class="col-md-8 col-md-offset-2">
       <table id="eader" class="table table-striped">
