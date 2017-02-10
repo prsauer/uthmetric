@@ -20,6 +20,7 @@ class Keep(models.Model):
     leadername = models.CharField(max_length=128)
     owner = models.CharField(max_length=128)
     lastupdated = models.DateTimeField(null=True)
+    location = models.CharField(max_length=128)
 
 class Player(models.Model):
 
