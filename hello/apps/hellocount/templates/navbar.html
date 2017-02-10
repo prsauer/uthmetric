@@ -1,4 +1,3 @@
-{% load tz %}
 
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
@@ -14,7 +13,7 @@
         <!-- <li class="{% if realm == 'realmwar' %}active{% endif %}"><a href="realmwar.html">Realm War</a></li> --->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Timestamp of most recent data: {{timestamp|timezone: "US/Eastern"}} UTC</a></li>
+        <li><a href="#">Timestamp of most recent data: {{timestamp}} UTC</a></li>
       </ul>
       </div>
   </div>
