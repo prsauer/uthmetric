@@ -47,8 +47,12 @@ def update_df(request):
 	return HttpResponse("Good")
 
 def realmwar(request):
+	realm_keeps = []
+	realm_keeps.append(Keep.objects.filter(location="Albion"))
+	realm_keeps.append(Keep.objects.filter(location="Midgard"))
+	realm_keeps.append(Keep.objects.filter(location="Hibernia"))
 	return TemplateResponse(request, 'realmwar.html', {'realm': 'realmwar',
-													   'keeps': Keep.objects.all(),
+													   'realm_keeps': realm_keeps,
 													   'timestamp': most_recent(),
 													   'df': DFalls.objects.first()})
 
