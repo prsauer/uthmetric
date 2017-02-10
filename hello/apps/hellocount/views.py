@@ -25,8 +25,8 @@ def update_keep(request):
 	try:
 		keep = Keep.objects.get_or_create(name=jdata['name'])[0]
 		keep.lastupdated = timezone.now()
-		keep.owner = jdata['owner']
-		keep.leadername = jdata['leader']
+		keep.owner = jdata.get('owner','Failed')
+		keep.leadername = jdata.get('leader','Failed')
 		keep.save()
 		render_keeps(request)
 	except Exception as e:
