@@ -86,5 +86,8 @@ class Player(models.Model):
 
     def refresh_from_uth(self):
         req = requests.get('https://uthgard.org/herald/api/player/%s'%self.rawname)
-        return self.update_from_json(json.loads(req.content))
-
+        try:
+            return self.update_from_json(json.loads(req.content))
+        except ValueError:
+            logger.info("Error: %s"%req.content)
+        return False
