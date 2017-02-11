@@ -47,14 +47,14 @@ th {text-align: center;}
         <thead>
           <th>Keep</th>
           <th>Owner</th>
-          <th>Taken</th>
+          <!--<th>Taken</th>-->
         </thead>
         <tbody>
           {% for k in r %}
           <tr>
             <td>{{k.name}}</td>
             <td class="realm_{{k.owner}}">{{k.owner}}</td>
-            <td><i>Unknown</i></td>
+            <!--<td><i>Unknown</i></td>-->
           </tr>
           {% endfor %}
         </tbody>
