@@ -37,10 +37,6 @@ th {text-align: center;}
       <span class="realm_{{df.owner}}">{{df.owner}}</span>
       {% if df.lastupdated %} taken {{df.lastupdated}} {% endif %}
     </div>
-    {% for r in all_keeps %}
-    {{r.name}} {{r.owner}} <br>
-    {% endfor %}
-
     {% for r in realm_keeps %}
     <div class="col-md-4">
       <h3 class="realm_{{r.realm}}" style="text-align: center">{{r.realm}}</h3>
