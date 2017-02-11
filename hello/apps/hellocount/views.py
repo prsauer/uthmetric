@@ -48,9 +48,9 @@ def update_df(request):
 
 def realmwar(request):
 	realm_keeps = []
-	realm_keeps.append(Keep.objects.filter(location="Albion"))
-	realm_keeps.append(Keep.objects.filter(location="Midgard"))
-	realm_keeps.append(Keep.objects.filter(location="Hibernia"))
+	realm_keeps.append({'realm': 'Albion', 'keeps': Keep.objects.filter(location="Albion")})
+	realm_keeps.append({'realm': 'Midgard', 'keeps': Keep.objects.filter(location="Midgard")})
+	realm_keeps.append({'realm': 'Hibernia', 'keeps': Keep.objects.filter(location="Hibernia")})
 	return TemplateResponse(request, 'realmwar.html', {'realm': 'realmwar',
 													   'all_keeps': Keep.objects.all(),
 													   'realm_keeps': realm_keeps,
