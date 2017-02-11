@@ -37,6 +37,7 @@ th {text-align: center;}
       <span class="realm_{{df.owner}}">{{df.owner}}</span>
       {% if df.lastupdated %} taken {{df.lastupdated}} {% endif %}
     </div>
+    {{realm_keeps}}
     {% for r in realm_keeps %}
     <div class="col-md-4">
       <table id="leader" class="table table-striped">
