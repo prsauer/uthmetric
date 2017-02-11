@@ -14,6 +14,14 @@ class DFalls(models.Model):
     owner = models.CharField(max_length=128)
     lastupdated = models.DateTimeField(null=True)
 
+class Relic(models.Model):
+    history = HistoricalRecords()
+    name = models.CharField(max_length=128)
+    owner = models.CharField(max_length=128)
+    location = models.CharField(max_length=128)
+    lastupdated = models.DateTimeField(null=True)
+    origin = models.CharField(max_length=128)
+
 class Keep(models.Model):
     history = HistoricalRecords()
     name = models.CharField(max_length=128)
