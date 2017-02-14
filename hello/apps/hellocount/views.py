@@ -19,17 +19,19 @@ ALB_CLASSES = ['Cleric', 'Mercenary', 'Paladin', 'Wizard', 'Infiltrator', 'Necro
 def most_recent():
 	return Player.objects.order_by('-lastupdated').first().lastupdated
 
-def render_to_s3(template):
+def render_to_s3(template,force_name=None):
 	enc = MasterEncoder()
 	template.render()
 	output = template.content
+
+	name = force_name or template.template_name
 
 	client = boto3.client('s3')
 	client.put_object(
 		ACL='public-read',
 		Body=output,
 		Bucket='uthgard.riftmetric.com',
-		Key=template.template_name,
+		Key=name,
 		CacheControl='max-age= 60',
 		ContentType='text/html',
 	)
@@ -40,7 +42,7 @@ def render_to_s3(template):
 		ACL='public-read',
 		Body=jout,
 		Bucket='uthgard.riftmetric.com',
-		Key=template.template_name+".json",
+		Key=name+".json",
 		CacheControl='max-age= 60',
 		ContentType='text/html',
 	)
@@ -279,35 +281,22 @@ def leaders(request, realm=None):
 def render_leaders(request):
 	realms = [("",None),("_alb","Albion"),("_mid","Midgard"),("_hib","Hibernia")]
 	for r in realms:
-		tr = leaders(request,r[1])
-		tr.render()
-		output = tr.content
-
-		client = boto3.client('s3')
-		client.put_object(
-			ACL='public-read',
-			Body=output,
-			Bucket='uthgard.riftmetric.com',
-			Key='leaders%s.html'%r[0],
-			CacheControl='max-age= 60',
-			ContentType='text/html',
-		)
+		render_to_s3(leaders(request,r[1]),force_name='leaders%s.html'%r[0])
+		# tr = leaders(request,r[1])
+		# tr.render()
+		# output = tr.content
+		# 
+		# client = boto3.client('s3')
+		# client.put_object(
+		# 	ACL='public-read',
+		# 	Body=output,
+		# 	Bucket='uthgard.riftmetric.com',
+		# 	Key=,
+		# 	CacheControl='max-age= 60',
+		# 	ContentType='text/html',
+		# )
 
 	render_to_s3(by_guild(request))
-	# # Render per-guild data
-	# tr = by_guild(request)
-	# tr.render()
-	# output = tr.content
-	# 
-	# client = boto3.client('s3')
-	# client.put_object(
-	# 	ACL='public-read',
-	# 	Body=output,
-	# 	Bucket='uthgard.riftmetric.com',
-	# 	Key='guilds.html',
-	# 	CacheControl='max-age= 60',
-	# 	ContentType='text/html',
-	# )
 
 	# Render charts page
 	tr = charts(request)
