@@ -115,20 +115,7 @@ def realmwar2(request):
 
 def render_keeps(request):
 	render_to_s3(realmwar2(request))
-
-	tr = realmwar(request)
-	tr.render()
-	output = tr.content
-
-	client = boto3.client('s3')
-	client.put_object(
-		ACL='public-read',
-		Body=output,
-		Bucket='uthgard.riftmetric.com',
-		Key='realmwar.html',
-		CacheControl='max-age= 60',
-		ContentType='text/html',
-	)
+	render_to_s3(realmwar(request))
 	return HttpResponse("Good")
 
 @csrf_exempt
