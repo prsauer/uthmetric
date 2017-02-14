@@ -62,7 +62,7 @@ def realmwar2(request):
 	mid = ["mid"]*7
 	hib = ["hib"]*7
 
-	alb[0] = Keep.objects.get(name="Caer Benowyc").realm[0:3].lower()
+	alb[0] = Keep.objects.get(name="Caer Benowyc").owner[0:3].lower()
 
 	return TemplateResponse(request,'realmwar3.html', {'realm': 'realmwar', 'alb':alb,'hib':hib,'mid':mid})
 
