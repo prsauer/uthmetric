@@ -71,7 +71,7 @@ def realmwar2(request):
 	alb[6] = Keep.objects.get(name="Caer Hurbury").owner[0:3].lower()
 
 	mid[0] = Keep.objects.get(name="Arvakr Faste").owner[0:3].lower()
-	mid[1] = Keep.objects.get(name="Hidskialf Faste").owner[0:3].lower()
+	mid[1] = Keep.objects.get(name="Hlidskialf Faste").owner[0:3].lower()
 	mid[2] = Keep.objects.get(name="Glenlock Faste").owner[0:3].lower()
 	mid[3] = Keep.objects.get(name="Blendrake Faste").owner[0:3].lower()
 	mid[4] = Keep.objects.get(name="Nottmoor Faste").owner[0:3].lower()
