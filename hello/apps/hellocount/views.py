@@ -28,7 +28,7 @@ def render_to_s3(template):
 		ACL='public-read',
 		Body=output,
 		Bucket='uthgard.riftmetric.com',
-		Key=template.name,
+		Key=template.template_name,
 		CacheControl='max-age= 60',
 		ContentType='text/html',
 	)
@@ -39,7 +39,7 @@ def render_to_s3(template):
 		ACL='public-read',
 		Body=jout,
 		Bucket='uthgard.riftmetric.com',
-		Key=template.name+".json",
+		Key=template.template_name+".json",
 		CacheControl='max-age= 60',
 		ContentType='text/html',
 	)
