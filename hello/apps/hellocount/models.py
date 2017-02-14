@@ -105,6 +105,8 @@ class Player(models.Model):
 
 class MasterEncoder(json.JSONEncoder):
     def default(self, obj):
+        if isinstance(obj,datetime):
+            return "fuck you python"
         if hasattr(obj, 'to_json'):
             return obj.to_json()
         return json.JSONEncoder.default(self, obj)
