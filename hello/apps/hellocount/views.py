@@ -62,7 +62,7 @@ def update_keep(request):
 def update_df(request):
 	jdata = json.loads(request.body)
 	try:
-		df = DFalls.objects.first()
+		df = DFalls.objects.first().values_list('lastupdated','owner',flat=True)
 		df.owner = jdata['owner']
 		df.lastupdated = timezone.now()
 		df.save()
