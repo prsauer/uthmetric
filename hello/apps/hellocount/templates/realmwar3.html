@@ -1,0 +1,128 @@
+{% load humanize %}
+<html>
+<head>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-91056124-1', 'auto');ga('send', 'pageview');
+</script>
+    <title></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+</head>
+<style>
+* {font-family: 'Roboto', sans-serif;}
+td {text-align: center;}
+th {text-align: center;}
+.realm_Midgard {
+  color: blue;
+}
+.realm_Hibernia {
+  color: green;
+}
+.realm_Albion {
+  color: red;
+}
+</style>
+
+ <style type="text/css">
+body {
+        margin: 0px;
+        padding: 0px;
+      }
+ </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <body>
+<img id="bg_map" src="Frontier_map.jpg" alt="Frontiers" width="0" height="0">
+
+<img id="alb1" src="ALB/{{alb.1}}/alb_01_ALB.gif" width="0" height="0">
+<img id="alb2" src="ALB/{{alb.2}}/alb_02_ALB.gif" width="0" height="0">
+<img id="alb3" src="ALB/{{alb.3}}/alb_03_ALB.gif" width="0" height="0">
+<img id="alb4" src="ALB/{{alb.4}}/alb_04_ALB.gif" width="0" height="0">
+<img id="alb5" src="ALB/{{alb.5}}/alb_05_ALB.gif" width="0" height="0">
+<img id="alb6" src="ALB/{{alb.6}}/alb_06_ALB.gif" width="0" height="0">
+<img id="alb7" src="ALB/{{alb.7}}/alb_07_ALB.gif" width="0" height="0">
+
+<img id="mid1" src="MID/{{mid.1}}/mid_01_MID.gif" width="0" height="0">
+<img id="mid2" src="MID/{{mid.2}}/mid_02_MID.gif" width="0" height="0">
+<img id="mid3" src="MID/{{mid.3}}/mid_03_MID.gif" width="0" height="0">
+<img id="mid4" src="MID/{{mid.4}}/mid_04_MID.gif" width="0" height="0">
+<img id="mid5" src="MID/{{mid.5}}/mid_05_MID.gif" width="0" height="0">
+<img id="mid6" src="MID/{{mid.6}}/mid_06_MID.gif" width="0" height="0">
+<img id="mid7" src="MID/{{mid.7}}/mid_07_MID.gif" width="0" height="0">
+
+<img id="hib1" src="HIB/{{hib.1}}/hib_01_HIB.gif" width="0" height="0">
+<img id="hib2" src="HIB/{{hib.2}}/hib_02_HIB.gif" width="0" height="0">
+<img id="hib3" src="HIB/{{hib.3}}/hib_03_HIB.gif" width="0" height="0">
+<img id="hib4" src="HIB/{{hib.4}}/hib_04_HIB.gif" width="0" height="0">
+<img id="hib5" src="HIB/{{hib.5}}/hib_05_HIB.gif" width="0" height="0">
+<img id="hib6" src="HIB/{{hib.6}}/hib_06_HIB.gif" width="0" height="0">
+<img id="hib7" src="HIB/{{hib.7}}/hib_07_HIB.gif" width="0" height="0">
+
+<canvas id="myCanvas" width="800" height="800" >
+Your browser does not support the HTML5 canvas tag.</canvas>
+<script>
+  window.onload = function() {
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=document.getElementById("bg_map");
+
+var alb_pos_1=document.getElementById("alb1");
+var alb_pos_2=document.getElementById("alb2");
+var alb_pos_3=document.getElementById("alb3");
+var alb_pos_4=document.getElementById("alb4");
+var alb_pos_5=document.getElementById("alb5");
+var alb_pos_6=document.getElementById("alb6");
+var alb_pos_7=document.getElementById("alb7");
+
+var hib_pos_1=document.getElementById("hib1");
+var hib_pos_2=document.getElementById("hib2");
+var hib_pos_3=document.getElementById("hib3");
+var hib_pos_4=document.getElementById("hib4");
+var hib_pos_5=document.getElementById("hib5");
+var hib_pos_6=document.getElementById("hib6");
+var hib_pos_7=document.getElementById("hib7");
+
+var mid_pos_1=document.getElementById("mid1");
+var mid_pos_2=document.getElementById("mid2");
+var mid_pos_3=document.getElementById("mid3");
+var mid_pos_4=document.getElementById("mid4");
+var mid_pos_5=document.getElementById("mid5");
+var mid_pos_6=document.getElementById("mid6");
+var mid_pos_7=document.getElementById("mid7");
+
+ctx.drawImage(img,10,10);
+var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      context.beginPath();
+      ctx.drawImage(alb_pos_1,275,432);
+      ctx.drawImage(alb_pos_2,268,395);
+      ctx.drawImage(alb_pos_3,276,359);
+      ctx.drawImage(alb_pos_4,340,375);
+      ctx.drawImage(alb_pos_5,340,350);
+      ctx.drawImage(alb_pos_6,382,324);
+      ctx.drawImage(alb_pos_7,266,322);
+
+      ctx.drawImage(mid_pos_1,354,153);
+      ctx.drawImage(mid_pos_2,340,122);
+      ctx.drawImage(mid_pos_3,378,106);
+      ctx.drawImage(mid_pos_4,378,58);
+      ctx.drawImage(mid_pos_5,349,81);
+      ctx.drawImage(mid_pos_6,310,36);
+      ctx.drawImage(mid_pos_7,419,115);
+
+      ctx.drawImage(hib_pos_1,134,192);
+      ctx.drawImage(hib_pos_2,154,162);
+      ctx.drawImage(hib_pos_3,106,160);
+      ctx.drawImage(hib_pos_4,141,129);
+      ctx.drawImage(hib_pos_5,105,115);
+      ctx.drawImage(hib_pos_6,126,36);
+      ctx.drawImage(hib_pos_7,67,145);
+
+      };</script>
+ </body>
+
+</body>
+</html>

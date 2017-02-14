@@ -57,7 +57,27 @@ def realmwar(request):
 													   'timestamp': most_recent(),
 													   'df': DFalls.objects.first()})
 
+def realmwar2(request):
+	alb = "alb"*7
+	mid = "mid"*7
+	hib = "hib"*7
+	return TemplateResponse(request,'realmwar2.html', {'realm': 'realmwar': 'alb':alb,'hib':hib,'mid':mid})
+
 def render_keeps(request):
+	tr = realmwar2(request)
+	tr.render()
+	output = tr.content
+
+	client = boto3.client('s3')
+	client.put_object(
+		ACL='public-read',
+		Body=output,
+		Bucket='uthgard.riftmetric.com',
+		Key='realmwar2.html',
+		CacheControl='max-age= 60',
+		ContentType='text/html',
+	)
+
 	tr = realmwar(request)
 	tr.render()
 	output = tr.content
