@@ -19,6 +19,31 @@ ALB_CLASSES = ['Cleric', 'Mercenary', 'Paladin', 'Wizard', 'Infiltrator', 'Necro
 def most_recent():
 	return Player.objects.order_by('-lastupdated').first().lastupdated
 
+def render_to_s3(template):
+	template.render()
+	output = template.content
+
+	client = boto3.client('s3')
+	client.put_object(
+		ACL='public-read',
+		Body=output,
+		Bucket='uthgard.riftmetric.com',
+		Key=template.name,
+		CacheControl='max-age= 60',
+		ContentType='text/html',
+	)
+
+	jout = json.dumps(template.context)
+	client = boto3.client('s3')
+	client.put_object(
+		ACL='public-read',
+		Body=jout,
+		Bucket='uthgard.riftmetric.com',
+		Key=template.name+".json",
+		CacheControl='max-age= 60',
+		ContentType='text/html',
+	)
+
 @csrf_exempt
 def update_keep(request):
 	jdata = json.loads(request.body)
@@ -89,19 +114,7 @@ def realmwar2(request):
 	return TemplateResponse(request,'realmwar3.html', {'realm': 'realmwar', 'alb':alb,'hib':hib,'mid':mid})
 
 def render_keeps(request):
-	tr = realmwar2(request)
-	tr.render()
-	output = tr.content
-
-	client = boto3.client('s3')
-	client.put_object(
-		ACL='public-read',
-		Body=output,
-		Bucket='uthgard.riftmetric.com',
-		Key='realmwar2.html',
-		CacheControl='max-age= 60',
-		ContentType='text/html',
-	)
+	render_to_s3(realmwar2(request))
 
 	tr = realmwar(request)
 	tr.render()
