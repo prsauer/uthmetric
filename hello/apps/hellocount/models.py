@@ -9,6 +9,20 @@ logger = logging.getLogger('django')
 
 realms = ["","Albion","Midgard","Hibernia"]
 
+class CustomQuerySetManager(models.Manager):
+    """A re-usable Manager to access a custom QuerySet"""
+    def __getattr__(self, attr, *args):
+        try:
+            return getattr(self.__class__, attr, *args)
+        except AttributeError:
+            # don't delegate internal methods to the queryset
+            if attr.startswith('__') and attr.endswith('__'):
+                raise
+            return getattr(self.get_query_set(), attr, *args)
+
+    def get_query_set(self):
+        return self.model.QuerySet(self.model, using=self._db)
+
 class DFalls(models.Model):
     history = HistoricalRecords()
     owner = models.CharField(max_length=128)
@@ -25,6 +39,7 @@ class Relic(models.Model):
     origin = models.CharField(max_length=128)
 
 class Keep(models.Model):
+    objects = CustomQuerySetManager()
     history = HistoricalRecords()
     name = models.CharField(max_length=128)
     leadername = models.CharField(max_length=128)
@@ -111,4 +126,6 @@ class MasterEncoder(json.JSONEncoder):
             return "fuck you python"
         if hasattr(obj, 'to_json'):
             return obj.to_json()
+        if obj.__class__.__name__ == 'QuerySet':
+            return [i.to_json() for i in obj]
         return json.JSONEncoder.default(self, obj)
