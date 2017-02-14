@@ -61,7 +61,7 @@ def realmwar2(request):
 	alb = "alb"*7
 	mid = "mid"*7
 	hib = "hib"*7
-	return TemplateResponse(request,'realmwar2.html', {'realm': 'realmwar', 'alb':alb,'hib':hib,'mid':mid})
+	return TemplateResponse(request,'realmwar3.html', {'realm': 'realmwar', 'alb':alb,'hib':hib,'mid':mid})
 
 def render_keeps(request):
 	tr = realmwar2(request)
