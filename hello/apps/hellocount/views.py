@@ -62,7 +62,7 @@ def update_keep(request):
 def update_df(request):
 	jdata = json.loads(request.body)
 	try:
-		df = DFalls.objects.first().values_list('lastupdated','owner',flat=True)
+		df = DFalls.objects.first()
 		df.owner = jdata['owner']
 		df.lastupdated = timezone.now()
 		df.save()
@@ -80,7 +80,7 @@ def realmwar(request):
 													   'all_keeps': Keep.objects.all(),
 													   'realm_keeps': realm_keeps,
 													   'timestamp': most_recent(),
-													   'df': DFalls.objects.first()})
+													   'df': DFalls.objects.first().values_list('lastupdated','owner')})
 
 def realmwar2(request):
 	alb = ["alb"]*7
