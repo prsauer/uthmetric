@@ -58,9 +58,9 @@ def realmwar(request):
 													   'df': DFalls.objects.first()})
 
 def realmwar2(request):
-	alb = "alb"*7
-	mid = "mid"*7
-	hib = "hib"*7
+	alb = ["alb"]*7
+	mid = ["mid"]*7
+	hib = ["hib"]*7
 	return TemplateResponse(request,'realmwar3.html', {'realm': 'realmwar', 'alb':alb,'hib':hib,'mid':mid})
 
 def render_keeps(request):
