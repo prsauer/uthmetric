@@ -33,7 +33,7 @@ def render_to_s3(template):
 		ContentType='text/html',
 	)
 
-	jout = json.dumps(template.context)
+	jout = json.dumps(template.context_data)
 	client = boto3.client('s3')
 	client.put_object(
 		ACL='public-read',
