@@ -160,7 +160,7 @@ def by_class(request):
 		a_data.reverse()
 		charts.append({'data': a_data, 'title': a_title, 'element_id': '%s_data'%(r[1].lower())})
 
-	return TemplateResponse(request, 'by_class.html', {'realm': 'classes', 'charts': charts, 'timestamp': most_recent()})
+	return TemplateResponse(request, 'classes.html', {'realm': 'classes', 'charts': charts, 'timestamp': most_recent()})
 
 def contrib(request):
 	return TemplateResponse(request, 'contrib.html', {'timestamp': most_recent()})
@@ -282,51 +282,10 @@ def render_leaders(request):
 	realms = [("",None),("_alb","Albion"),("_mid","Midgard"),("_hib","Hibernia")]
 	for r in realms:
 		render_to_s3(leaders(request,r[1]),force_name='leaders%s.html'%r[0])
-		# tr = leaders(request,r[1])
-		# tr.render()
-		# output = tr.content
-		# 
-		# client = boto3.client('s3')
-		# client.put_object(
-		# 	ACL='public-read',
-		# 	Body=output,
-		# 	Bucket='uthgard.riftmetric.com',
-		# 	Key=,
-		# 	CacheControl='max-age= 60',
-		# 	ContentType='text/html',
-		# )
 
 	render_to_s3(by_guild(request))
-
-	# Render charts page
-	tr = charts(request)
-	tr.render()
-	output = tr.content
-
-	client = boto3.client('s3')
-	client.put_object(
-		ACL='public-read',
-		Body=output,
-		Bucket='uthgard.riftmetric.com',
-		Key='charts.html',
-		CacheControl='max-age= 60',
-		ContentType='text/html',
-	)
-
-	# Render class charts page
-	tr = by_class(request)
-	tr.render()
-	output = tr.content
-
-	client = boto3.client('s3')
-	client.put_object(
-		ACL='public-read',
-		Body=output,
-		Bucket='uthgard.riftmetric.com',
-		Key='classes.html',
-		CacheControl='max-age= 60',
-		ContentType='text/html',
-	)
+	render_to_s3(charts(request))
+	render_to_s3(by_class(request))
 
 	# Render contrib page
 	tr = contrib(request)
