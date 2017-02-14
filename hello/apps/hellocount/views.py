@@ -83,7 +83,7 @@ def realmwar2(request):
 	hib[2] = Keep.objects.get(name="Dun na nGed").owner[0:3].lower()
 	hib[3] = Keep.objects.get(name="Dun Crimthainn").owner[0:3].lower()
 	hib[4] = Keep.objects.get(name="Dun Bolg").owner[0:3].lower()
-	hib[5] = Keep.objects.get(name="Dun Cruachon").owner[0:3].lower()
+	hib[5] = Keep.objects.get(name="Dun Crauchon").owner[0:3].lower()
 	hib[6] = Keep.objects.get(name="Dun Ailinne").owner[0:3].lower()
 
 	return TemplateResponse(request,'realmwar3.html', {'realm': 'realmwar', 'alb':alb,'hib':hib,'mid':mid})
