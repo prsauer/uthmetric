@@ -79,7 +79,7 @@ def realmwar2(request):
 	mid[6] = Keep.objects.get(name="Fensalir Faste").owner[0:3].lower()
 
 	hib[0] = Keep.objects.get(name="Dun Scathaig").owner[0:3].lower()
-	hib[1] = Keep.objects.get(name="Dun da Behn").owner[0:3].lower()
+	hib[1] = Keep.objects.get(name="Dun da Behnn").owner[0:3].lower()
 	hib[2] = Keep.objects.get(name="Dun na nGed").owner[0:3].lower()
 	hib[3] = Keep.objects.get(name="Dun Crimthainn").owner[0:3].lower()
 	hib[4] = Keep.objects.get(name="Dun Bolg").owner[0:3].lower()
