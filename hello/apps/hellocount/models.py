@@ -100,3 +100,9 @@ class Player(models.Model):
         except ValueError:
             logger.info("Error: %s,%s"%(self.rawname,req.content))
         return False
+
+class MasterEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if hasattr(obj, 'to_json'):
+            return obj.to_json()
+        return json.JSONEncoder.default(self, obj)

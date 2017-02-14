@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from hellocount.models import Player,Keep,DFalls
+from hellocount.models import Player,Keep,DFalls,MasterDecoder
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
@@ -20,6 +20,7 @@ def most_recent():
 	return Player.objects.order_by('-lastupdated').first().lastupdated
 
 def render_to_s3(template):
+	enc = MasterEncoder()
 	template.render()
 	output = template.content
 
@@ -33,7 +34,7 @@ def render_to_s3(template):
 		ContentType='text/html',
 	)
 
-	jout = json.dumps(template.context_data)
+	jout = enc.encode(template.context_data)
 	client = boto3.client('s3')
 	client.put_object(
 		ACL='public-read',
@@ -80,7 +81,7 @@ def realmwar(request):
 													   'all_keeps': Keep.objects.all(),
 													   'realm_keeps': realm_keeps,
 													   'timestamp': most_recent(),
-													   'df': DFalls.objects.first().values_list('lastupdated','owner')})
+													   'df': DFalls.objects.first()})
 
 def realmwar2(request):
 	alb = ["alb"]*7
