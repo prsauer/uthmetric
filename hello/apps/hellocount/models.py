@@ -13,6 +13,8 @@ class DFalls(models.Model):
     history = HistoricalRecords()
     owner = models.CharField(max_length=128)
     lastupdated = models.DateTimeField(null=True)
+    def to_json(self):
+        return {'owner': self.owner, 'lastupdated': self.lastupdated}
 
 class Relic(models.Model):
     history = HistoricalRecords()
