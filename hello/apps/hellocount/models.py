@@ -31,6 +31,8 @@ class Keep(models.Model):
     owner = models.CharField(max_length=128)
     lastupdated = models.DateTimeField(null=True)
     location = models.CharField(max_length=128)
+    def to_json(self):
+        return {'name': self.name}
 
 class Player(models.Model):
 
