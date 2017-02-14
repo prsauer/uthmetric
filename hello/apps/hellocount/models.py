@@ -47,7 +47,12 @@ class Keep(models.Model):
     lastupdated = models.DateTimeField(null=True)
     location = models.CharField(max_length=128)
     def to_json(self):
-        return {'name': self.name}
+        return {'name': self.name,
+                'leadername': self.leadername,
+                'owner': self.owner,
+                'lastupdated': self.lastupdated,
+                'location': self.location,
+                }
 
 class Player(models.Model):
 
@@ -123,7 +128,7 @@ class Player(models.Model):
 class MasterEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj,datetime):
-            return "fuck you python"
+            return str(obj)
         if hasattr(obj, 'to_json'):
             return obj.to_json()
         if obj.__class__.__name__ == 'QuerySet':
