@@ -71,6 +71,20 @@ class Player(models.Model):
     level = models.IntegerField(null=True)
     lastupdated = models.DateTimeField(null=True)
 
+    def to_json(self):
+        return {'fullname': self.fullname,
+                'rawname': self.rawname,
+                'classname': self.classname,
+                'racename': self.racename,
+                'realmrank': self.realmrank,
+                'guildname': self.guildname,
+                'realmname': self.realmname,
+                'rps': self.rps,
+                'xp': self.xp,
+                'level': self.level,
+                'lastupdated': self.lastupdated,
+                }
+
     def age(self):
         return (timezone.now() - self.lastupdated).total_seconds()/60/60
 

@@ -293,20 +293,21 @@ def render_leaders(request):
 			ContentType='text/html',
 		)
 
-	# Render per-guild data
-	tr = by_guild(request)
-	tr.render()
-	output = tr.content
-
-	client = boto3.client('s3')
-	client.put_object(
-		ACL='public-read',
-		Body=output,
-		Bucket='uthgard.riftmetric.com',
-		Key='guilds.html',
-		CacheControl='max-age= 60',
-		ContentType='text/html',
-	)
+	render_to_s3(by_guild(request))
+	# # Render per-guild data
+	# tr = by_guild(request)
+	# tr.render()
+	# output = tr.content
+	# 
+	# client = boto3.client('s3')
+	# client.put_object(
+	# 	ACL='public-read',
+	# 	Body=output,
+	# 	Bucket='uthgard.riftmetric.com',
+	# 	Key='guilds.html',
+	# 	CacheControl='max-age= 60',
+	# 	ContentType='text/html',
+	# )
 
 	# Render charts page
 	tr = charts(request)
