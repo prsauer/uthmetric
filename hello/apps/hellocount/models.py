@@ -7,7 +7,7 @@ import pytz
 
 logger = logging.getLogger('django')
 
-realms = ["","Albion","Midgard","Hibernia"]
+realms = {"ALBION": "Albion", "MIDGARD": "Midgard", "HIBERNIA": "Hibernia"}
 
 class CustomQuerySetManager(models.Manager):
     """A re-usable Manager to access a custom QuerySet"""
@@ -112,17 +112,17 @@ class Player(models.Model):
             # Don't save so we dont create duplicate histories
             return False
         try:
-            self.fullname = jdata['FullName']
-            self.rawname = jdata['Raw'].get('Name')
-            self.classname = jdata['ClassName']
-            self.racename = jdata['RaceName']
+            self.fullname = jdata['Name']
+            self.rawname = jdata['Name']
+            self.classname = jdata['Class']
+            self.racename = jdata['Race']
             self.realmrank = jdata['RealmRank']
             self.level = jdata['Level']
-            self.guildname = jdata['Raw'].get('GuildName')
-            self.realmname = realms[jdata['Raw'].get('Realm',0)]
-            self.rps = jdata['Raw'].get('RP',0)
-            self.xp = jdata['Raw'].get('XP',0)
-            self.lastupdated = pytz.UTC.localize(datetime.fromtimestamp(int(jdata['Raw']['LastUpdated'])))
+            self.guildname = jdata['Guild']
+            self.realmname = realms[jdata['Realm']]
+            self.rps = jdata['Rp']
+            self.xp = jdata['Xp']
+            self.lastupdated = pytz.UTC.localize(datetime.fromtimestamp(int(jdata['LastUpdated'])))
             self.raw_data = json.dumps(jdata)
         except:
             logger.info("Couldnt decode %s"%(jdata))

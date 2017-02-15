@@ -251,6 +251,7 @@ def by_guild(request):
 	return TemplateResponse(request, 'guilds.html', cdict)
 
 def leaders(request, realm=None):
+	# https://uthgard.org/herald/api/top/rvr
 	if realm is not None and realm not in ["Albion","Midgard","Hibernia"]:
 		return HttpResponse("404")
 	if not realm:
