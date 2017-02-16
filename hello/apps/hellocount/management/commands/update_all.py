@@ -7,6 +7,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         alldata = requests.get('https://uthgard.org/herald/api/dump')
         jdata = json.loads(alldata.content)
+        f = open('output.txt','w')
+        f.write(str(jdata))
+        f.close()
         for d in jdata:
             print d
             n = d['Name']
