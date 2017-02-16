@@ -7,12 +7,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         alldata = requests.get('https://uthgard.org/herald/api/dump')
         jdata = json.loads(alldata.content)
-        f = open('output.txt','w')
-        f.write(str(jdata))
-        f.close()
         for k in jdata.keys():
             d = jdata[k]
-            print d
             n = d['Name']
-            p = Player.objects.get_or_create(rawname=n)
+            p = Player.objects.get_or_create(rawname=n)[0]
             p.update_from_json(d)
