@@ -10,7 +10,8 @@ class Command(BaseCommand):
         f = open('output.txt','w')
         f.write(str(jdata))
         f.close()
-        for d in jdata:
+        for k in jdata.keys():
+            d = jdata[k]
             print d
             n = d['Name']
             p = Player.objects.get_or_create(rawname=n)
