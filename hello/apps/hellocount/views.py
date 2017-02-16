@@ -255,7 +255,7 @@ def leaders(request, realm=None):
 	if realm is not None and realm not in ["Albion","Midgard","Hibernia"]:
 		return HttpResponse("404")
 	if not realm:
-		db_players = list(Player.objects.all().order_by('-rps')[0:25])
+		db_players = list(Player.objects.all().filter(rps__gt=0).order_by('-rps')[0:25])
 	else:
 		db_players = list(Player.objects.all().order_by('-rps').filter(realmname=realm)[0:25])
 
