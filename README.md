@@ -1,4 +1,5 @@
-# django-hello-world
-The simplest possible Django 1.8 site.
+# Uthmetric
 
-This project is intended to be a very simple example site, using a standard django project layout, for testing Django deployment strategies.
+This site was built to be a stand-up for the Uthgard herald project while it was under development.
+
+It provides RR leaderboards and some other interesting data pieces by scraping the uthgard api for players.
