@@ -162,9 +162,6 @@ def by_class(request):
 
 	return TemplateResponse(request, 'classes.html', {'realm': 'classes', 'charts': charts, 'timestamp': most_recent()})
 
-def contrib(request):
-	return TemplateResponse(request, 'contrib.html', {'timestamp': most_recent()})
-
 def charts(request):
 	context = {'realm': 'Distribution', 'charts': []}
 	chart = {
@@ -288,19 +285,6 @@ def render_leaders(request):
 	render_to_s3(charts(request))
 	render_to_s3(by_class(request))
 
-	# Render contrib page
-	tr = contrib(request)
-	tr.render()
-	output = tr.content
 
-	client = boto3.client('s3')
-	client.put_object(
-		ACL='public-read',
-		Body=output,
-		Bucket='uthgard.riftmetric.com',
-		Key='contrib.html',
-		CacheControl='max-age= 60',
-		ContentType='text/html',
-	)
 	return HttpResponse("")
 
