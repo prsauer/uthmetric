@@ -53,7 +53,7 @@ th {text-align: center;}
             <td>{% if p.guildname %}{{p.guildname}}{% else %}<i>No Guild</i>{% endif %}</td>
             <td>{{p.classname}}</td>
             <td>{{p.rps|intcomma}}</td>
-            <td>{{p.realmrank|floatformat:1}}</td>
+            <td>{{p.realmrank}}</td>
           </tr>
           {% endfor %}
         </tbody>
