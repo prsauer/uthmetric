@@ -24,6 +24,12 @@ def redir_404(request):
 def most_recent():
 	return Player.objects.filter(lastupdated__isnull=False).order_by('-lastupdated').first().lastupdated
 
+def create_custom(request):
+	ctx = {}
+	ctx['classes'] = MID_CLASSES + HIB_CLASSES + ALB_CLASSES
+	ctx['races'] = Player.objects.all().values_list('racename',flat=True).distinct()
+	return TemplateResponse(request, 'creator.html', ctx)
+
 def render_to_s3(template,force_name=None):
 	enc = MasterEncoder()
 	template.render()

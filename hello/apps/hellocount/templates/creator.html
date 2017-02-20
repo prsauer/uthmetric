@@ -1,0 +1,63 @@
+<head>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-91056124-1', 'auto');ga('send', 'pageview');
+</script>
+    <title></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+Class
+<select id="classpick">
+  <option value="Any">Any</option>
+  {% for c in classes %}
+  <option value="{{c}}">{{c}}</option>
+  {% endfor %}
+</select>
+
+
+Race
+<select id="racepick">
+  <option value="Any">Any</option>
+  {% for c in races %}
+  <option value="{{c}}">{{c}}</option>
+  {% endfor %}
+</select>
+
+Min level
+<input type="number" id="minlevel" value="1"></input>
+Min rps
+<input type="number" id="minrps" value="0"></input>
+
+<button id="gobut">DO IT</button>
+
+<script>
+$(document).ready(function() {
+  $('#gobut').click(function() {
+    sel_class = $('#classpick')[0].value
+    sel_race = $('#racepick')[0].value
+    minlevel = $('#minlevel')[0].value
+    minrps = $('#minrps')[0].value
+
+    args = "?minlevel=" + minlevel + "&"
+    if (sel_class != 'Any') {
+      args = args + 'class=' + sel_class + '&'
+    }
+
+    if (sel_race != 'Any') {
+      args = args + 'race=' + sel_class + '&'
+    }
+
+    args = args + "minrps=" + minrps
+
+    window.open('http://uthgard.riftmetric.com/custom_leaders/' + args)
+  })
+})
+</script>
