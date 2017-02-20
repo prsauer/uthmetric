@@ -76,7 +76,7 @@ class Player(models.Model):
                 'rawname': self.rawname,
                 'classname': self.classname,
                 'racename': self.racename,
-                'realmrank': "%sL%s"%(self.realmrank[0:len(self.realmrank)-2],self.realmrank[len(self.realmrank)-1]),
+                'realmrank': "%sL%s"%(self.realmrank[0:len(self.realmrank)-1],self.realmrank[len(self.realmrank)-1]),
                 'guildname': self.guildname,
                 'realmname': self.realmname,
                 'rps': self.rps,
