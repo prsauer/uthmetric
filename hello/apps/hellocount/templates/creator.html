@@ -42,6 +42,8 @@
     </script>
   </head>
 <body>
+  {% include "navbar.html" %}
+  <title>RP Custom Leaderboard</title>
 Class
 <select id="classpick">
   <option value="Any">Any</option>
@@ -64,7 +66,7 @@ Min level
 Min rps
 <input type="number" id="minrps" value="0"></input>
 
-<button id="gobut">DO IT</button>
+<button id="gobut">Create Leaderboard</button>
 
 <script>
 $(document).ready(function() {
