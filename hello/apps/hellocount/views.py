@@ -103,6 +103,8 @@ def custom_leaders(request):
 	data = leaders_api(request)
 	players = json.loads(data.content)['results']
 	realm = 'custom'
+	for i in xrange(0, len(players)):
+		players[i].rank = i+1
 	cdict =  {'timestamp': most_recent(), 'realm': realm, 'players': players}
 	return TemplateResponse(request, 'leaders.html', cdict)
 
