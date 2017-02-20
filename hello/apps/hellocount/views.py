@@ -71,7 +71,7 @@ def leaders_api(request):
 		the_args['realmname'] = request.GET.get('realm').upper()
 
 	if request.GET.get('guild'):
-		the_args['guildname'] = request.GET.get('guild')
+		the_args['guildname__iexact'] = request.GET.get('guild').lower()
 
 	if request.GET.get('minlevel'):
 		the_args['level__gte'] = request.GET.get('minlevel')
@@ -102,10 +102,9 @@ def leaders_api(request):
 def custom_leaders(request):
 	data = leaders_api(request)
 	players = json.loads(data.content)['results']
-	realm = 'custom'
 	for i in xrange(0, len(players)):
 		players[i]['rank'] = i+1
-	cdict =  {'timestamp': most_recent(), 'realm': realm, 'players': players}
+	cdict =  {'timestamp': most_recent(), 'realm': '[Custom]', 'players': players}
 	return TemplateResponse(request, 'leaders.html', cdict)
 
 @csrf_exempt
