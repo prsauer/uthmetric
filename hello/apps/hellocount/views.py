@@ -6,7 +6,8 @@ from django.template.response import TemplateResponse
 from django.template import Template, Context
 from django.template.loader import get_template
 from django.utils import timezone
-from django.shortcuts import redirect,reverse
+from django.shortcuts import redirect
+from django.urls import reverse
 
 from datetime import datetime
 import json, logging, boto3
