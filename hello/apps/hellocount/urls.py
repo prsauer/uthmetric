@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from hellocount import views
 
+handler404 = 'views.redir_404'
+
 urlpatterns = [
     url(r'^$', views.post_data, name='home'),
     url(r'^realmwar/$', views.realmwar, name='realmwar'),

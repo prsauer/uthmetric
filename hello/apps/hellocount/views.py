@@ -6,6 +6,7 @@ from django.template.response import TemplateResponse
 from django.template import Template, Context
 from django.template.loader import get_template
 from django.utils import timezone
+from django.shortcuts import redirect,reverse
 
 from datetime import datetime
 import json, logging, boto3
@@ -15,6 +16,9 @@ logger = logging.getLogger('django')
 MID_CLASSES = ['Berserker', 'Bonedancer', 'Healer', 'Shadowblade', 'Spiritmaster', 'Shaman', 'Warrior', 'Skald', 'Hunter', 'Savage', 'Thane', 'Runemaster']
 HIB_CLASSES = ['Blademaster', 'Ranger', 'Valewalker', 'Eldritch', 'Champion', 'Animist', 'Enchanter', 'Mentalist', 'Bard', 'Warden', 'Hero', 'Nightshade', 'Druid']
 ALB_CLASSES = ['Cleric', 'Mercenary', 'Paladin', 'Wizard', 'Infiltrator', 'Necromancer', 'Armsman', 'Scout', 'Sorcerer', 'Theurgist', 'Cabalist', 'Reaver', 'Minstrel', 'Friar']
+
+def redir_404(request):
+	return redirect(reverse('leaders_all'))
 
 def most_recent():
 	return Player.objects.filter(lastupdated__isnull=False).order_by('-lastupdated').first().lastupdated
