@@ -50,7 +50,7 @@ def render_to_s3(template,force_name=None):
 @csrf_exempt
 def leaders_api(request):
 	ins = str(request.GET)
-	return JsonResponse(ins)
+	return JsonResponse({'input': ins})
 
 @csrf_exempt
 def update_keep(request):
