@@ -68,7 +68,7 @@ class Player(models.Model):
     raw_data = models.CharField(max_length=512)
     rps = models.BigIntegerField(null=True,db_index=True)
     xp = models.BigIntegerField(null=True)
-    level = models.IntegerField(null=True)
+    level = models.IntegerField(null=True,db_index=True)
     lastupdated = models.DateTimeField(null=True)
 
     def to_json(self):
