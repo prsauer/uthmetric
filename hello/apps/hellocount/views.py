@@ -17,7 +17,7 @@ HIB_CLASSES = ['Blademaster', 'Ranger', 'Valewalker', 'Eldritch', 'Champion', 'A
 ALB_CLASSES = ['Cleric', 'Mercenary', 'Paladin', 'Wizard', 'Infiltrator', 'Necromancer', 'Armsman', 'Scout', 'Sorcerer', 'Theurgist', 'Cabalist', 'Reaver', 'Minstrel', 'Friar']
 
 def most_recent():
-	return Player.objects.order_by('-lastupdated').first().lastupdated
+	return Player.objects.filter(lastupdated__isnull=False).order_by('-lastupdated').first().lastupdated
 
 def render_to_s3(template,force_name=None):
 	enc = MasterEncoder()
