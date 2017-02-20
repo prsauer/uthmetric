@@ -78,7 +78,7 @@ def leaders_api(request):
 		the_args['rps__gte'] = request.GET.get('minrps')
 
 	if request.GET.get('count'):
-		countonly = request.GET.get('count') == True
+		countonly = request.GET.get('count') == "True"
 
 	if request.GET.get('limit'):
 		limit = request.GET.get('limit')
