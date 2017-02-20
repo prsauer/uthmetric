@@ -53,8 +53,10 @@ def single_case(s):
 @csrf_exempt
 def leaders_api(request):
 	ins = str(request.GET)
-	the_args = []
-	res = Player.objects.filter(*the_args).order_by('-rps')[0:25]
+	the_args = {}
+	if request.GET.get('class'):
+		the_args['classname'] = single_case(request.GET.get('class'))
+	res = Player.objects.filter(rps__isnull=False).filter(*the_args).order_by('-rps')[0:25]
 	enc = MasterEncoder()
 	return JsonResponse(json.loads(enc.encode({'input': ins, 'results': res})))
 
