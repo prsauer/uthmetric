@@ -58,6 +58,9 @@ def leaders_api(request):
 	if request.GET.get('class'):
 		the_args['classname'] = single_case(request.GET.get('class'))
 
+	if request.GET.get('race'):
+		the_args['racename'] = single_case(request.GET.get('race'))
+
 	if request.GET.get('realm'):
 		the_args['realmname'] = request.GET.get('realm').upper()
 
