@@ -7,7 +7,7 @@ from django.template import Template, Context
 from django.template.loader import get_template
 from django.utils import timezone
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.core.urlresolvers import reverse
 
 from datetime import datetime
 import json, logging, boto3
