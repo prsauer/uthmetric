@@ -47,10 +47,15 @@ def render_to_s3(template,force_name=None):
 		ContentType='text/html',
 	)
 
+def single_case(s):
+	return s[0].upper() + s[1:len(s)].lower()
+
 @csrf_exempt
 def leaders_api(request):
 	ins = str(request.GET)
-	return JsonResponse({'input': ins})
+	the_args = []
+	res = Player.objects.filter(*the_args).order_by('-rps')[0:25]
+	return JsonResponse({'input': ins, 'results': res})
 
 @csrf_exempt
 def update_keep(request):
