@@ -101,7 +101,7 @@ def leaders_api(request):
 
 def custom_leaders(request):
 	data = leaders_api(request)
-	players = data['results']
+	players = json.loads(data.content)['results']
 	realm = 'custom'
 	cdict =  {'timestamp': most_recent(), 'realm': realm, 'players': players}
 	return TemplateResponse(request, 'leaders.html', cdict)
