@@ -18,6 +18,9 @@ MID_CLASSES = ['Berserker', 'Bonedancer', 'Healer', 'Shadowblade', 'Spiritmaster
 HIB_CLASSES = ['Blademaster', 'Ranger', 'Valewalker', 'Eldritch', 'Champion', 'Animist', 'Enchanter', 'Mentalist', 'Bard', 'Warden', 'Hero', 'Nightshade', 'Druid']
 ALB_CLASSES = ['Cleric', 'Mercenary', 'Paladin', 'Wizard', 'Infiltrator', 'Necromancer', 'Armsman', 'Scout', 'Sorcerer', 'Theurgist', 'Cabalist', 'Reaver', 'Minstrel', 'Friar']
 
+def redir_404(request):
+	return redirect('leaders_all')
+
 def most_recent():
 	return Player.objects.filter(lastupdated__isnull=False).order_by('-lastupdated').first().lastupdated
 
