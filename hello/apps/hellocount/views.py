@@ -77,7 +77,7 @@ def leaders_api(request):
 		limit = 25
 	res = Player.objects.filter(rps__isnull=False).filter(**the_args).order_by('-rps')[0:limit]
 	enc = MasterEncoder()
-	return JsonResponse(json.loads(enc.encode({'input': ins, 'results': res})))
+	return JsonResponse(json.loads(enc.encode({'input': the_args, 'results': res})))
 
 @csrf_exempt
 def update_keep(request):
