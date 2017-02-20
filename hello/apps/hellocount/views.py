@@ -54,6 +54,7 @@ def single_case(s):
 def leaders_api(request):
 	ins = str(request.GET)
 	the_args = {}
+	countonly = False
 
 	if request.GET.get('class'):
 		the_args['classname'] = single_case(request.GET.get('class'))
@@ -67,6 +68,18 @@ def leaders_api(request):
 	if request.GET.get('guild'):
 		the_args['guildname'] = request.GET.get('guild')
 
+	if request.GET.get('minlevel'):
+		the_args['level__gte'] = request.GET.get('minlevel')
+
+	if request.GET.get('maxlevel'):
+		the_args['level__lte'] = request.GET.get('maxlevel')
+
+	if request.GET.get('minrps'):
+		the_args['rps__gte'] = request.GET.get('minrps')
+
+	if request.GET.get('count'):
+		countonly = request.GET.get('count') == True
+
 	if request.GET.get('limit'):
 		limit = request.GET.get('limit')
 	try:
@@ -76,6 +89,8 @@ def leaders_api(request):
 	except:
 		limit = 25
 	res = Player.objects.filter(rps__isnull=False).filter(**the_args).order_by('-rps')[0:limit]
+	if countonly:
+		res = res.count()
 	enc = MasterEncoder()
 	return JsonResponse(json.loads(enc.encode({'input': the_args, 'results': res})))
 
