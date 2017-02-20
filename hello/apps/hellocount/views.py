@@ -150,11 +150,12 @@ def realmwarjson(request):
 	realm_keeps.append({'realm': 'Albion', 'keeps': Keep.objects.filter(location="Albion").order_by('name')})
 	realm_keeps.append({'realm': 'Midgard', 'keeps': Keep.objects.filter(location="Midgard").order_by('name')})
 	realm_keeps.append({'realm': 'Hibernia', 'keeps': Keep.objects.filter(location="Hibernia").order_by('name')})
-	return JsonResponse({'realm': 'realmwar',
+	enc = MasterEncoder()
+	return JsonResponse(enc.encode({'realm': 'realmwar',
 					   'all_keeps': Keep.objects.all(),
 					   'realm_keeps': realm_keeps,
 					   'timestamp': most_recent(),
-					   'df': DFalls.objects.first()})
+					   'df': DFalls.objects.first()}))
 
 def realmwar2(request):
 	alb = ["alb"]*7
