@@ -27,7 +27,8 @@ def most_recent():
 def create_custom(request):
 	ctx = {}
 	ctx['classes'] = MID_CLASSES + HIB_CLASSES + ALB_CLASSES
-	ctx['races'] = Player.objects.all().values_list('racename',flat=True).distinct()
+	ctx['classes'].sort()
+	ctx['races'] = Player.objects.exclude(racename='').values_list('racename',flat=True).order_by('racename').distinct()
 	return TemplateResponse(request, 'creator.html', ctx)
 
 def render_to_s3(template,force_name=None):
