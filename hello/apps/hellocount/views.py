@@ -54,9 +54,25 @@ def single_case(s):
 def leaders_api(request):
 	ins = str(request.GET)
 	the_args = {}
+
 	if request.GET.get('class'):
 		the_args['classname'] = single_case(request.GET.get('class'))
-	res = Player.objects.filter(rps__isnull=False).filter(**the_args).order_by('-rps')[0:25]
+
+	if request.GET.get('realm'):
+		the_args['realmname'] = request.GET.get('realm').upper()
+
+	if request.GET.get('guild'):
+		the_args['guildname'] = request.GET.get('guild')
+
+	if request.GET.get('limit'):
+		limit = request.GET.get('limit')
+	try:
+		limit = int(limit)
+		if limit > 25:
+			limit = 25
+	except:
+		limit = 25
+	res = Player.objects.filter(rps__isnull=False).filter(**the_args).order_by('-rps')[0:limit]
 	enc = MasterEncoder()
 	return JsonResponse(json.loads(enc.encode({'input': ins, 'results': res})))
 
