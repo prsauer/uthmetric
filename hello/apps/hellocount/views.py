@@ -99,6 +99,13 @@ def leaders_api(request):
 	enc = MasterEncoder()
 	return JsonResponse(json.loads(enc.encode({'input': the_args, 'results': res})))
 
+def custom_leaders(request):
+	data = leaders_api(request)
+	players = data['results']
+	realm = 'custom'
+	cdict =  {'timestamp': most_recent(), 'realm': realm, 'players': players}
+	return TemplateResponse(request, 'leaders.html', cdict)
+
 @csrf_exempt
 def update_keep(request):
 	jdata = json.loads(request.body)
