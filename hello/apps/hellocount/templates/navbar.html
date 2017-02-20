@@ -3,7 +3,7 @@
   <div class="container">
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="{% if not realm %}active{% endif %}"><a href="{% url 'leaders' %}">All</a></li>
+        <li class="{% if not realm %}active{% endif %}"><a href="{% url 'leaders_all' %}">All</a></li>
         <li class="{% if realm == 'by Guild' %}active{% endif %}"><a href="{% url 'guilds' %}">Guild</a></li>
         <li class="{% if realm == 'Albion' %}active{% endif %}"><a href="{% url 'leaders' 'Albion' %}">Albion</a></li>
         <li class="{% if realm == 'Hibernia' %}active{% endif %}"><a href="{% url 'leaders' 'Hibernia' %}">Hibernia</a></li>
