@@ -66,7 +66,7 @@ class Player(models.Model):
     guildname = models.CharField(max_length=128,null=True)
     realmname = models.CharField(max_length=16,null=True)
     raw_data = models.CharField(max_length=512)
-    rps = models.BigIntegerField(null=True)
+    rps = models.BigIntegerField(null=True,db_index=True)
     xp = models.BigIntegerField(null=True)
     level = models.IntegerField(null=True)
     lastupdated = models.DateTimeField(null=True)
