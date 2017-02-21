@@ -66,6 +66,9 @@ Min level
 Min rps
 <input type="number" id="minrps" value="0"></input>
 
+Guild name
+<input id="guildname"></input>
+
 <button id="gobut">Create Leaderboard</button>
 
 <script>
@@ -73,6 +76,7 @@ $(document).ready(function() {
   $('#gobut').click(function() {
     sel_class = $('#classpick')[0].value
     sel_race = $('#racepick')[0].value
+    sel_guild = $('#guildname')[0].value
     minlevel = $('#minlevel')[0].value
     minrps = $('#minrps')[0].value
 
@@ -83,6 +87,10 @@ $(document).ready(function() {
 
     if (sel_race != 'Any') {
       args = args + 'race=' + sel_race + '&'
+    }
+
+    if (sel_guild != '') {
+      args = args + 'guild=' + sel_guild + '&'
     }
 
     args = args + "minrps=" + minrps

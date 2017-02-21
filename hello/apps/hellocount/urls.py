@@ -2,7 +2,7 @@ from django.conf.urls import url
 from hellocount import views
 
 urlpatterns = [
-    url(r'^$', views.post_data, name='home'),
+    url(r'^$', views.redir_404, name='home'),
     url(r'.*html$', views.redir_404, name='go_home'),
     url(r'^realmwar/$', views.realmwar, name='realmwar'),
     url(r'^realmwarjson/$', views.realmwarjson, name='realmwarjson'),
