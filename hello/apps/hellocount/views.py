@@ -63,6 +63,20 @@ def single_case(s):
 	return s[0].upper() + s[1:len(s)].lower()
 
 @csrf_exempt
+def history_api(request, player):
+	try:
+		p = Player.object.get(rawname=player)
+		a_week_ago = timezone.now() - timedelta(days=7)
+		hist = []
+		hist.append(p.to_json())
+		for h in p.history.order_by('-history_date'):
+			if h.history_date >= a_week_ago:
+				hist.append(h.to_json())
+		return JsonResponse({"data": hist})
+	except Player.DoesNotExist:
+		return HttpResponse("Not found")
+
+@csrf_exempt
 def leaders_api(request):
 	ins = str(request.GET)
 	the_args = {}
