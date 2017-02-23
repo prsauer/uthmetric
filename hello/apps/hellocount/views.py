@@ -65,7 +65,7 @@ def single_case(s):
 @csrf_exempt
 def history_api(request, player):
 	try:
-		p = Player.object.get(rawname=player)
+		p = Player.objects.get(rawname=player)
 		a_week_ago = timezone.now() - timedelta(days=7)
 		hist = []
 		hist.append(p.to_json())
