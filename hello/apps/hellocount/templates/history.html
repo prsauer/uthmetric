@@ -1,5 +1,13 @@
+{% load humanize %}
 <html>
   <head>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-91056124-1', 'auto');ga('send', 'pageview');
+  </script>
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
     <script type='text/javascript'>
       google.charts.load('current', {'packages':['annotatedtimeline']});
@@ -20,13 +28,32 @@
   </head>
 
   <body>
-    {{data.0.rawname}}
-    {{data.0.guildname}}
-    {{data.0.classname}}
-    {{data.0.racename}}
-    {{data.0.level}}
-    // Note how you must specify the size of the container element explicitly!
+    {% include "navbar.html" %}
+    <div class="col-md-10 col-md-offset-1">
+      <table id="eader" class="table table-striped">
+        <thead>
+          <th>Name</th>
+          <th>Realm</th>
+          <th>Guild</th>
+          <th>Race</th>
+          <th>Class</th>
+          <th>RPs</th>
+          <th>RealmRank</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a target='_blank' href="http://rulezzo.altervista.org/uth/search.php?player={{p.rawname}}">{{p.rawname}}</a></td>
+            <td class="realm_{{p.realmname}}">{{data.0.realmname}}</td>
+            <td>{% if data.0.guildname %}{{data.0.guildname}}{% else %}<i>No Guild</i>{% endif %}</td>
+            <td>{{data.0.racename}}</td>
+            <td>{{data.0.classname}}</td>
+            <td>{{data.0.rps|intcomma}}</td>
+            <td>{{data.0.realmrank}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
     <div id='chart_div' style='width: 700px; height: 240px;'></div>
-
   </body>
 </html>
