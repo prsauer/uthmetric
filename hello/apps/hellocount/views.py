@@ -69,13 +69,18 @@ def history_api(request, player):
 		p = Player.objects.get(rawname=player)
 		a_week_ago = timezone.now() - timedelta(days=7)
 		hist = []
-		hist.append(p.to_json())
 		for h in p.history.order_by('-history_date'):
 			if h.history_date >= a_week_ago:
 				hist.append(h.history_object.to_json())
 		return JsonResponse({"data": hist})
 	except Player.DoesNotExist:
 		return HttpResponse("Not found")
+
+def history(request, player):
+	jd = history_api(request, player)
+	jd = json.loads(jd)
+	ctx = jd
+	return TemplateResponse(request, 'history.html', ctx)
 
 @csrf_exempt
 def leaders_api(request):
