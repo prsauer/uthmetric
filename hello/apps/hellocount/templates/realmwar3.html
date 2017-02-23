@@ -9,7 +9,7 @@
     padding: 0px;
   }
   #holder {
-    background-image: url('Frontier_map.jpg');
+    background-image: url('/static/Frontier_map.jpg');
     background-repeat: no-repeat;
   }
 </style>
@@ -190,7 +190,7 @@ real_name = function(n) {
 }
 render_keep_segment = function(r, item) {
   item.img_ref = new Image();
-  item.img_ref.src = item.folder+"/"+item.owner+"/"+item.folder.toLowerCase()+"_0"+item.index+"_"+item.folder+".gif";
+  item.img_ref.src = "/static/" + item.folder+"/"+item.owner+"/"+item.folder.toLowerCase()+"_0"+item.index+"_"+item.folder+".gif";
   item.raf_ref = r.image(
     item.img_ref.src,
     item.xloc-10,
