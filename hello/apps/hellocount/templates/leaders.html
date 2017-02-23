@@ -49,7 +49,7 @@ th {text-align: center;}
           {% for p in players %}
           <tr>
             <td>{{p.rank}}</td>
-            <td><a target='_blank' href="http://rulezzo.altervista.org/uth/search.php?player={{p.rawname}}">{{p.rawname}}</a></td>
+            <td><a target='_blank' href="http://uthgard.riftmetric.com/history/{{p.rawname}}/">{{p.rawname}}</a></td>
             <td class="realm_{{p.realmname}}">{{p.realmname}}</td>
             <td>{% if p.guildname %}{{p.guildname}}{% else %}<i>No Guild</i>{% endif %}</td>
             <td>{{p.racename}}</td>
