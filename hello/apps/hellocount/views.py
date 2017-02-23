@@ -72,7 +72,7 @@ def history_api(request, player):
 		hist.append(p.to_json())
 		for h in p.history.order_by('-history_date'):
 			if h.history_date >= a_week_ago:
-				hist.append(h.to_json())
+				hist.append(h.history_object.to_json())
 		return JsonResponse({"data": hist})
 	except Player.DoesNotExist:
 		return HttpResponse("Not found")
