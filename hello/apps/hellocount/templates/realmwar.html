@@ -8,7 +8,7 @@
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-91056124-1', 'auto');ga('send', 'pageview');
 </script>
-    <title></title>
+    <title>Realm War</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 </head>
@@ -35,7 +35,7 @@ th {text-align: center;}
     <div>
       Darkness Falls:
       <span class="realm_{{df.owner}}">{{df.owner}}</span>
-      {% if df.lastupdated %} taken {{df.lastupdated}} {% endif %}
+      {% if df.lastupdated %} taken {{df.lastupdated}} UTC{% endif %}
     </div>
     {% for r in realm_keeps %}
     <div class="col-md-4">
