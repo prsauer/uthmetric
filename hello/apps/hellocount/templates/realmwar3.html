@@ -152,26 +152,10 @@ keep_data = [
 ]
 
 $.getJSON('http://uthgard.riftmetric.com/realmwarjson', function(data) {
-    for (i = 0; i < data.alb.length; i++) {
-      for(j = 0; j < keep_data.length; j++) {
-        if (keep_data[j].folder == "ALB" && keep_data[j].index == i+1) {
-          keep_data[j].owner = data.alb[i];
-          break;
-        }
-      }
-    }
-    for (i = 0; i < data.hib.length; i++) {
-      for(j = 0; j < keep_data.length; j++) {
-        if (keep_data[j].folder == "HIB" && keep_data[j].index == i+1) {
-          keep_data[j].owner = data.hib[i];
-          break;
-        }
-      }
-    }
-    for (i = 0; i < data.mid.length; i++) {
-      for(j = 0; j < keep_data.length; j++) {
-        if (keep_data[j].folder == "MID" && keep_data[j].index == i+1) {
-          keep_data[j].owner = data.mid[i];
+    for (i = 0; i < data.all_keeps.length; i++) {
+      for (j = 0; j < keep_data.length; j++) {
+        if (data.all_keeps[i].name == keep_data[j].name) {
+          keep_data[j].owner = data.all_keeps[i].owner;
           break;
         }
       }
