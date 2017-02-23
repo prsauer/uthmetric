@@ -78,7 +78,7 @@ def history_api(request, player):
 
 def history(request, player):
 	jd = history_api(request, player)
-	jd = json.loads(jd)
+	jd = json.loads(jd.content)
 	ctx = jd
 	return TemplateResponse(request, 'history.html', ctx)
 
