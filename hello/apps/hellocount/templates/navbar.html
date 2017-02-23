@@ -1,4 +1,10 @@
 
+<script>
+function goSearch() {
+  window.open('http://uthgard.riftmetric.com/history/' + $('#searchid').val())
+}
+</script>
+
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div id="navbar" class="navbar-collapse collapse">
@@ -14,7 +20,9 @@
         <li class="{% if realm == 'custom' %}active{% endif %}"><a href="{% url 'create_custom' %}">Custom</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Timestamp of most recent data: {{timestamp}} UTC</a></li>
+        <li><input id="searchid"></input></li>
+        <li><button action="goSearch()">Search</button></list>
+        <!--<li><a href="#">Timestamp of most recent data: {{timestamp}} UTC</a></li> -->
       </ul>
       </div>
   </div>
