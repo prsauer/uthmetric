@@ -15,7 +15,7 @@
         data.addColumn('string', 'text2');
         data.addRows([
           {% for d in data %}
-          [new Date({{d.lastupdated.year}}, {{d.lastupdated.month}} ,{{d.lastupdated.day}}), {{d.lastupdated.rps}}, undefined, undefined, 40645, undefined, undefined],
+          [new Date({{d.lastupdated.year}}, {{d.lastupdated.month}} ,{{d.lastupdated.day}}), {{d.rps}}, undefined, undefined, 40645, undefined, undefined],
           {% endfor %}
         ]);
 
