@@ -27,6 +27,7 @@ def most_recent():
 
 def create_custom(request):
 	ctx = {}
+	ctx['realm'] = 'custom'
 	ctx['classes'] = MID_CLASSES + HIB_CLASSES + ALB_CLASSES
 	ctx['classes'].sort()
 	ctx['races'] = Player.objects.exclude(racename='').values_list('racename',flat=True).order_by('racename').distinct()

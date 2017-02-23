@@ -11,6 +11,7 @@
         <li class="{% if realm == 'classes' %}active{% endif %}"><a href="{% url 'by_class' %}">By Class</a></li>
         <li class="{% if realm == 'Distribution' %}active{% endif %}"><a href="{% url 'charts' %}">Distribution</a></li>
         <li class="{% if realm == 'realmwar' %}active{% endif %}"><a href="{% url 'realmwar' %}">Realm War</a></li>
+        <li class="{% if realm == 'custom' %}active{% endif %}"><a href="{% url 'create_custom' %}">Custom</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Timestamp of most recent data: {{timestamp}} UTC</a></li>
