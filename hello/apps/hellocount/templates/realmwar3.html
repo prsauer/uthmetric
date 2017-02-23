@@ -18,51 +18,54 @@
  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
   </head>
+  <style>
+  * {font-family: 'Roboto', sans-serif;}
+  td {text-align: center;}
+  th {text-align: center;}
+  .realm_Midgard {
+    color: blue;
+  }
+  .realm_Hibernia {
+    color: green;
+  }
+  .realm_Albion {
+    color: red;
+  }
+  </style>
+
  <body>
    {% include 'navbar.html' %}
    <div class="container">
 <h1>Realm War</h1>
-<div>
+<div class="col-md-12">
   Darkness Falls:
   <span class="realm_{{df.owner}}">{{df.owner}}</span>
   {% if df.lastupdated %} taken {{df.lastupdated}} UTC{% endif %}
 </div>
 
-<div class="col-md-8">
+<div class="col-md-6">
   <div id="holder" style="width: 522; height: 522"></div>
 </div>
 
 {% for r in realm_keeps %}
-<div class="col-md-4">
+<div class="col-md-3">
   <h3 class="realm_{{r.realm}}" style="text-align: center">{{r.realm}}</h3>
   <table id="leader" class="table table-striped">
     <thead>
       <th>Keep</th>
       <th>Owner</th>
-      <!--<th>Taken</th>-->
     </thead>
     <tbody>
       {% for k in r.keeps %}
       <tr>
         <td>{{k.name}}</td>
         <td class="realm_{{k.owner}}">{{k.owner}}</td>
-        <!--<td><i>Unknown</i></td>-->
       </tr>
       {% endfor %}
     </tbody>
   </table>
 </div>
 {% endfor %}
-
-<div class="col-md-3">
-  <div class="panel panel-default">
-  <div id="keep_name" class="panel-heading">
-    <h3 class="panel-title">Panel title</h3>
-  </div>
-  <div class="panel-body">
-    Owned by <p id="keep_owner"></p>
-  </div>
-</div>
 
 <script>
 // THE ORDER OF ELEMENTS IN THIS ARRAY
