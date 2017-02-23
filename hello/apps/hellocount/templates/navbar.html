@@ -7,6 +7,14 @@ function goSearch() {
 
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
+      
+    <div class="navbar-header">
+      <a class="navbar-brand" style="display: block; padding-top: 5px; padding-bottom: 0px;">
+        <div style="font-size: 16px;">ARMSPERSON's</div>
+        <div style="font-size: 12px; text-align: center;">UthData</div>
+      </a>
+    </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="{% if not realm %}active{% endif %}"><a href="{% url 'leaders_all' %}">All</a></li>
