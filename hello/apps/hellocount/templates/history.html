@@ -13,7 +13,6 @@
           [new Date({{d.lastupdated.year}}, {{d.lastupdated.month}}-1 ,{{d.lastupdated.day}}), {{d.rps}}],
           {% endfor %}
         ]);
-
         var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
         chart.draw(data, {displayAnnotations: true});
       }
@@ -21,7 +20,11 @@
   </head>
 
   <body>
-    {{data}}
+    {{data.0.rawname}}
+    {{data.0.guildname}}
+    {{data.0.classname}}
+    {{data.0.racename}}
+    {{data.0.level}}
     // Note how you must specify the size of the container element explicitly!
     <div id='chart_div' style='width: 700px; height: 240px;'></div>
 
