@@ -7,15 +7,10 @@
       function drawChart() {
         var data = new google.visualization.DataTable();
         data.addColumn('date', 'Date');
-        data.addColumn('number', 'Sold Pencils');
-        data.addColumn('string', 'title1');
-        data.addColumn('string', 'text1');
-        data.addColumn('number', 'Sold Pens');
-        data.addColumn('string', 'title2');
-        data.addColumn('string', 'text2');
+        data.addColumn('number', 'RPs');
         data.addRows([
           {% for d in data %}
-          [new Date({{d.lastupdated.year}}, {{d.lastupdated.month}} ,{{d.lastupdated.day}}), {{d.rps}}, undefined, undefined, 40645, undefined, undefined],
+          [new Date({{d.lastupdated.year}}, {{d.lastupdated.month}} ,{{d.lastupdated.day}}), {{d.rps}}],
           {% endfor %}
         ]);
 
