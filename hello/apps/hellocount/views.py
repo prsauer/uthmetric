@@ -260,9 +260,9 @@ def by_class(request):
 	charts = []
 	for r in realms:
 		a_data = []
-		a_title = "%s Class Distribution (Level 45+, RR 1L6+)"%r[1]
+		a_title = "%s Class Distribution (Level 50, RR 1L6+)"%r[1]
 		for a_cls in r[0]:
-			a_data.append([a_cls[0:5], Player.objects.filter(classname=a_cls,level__gt=45, rps__gte=1375).count()])
+			a_data.append([a_cls[0:5], Player.objects.filter(classname=a_cls,level=50, rps__gte=1375).count()])
 		a_data.sort(key=lambda x: x[1])
 		a_data.reverse()
 		charts.append({'data': a_data, 'title': a_title, 'element_id': '%s_data'%(r[1].lower())})
