@@ -4,7 +4,7 @@ from hellocount import views
 urlpatterns = [
     url(r'^$', views.redir_404, name='home'),
     url(r'.*html$', views.redir_404, name='go_home'),
-    url(r'^realmwar/$', views.realmwar, name='realmwar'),
+    url(r'^realmwar/$', views.realmwar2, name='realmwar'),
     url(r'^realmwarjson/$', views.realmwarjson, name='realmwarjson'),
     url(r'^realmwar2/$', views.realmwar2, name='realmwar2'),
     url(r'^update_df/$', views.update_df, name='update_df'),
