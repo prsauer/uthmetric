@@ -63,23 +63,30 @@ def render_to_s3(template,force_name=None):
 def single_case(s):
 	return s[0].upper() + s[1:len(s)].lower()
 
+def history_for(p):
+	hist = []
+	for h in p.history.order_by('-history_date'):
+		if h.history_date >= a_week_ago:
+			hist.append(h.history_object.to_json())
+	return hist
+
 @csrf_exempt
 def history_api(request, player):
 	try:
 		p = Player.objects.get(rawname=player)
 		a_week_ago = timezone.now() - timedelta(days=7)
-		hist = []
-		for h in p.history.order_by('-history_date'):
-			if h.history_date >= a_week_ago:
-				hist.append(h.history_object.to_json())
+		hist = history_for(p)
 		return JsonResponse({"data": hist})
 	except Player.DoesNotExist:
 		return HttpResponse("Not found")
 
 def history(request, player):
-	jd = history_api(request, player)
-	jd = json.loads(jd.content)
-	ctx = jd
+	try:
+		p = Player.objects.get(rawname=player)
+		hist = history_for(p)
+		ctx = {'data': hist}
+	except Player.DoesNotExist:
+		return HttpResponse("Player not found")
 	return TemplateResponse(request, 'history.html', ctx)
 
 @csrf_exempt
