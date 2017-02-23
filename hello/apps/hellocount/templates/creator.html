@@ -53,17 +53,36 @@ Class
   {% endfor %}
 </select>
 
-
+<div class="container">
+<div class="col-md-10 col-md-offset-1">
+  
 Race
-<select id="racepick">
-  <option value="Any">Any</option>
-  {% for c in races %}
-  <option value="{{c}}">{{c}}</option>
-  {% endfor %}
-</select>
+
 
 <table id="eader" class="table table-striped">
   <tbody>
+    <tr>
+      <td>Race</td>
+      <td>
+        <select id="racepick">
+          <option value="Any">Any</option>
+          {% for c in races %}
+          <option value="{{c}}">{{c}}</option>
+          {% endfor %}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Class</td>
+      <td>
+        <select id="classpick">
+          <option value="Any">Any</option>
+          {% for c in classes %}
+          <option value="{{c}}">{{c}}</option>
+          {% endfor %}
+        </select>
+      </td>
+    </tr>
     <tr>
       <td>Min level</td>
       <td><input type="number" id="minlevel" value="1"></input></td>
@@ -80,6 +99,9 @@ Race
 </table>
 
 <button id="gobut">Create Leaderboard</button>
+
+</div>
+</div>
 
 <script>
 $(document).ready(function() {
