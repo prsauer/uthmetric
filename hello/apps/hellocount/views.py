@@ -65,6 +65,7 @@ def single_case(s):
 
 def history_for(p):
 	hist = []
+	a_week_ago = timezone.now() - timedelta(days=7)
 	for h in p.history.order_by('-history_date'):
 		if h.history_date >= a_week_ago:
 			hist.append(h.history_object.to_json())
@@ -74,7 +75,6 @@ def history_for(p):
 def history_api(request, player):
 	try:
 		p = Player.objects.get(rawname=player)
-		a_week_ago = timezone.now() - timedelta(days=7)
 		hist = history_for(p)
 		return JsonResponse({"data": hist})
 	except Player.DoesNotExist:
