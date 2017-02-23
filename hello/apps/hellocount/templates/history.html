@@ -23,8 +23,16 @@
           [new Date({{d.lastupdated.year}}, {{d.lastupdated.month}}-1 ,{{d.lastupdated.day}}), {{d.rps}}],
           {% endfor %}
         ]);
-        var chart = new google.visualization.AnnotatedTimeLine(document.getElementById('chart_div'));
-        chart.draw(data, {displayAnnotations: true});
+        var options = {
+        chart: {
+            title: 'RPs over the last week',
+          },
+          width: 900,
+          height: 500
+        };
+        var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+        chart.draw(data, options);
       }
     </script>
     <title>Player History</title>
@@ -57,7 +65,7 @@
       </table>
     </div>
     <div class="col-md-10 col-md-offset-1">
-      <div id='chart_div' style='width: 700px; height: 240px;'></div>
+      <div id='linechart_material' style='width: 700px; height: 240px;'></div>
     </div>
   </body>
 </html>
