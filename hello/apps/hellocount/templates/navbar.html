@@ -19,12 +19,10 @@ function goSearch() {
         <li class="{% if realm == 'realmwar' %}active{% endif %}"><a href="{% url 'realmwar' %}">Realm War</a></li>
         <li class="{% if realm == 'custom' %}active{% endif %}"><a href="{% url 'create_custom' %}">Custom</a></li>
       </ul>
-      <div class="navbar-form">
-        <ul class="nav navbar-nav navbar-right">
-          
-          <li><input id="searchid"></input></li>
-          <li><button onclick="goSearch()">Search</button></list>
-          <!--<li><a href="#">Timestamp of most recent data: {{timestamp}} UTC</a></li> -->
+      <div class="nav navbar-nav navbar-right">
+        <div class="navbar-form">
+          <input id="searchid"></input>
+          <!--<li><button onclick="goSearch()">Search</button></list>-->
         </ul>
       </div>
       </div>
