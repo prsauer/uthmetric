@@ -19,38 +19,41 @@
     <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
   </head>
  <body>
-   <nav class="navbar navbar-default navbar-static-top">
-     <div class="container">
-       <div id="navbar" class="navbar-collapse collapse">
-         <ul class="nav navbar-nav">
-           <li class=""><a href="leaders.html">All</a></li>
-           <li class=""><a href="guilds.html">Guild</a></li>
-           <li class=""><a href="leaders_alb.html">Albion</a></li>
-           <li class=""><a href="leaders_hib.html">Hibernia</a></li>
-           <li class=""><a href="leaders_mid.html">Midgard</a></li>
-           <li class=""><a href="classes.html">By Class</a></li>
-           <li class=""><a href="charts.html">Distribution</a></li>
-           <li class="active"><a href="realmwar.html">Realm War</a></li>
-         </ul>
-         <ul class="nav navbar-nav navbar-right">
-           <li><a href="#">Timestamp of most recent data: None UTC</a></li>
-         </ul>
-         </div>
-     </div>
-   </nav>
-
+   {% include 'navbar.html' %}
    <div class="container">
-<h1>Realm War: 2001 (beta)</h1>
-<h4>data by Armsperson</h4>
+<h1>Realm War</h1>
 <div>
   Darkness Falls:
-  <span class="realm_Midgard">UNKNOWN</span>
-   taken UNKNOWN
+  <span class="realm_{{df.owner}}">{{df.owner}}</span>
+  {% if df.lastupdated %} taken {{df.lastupdated}} UTC{% endif %}
 </div>
 
-<div class="col-md-offset-1 col-md-6">
+<div class="col-md-8">
   <div id="holder" style="width: 522; height: 522"></div>
 </div>
+
+{% for r in realm_keeps %}
+<div class="col-md-4">
+  <h3 class="realm_{{r.realm}}" style="text-align: center">{{r.realm}}</h3>
+  <table id="leader" class="table table-striped">
+    <thead>
+      <th>Keep</th>
+      <th>Owner</th>
+      <!--<th>Taken</th>-->
+    </thead>
+    <tbody>
+      {% for k in r.keeps %}
+      <tr>
+        <td>{{k.name}}</td>
+        <td class="realm_{{k.owner}}">{{k.owner}}</td>
+        <!--<td><i>Unknown</i></td>-->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endfor %}
+
 <div class="col-md-3">
   <div class="panel panel-default">
   <div id="keep_name" class="panel-heading">

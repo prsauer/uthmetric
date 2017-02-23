@@ -193,7 +193,11 @@ def realmwarjson(request):
 					   'df': DFalls.objects.first()})))
 
 def realmwar2(request):
-	return TemplateResponse(request,'realmwar3.html', {'realm': 'realmwar'})
+	return TemplateResponse(request,'realmwar3.html', {'realm': 'realmwar',
+													   'all_keeps': Keep.objects.all(),
+													   'realm_keeps': realm_keeps,
+													   'timestamp': most_recent(),
+													   'df': DFalls.objects.first()})
 
 def render_keeps(request):
 	return HttpResponse("Good")
