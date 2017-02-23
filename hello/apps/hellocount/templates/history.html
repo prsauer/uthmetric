@@ -10,7 +10,7 @@
         data.addColumn('number', 'RPs');
         data.addRows([
           {% for d in data %}
-          [new Date({{d.lastupdated.year}}, {{d.lastupdated.month}} ,{{d.lastupdated.day}}), {{d.rps}}],
+          [new Date({{d.lastupdated.year}}, {{d.lastupdated.month-1}} ,{{d.lastupdated.day}}), {{d.rps}}],
           {% endfor %}
         ]);
 
