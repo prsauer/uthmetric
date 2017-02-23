@@ -21,7 +21,12 @@ function goSearch() {
       </ul>
       <div class="nav navbar-nav navbar-right">
         <div class="navbar-form">
-          <input id="searchid"></input>
+          <div class="input-group">
+            <input id="searchid"></input>
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="button" onclick="goSearch()"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          </div>
           <!--<li><button onclick="goSearch()">Search</button></list>-->
         </ul>
       </div>
