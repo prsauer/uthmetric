@@ -193,39 +193,9 @@ def realmwarjson(request):
 					   'df': DFalls.objects.first()})))
 
 def realmwar2(request):
-	alb = ["alb"]*7
-	mid = ["mid"]*7
-	hib = ["hib"]*7
-
-	alb[0] = Keep.objects.get(name="Caer Renaris").owner[0:3].lower()
-	alb[1] = Keep.objects.get(name="Caer Berkstead").owner[0:3].lower()
-	alb[2] = Keep.objects.get(name="Caer Sursbrooke").owner[0:3].lower()
-	alb[3] = Keep.objects.get(name="Caer Boldiam").owner[0:3].lower()
-	alb[4] = Keep.objects.get(name="Caer Erasleigh").owner[0:3].lower()
-	alb[5] = Keep.objects.get(name="Caer Benowyc").owner[0:3].lower()
-	alb[6] = Keep.objects.get(name="Caer Hurbury").owner[0:3].lower()
-
-	mid[0] = Keep.objects.get(name="Arvakr Faste").owner[0:3].lower()
-	mid[1] = Keep.objects.get(name="Hlidskialf Faste").owner[0:3].lower()
-	mid[2] = Keep.objects.get(name="Glenlock Faste").owner[0:3].lower()
-	mid[3] = Keep.objects.get(name="Blendrake Faste").owner[0:3].lower()
-	mid[4] = Keep.objects.get(name="Nottmoor Faste").owner[0:3].lower()
-	mid[5] = Keep.objects.get(name="Bledmeer Faste").owner[0:3].lower()
-	mid[6] = Keep.objects.get(name="Fensalir Faste").owner[0:3].lower()
-
-	hib[0] = Keep.objects.get(name="Dun Scathaig").owner[0:3].lower()
-	hib[1] = Keep.objects.get(name="Dun da Behnn").owner[0:3].lower()
-	hib[2] = Keep.objects.get(name="Dun na nGed").owner[0:3].lower()
-	hib[3] = Keep.objects.get(name="Dun Crimthainn").owner[0:3].lower()
-	hib[4] = Keep.objects.get(name="Dun Bolg").owner[0:3].lower()
-	hib[5] = Keep.objects.get(name="Dun Crauchon").owner[0:3].lower()
-	hib[6] = Keep.objects.get(name="Dun Ailinne").owner[0:3].lower()
-
-	return TemplateResponse(request,'realmwar3.html', {'realm': 'realmwar', 'alb':alb,'hib':hib,'mid':mid})
+	return TemplateResponse(request,'realmwar3.html', {'realm': 'realmwar'})
 
 def render_keeps(request):
-	render_to_s3(realmwar2(request))
-	render_to_s3(realmwar(request))
 	return HttpResponse("Good")
 
 @csrf_exempt

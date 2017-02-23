@@ -2,128 +2,209 @@
 {% load static %}
 <html>
 <head>
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-91056124-1', 'auto');ga('send', 'pageview');
-</script>
-    <title>Realm War</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-</head>
-<style>
-* {font-family: 'Roboto', sans-serif;}
-td {text-align: center;}
-th {text-align: center;}
-.realm_Midgard {
-  color: blue;
-}
-.realm_Hibernia {
-  color: green;
-}
-.realm_Albion {
-  color: red;
-}
+<title>Realm War: 2001</title>
+<style type="text/css">
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+  #holder {
+    background-image: url('Frontier_map.jpg');
+    background-repeat: no-repeat;
+  }
 </style>
-
- <style type="text/css">
-body {
-        margin: 0px;
-        padding: 0px;
-      }
- </style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+  </head>
  <body>
-<img id="bg_map" src="/static/Frontier_map.jpg" alt="Frontiers" width="0" height="0">
+   <nav class="navbar navbar-default navbar-static-top">
+     <div class="container">
+       <div id="navbar" class="navbar-collapse collapse">
+         <ul class="nav navbar-nav">
+           <li class=""><a href="leaders.html">All</a></li>
+           <li class=""><a href="guilds.html">Guild</a></li>
+           <li class=""><a href="leaders_alb.html">Albion</a></li>
+           <li class=""><a href="leaders_hib.html">Hibernia</a></li>
+           <li class=""><a href="leaders_mid.html">Midgard</a></li>
+           <li class=""><a href="classes.html">By Class</a></li>
+           <li class=""><a href="charts.html">Distribution</a></li>
+           <li class="active"><a href="realmwar.html">Realm War</a></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right">
+           <li><a href="#">Timestamp of most recent data: None UTC</a></li>
+         </ul>
+         </div>
+     </div>
+   </nav>
 
-<img id="alb1" src="/static/ALB/{{alb.0}}/alb_01_ALB.gif" width="0" height="0">
-<img id="alb2" src="/static/ALB/{{alb.1}}/alb_02_ALB.gif" width="0" height="0">
-<img id="alb3" src="/static/ALB/{{alb.2}}/alb_03_ALB.gif" width="0" height="0">
-<img id="alb4" src="/static/ALB/{{alb.3}}/alb_04_ALB.gif" width="0" height="0">
-<img id="alb5" src="/static/ALB/{{alb.4}}/alb_05_ALB.gif" width="0" height="0">
-<img id="alb6" src="/static/ALB/{{alb.5}}/alb_06_ALB.gif" width="0" height="0">
-<img id="alb7" src="/static/ALB/{{alb.6}}/alb_07_ALB.gif" width="0" height="0">
+   <div class="container">
+<h1>Realm War: 2001 (beta)</h1>
+<h4>data by Armsperson</h4>
+<div>
+  Darkness Falls:
+  <span class="realm_Midgard">UNKNOWN</span>
+   taken UNKNOWN
+</div>
 
-<img id="mid1" src="/static/MID/{{mid.0}}/mid_01_MID.gif" width="0" height="0">
-<img id="mid2" src="/static/MID/{{mid.1}}/mid_02_MID.gif" width="0" height="0">
-<img id="mid3" src="/static/MID/{{mid.2}}/mid_03_MID.gif" width="0" height="0">
-<img id="mid4" src="/static/MID/{{mid.3}}/mid_04_MID.gif" width="0" height="0">
-<img id="mid5" src="/static/MID/{{mid.4}}/mid_05_MID.gif" width="0" height="0">
-<img id="mid6" src="/static/MID/{{mid.5}}/mid_06_MID.gif" width="0" height="0">
-<img id="mid7" src="/static/MID/{{mid.6}}/mid_07_MID.gif" width="0" height="0">
+<div class="col-md-offset-1 col-md-6">
+  <div id="holder" style="width: 522; height: 522"></div>
+</div>
+<div class="col-md-3">
+  <div class="panel panel-default">
+  <div id="keep_name" class="panel-heading">
+    <h3 class="panel-title">Panel title</h3>
+  </div>
+  <div class="panel-body">
+    Owned by <p id="keep_owner"></p>
+  </div>
+</div>
 
-<img id="hib1" src="/static/HIB/{{hib.0}}/hib_01_HIB.gif" width="0" height="0">
-<img id="hib2" src="/static/HIB/{{hib.1}}/hib_02_HIB.gif" width="0" height="0">
-<img id="hib3" src="/static/HIB/{{hib.2}}/hib_03_HIB.gif" width="0" height="0">
-<img id="hib4" src="/static/HIB/{{hib.3}}/hib_04_HIB.gif" width="0" height="0">
-<img id="hib5" src="/static/HIB/{{hib.4}}/hib_05_HIB.gif" width="0" height="0">
-<img id="hib6" src="/static/HIB/{{hib.5}}/hib_06_HIB.gif" width="0" height="0">
-<img id="hib7" src="/static/HIB/{{hib.6}}/hib_07_HIB.gif" width="0" height="0">
-
-<canvas id="myCanvas" width="800" height="800" >
-Your browser does not support the HTML5 canvas tag.</canvas>
 <script>
-  window.onload = function() {
-var c=document.getElementById("myCanvas");
-var ctx=c.getContext("2d");
-var img=document.getElementById("bg_map");
+// THE ORDER OF ELEMENTS IN THIS ARRAY
+// DETERMINES THE LAYERING OF THE MOUSEOVER
+keep_data = [
+  {name: "Caer Renaris",index: 1,
+    owner: "alb",folder: "ALB",
+    width: 89, height: 47,
+    xloc: 275,yloc: 432},
+  {name: "Caer Berkstead",index: 2,
+    owner: "alb",folder: "ALB",
+    width: 84, height: 55,
+    xloc: 268,yloc: 395},
+  {name: "Caer Boldiam",index: 4,
+    owner: "alb",folder: "ALB",
+    width: 61, height: 57,
+    xloc: 340,yloc: 375},
+  {name: "Caer Erasleigh",index: 5,
+    owner: "alb",folder: "ALB",
+    width: 56, height: 37,
+    xloc: 340,yloc: 350},
+  {name: "Caer Benowyc",index: 6,
+    owner: "alb",folder: "ALB",
+    width: 114, height: 54,
+    xloc: 382,yloc: 324},
+  {name: "Caer Hurbury",index: 7,
+    owner: "alb",folder: "ALB",
+    width: 52, height: 55,
+    xloc: 266,yloc: 322},
+  {name: "Caer Sursbrook",index: 3,
+    owner: "alb",folder: "ALB",
+    width: 70, height: 46,
+    xloc: 276,yloc: 359},
+  {name: "Arvarkr Faste",index: 1,
+    owner: "mid",folder: "MID",
+    width: 83, height: 37,
+    xloc: 354,yloc: 153},
+  {name: "Hlidskialf Faste",index: 2,
+    owner: "mid",folder: "MID",
+    width: 63, height: 51,
+    xloc: 340,yloc: 122},
+  {name: "Glenlock Faste",index: 3,
+    owner: "mid",folder: "MID",
+    width: 54, height: 56,
+    xloc: 378,yloc: 106},
+  {name: "Blendrake Faste",index: 4,
+    owner: "mid",folder: "MID",
+    width: 57, height: 55,
+    xloc: 378,yloc: 58},
+  {name: "Bledmeer Faste",index: 6,
+    owner: "mid",folder: "MID",
+    width: 53, height: 74,
+    xloc: 310,yloc: 36},
+  {name: "Nottmoor Faste",index: 5,
+    owner: "mid",folder: "MID",
+    width: 47, height: 54,
+    xloc: 348,yloc: 81},
+  {name: "Fensalir Faste",index: 7,
+    owner: "mid",folder: "MID",
+    width: 59, height: 53,
+    xloc: 419,yloc: 115},
+  {name: "Dun Scathaig",index: 1,
+    owner: "hib",folder: "HIB",
+    width: 77, height: 56,
+    xloc: 134,yloc: 192},
+  {name: "Dun da Behnn",index: 2,
+    owner: "hib",folder: "HIB",
+    width: 91, height: 36,
+    xloc: 154,yloc: 162},
+  {name: "Dun na nGed",index: 3,
+    owner: "hib",folder: "HIB",
+    width: 71, height: 35,
+    xloc: 106,yloc: 160},
+  {name: "Dun Crimthainn",index: 4,
+    owner: "hib",folder: "HIB",
+    width: 73, height: 48,
+    xloc: 141,yloc: 129},
+  {name: "Dun Bolg",index: 5,
+    owner: "hib",folder: "HIB",
+    width: 50, height: 55,
+    xloc: 105,yloc: 115},
+  {name: "Dun Crauchon",index: 6,
+    owner: "hib",folder: "HIB",
+    width: 52, height: 93,
+    xloc: 126,yloc: 36},
+  {name: "Dun Ailinne",index: 7,
+    owner: "hib",folder: "HIB",
+    width: 53, height: 49,
+    xloc: 67,yloc: 145},
+]
 
-var alb_pos_1=document.getElementById("alb1");
-var alb_pos_2=document.getElementById("alb2");
-var alb_pos_3=document.getElementById("alb3");
-var alb_pos_4=document.getElementById("alb4");
-var alb_pos_5=document.getElementById("alb5");
-var alb_pos_6=document.getElementById("alb6");
-var alb_pos_7=document.getElementById("alb7");
-
-var hib_pos_1=document.getElementById("hib1");
-var hib_pos_2=document.getElementById("hib2");
-var hib_pos_3=document.getElementById("hib3");
-var hib_pos_4=document.getElementById("hib4");
-var hib_pos_5=document.getElementById("hib5");
-var hib_pos_6=document.getElementById("hib6");
-var hib_pos_7=document.getElementById("hib7");
-
-var mid_pos_1=document.getElementById("mid1");
-var mid_pos_2=document.getElementById("mid2");
-var mid_pos_3=document.getElementById("mid3");
-var mid_pos_4=document.getElementById("mid4");
-var mid_pos_5=document.getElementById("mid5");
-var mid_pos_6=document.getElementById("mid6");
-var mid_pos_7=document.getElementById("mid7");
-
-ctx.drawImage(img,10,10);
-var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
-      context.beginPath();
-      ctx.drawImage(alb_pos_1,275,432);
-      ctx.drawImage(alb_pos_2,268,395);
-      ctx.drawImage(alb_pos_3,276,359);
-      ctx.drawImage(alb_pos_4,340,375);
-      ctx.drawImage(alb_pos_5,340,350);
-      ctx.drawImage(alb_pos_6,382,324);
-      ctx.drawImage(alb_pos_7,266,322);
-
-      ctx.drawImage(mid_pos_1,354,153);
-      ctx.drawImage(mid_pos_2,340,122);
-      ctx.drawImage(mid_pos_3,378,106);
-      ctx.drawImage(mid_pos_4,378,58);
-      ctx.drawImage(mid_pos_5,349,81);
-      ctx.drawImage(mid_pos_6,310,36);
-      ctx.drawImage(mid_pos_7,419,115);
-
-      ctx.drawImage(hib_pos_1,134,192);
-      ctx.drawImage(hib_pos_2,154,162);
-      ctx.drawImage(hib_pos_3,106,160);
-      ctx.drawImage(hib_pos_4,141,129);
-      ctx.drawImage(hib_pos_5,105,115);
-      ctx.drawImage(hib_pos_6,126,36);
-      ctx.drawImage(hib_pos_7,67,145);
-
-      };</script>
- </body>
-
+$.getJSON('http://uthgard.riftmetric.com/realmwarjson', function(data) {
+    for (i = 0; i < data.alb.length; i++) {
+      for(j = 0; j < keep_data.length; j++) {
+        if (keep_data[j].folder == "ALB" && keep_data[j].index == i+1) {
+          keep_data[j].owner = data.alb[i];
+          break;
+        }
+      }
+    }
+    for (i = 0; i < data.hib.length; i++) {
+      for(j = 0; j < keep_data.length; j++) {
+        if (keep_data[j].folder == "HIB" && keep_data[j].index == i+1) {
+          keep_data[j].owner = data.hib[i];
+          break;
+        }
+      }
+    }
+    for (i = 0; i < data.mid.length; i++) {
+      for(j = 0; j < keep_data.length; j++) {
+        if (keep_data[j].folder == "MID" && keep_data[j].index == i+1) {
+          keep_data[j].owner = data.mid[i];
+          break;
+        }
+      }
+    }
+    Raphael(function () {
+      var r = Raphael("holder", 532, 532);
+      for (i = 0; i < 21; i++) {
+        render_keep_segment(r, keep_data[i])
+      }
+    });
+});
+real_name = function(n) {
+  if (n=="hib") return "Hibernia";
+  if (n=="mid") return "Midgard";
+  if (n=="alb") return "Albion";
+}
+render_keep_segment = function(r, item) {
+  item.img_ref = new Image();
+  item.img_ref.src = item.folder+"/"+item.owner+"/"+item.folder.toLowerCase()+"_0"+item.index+"_"+item.folder+".gif";
+  item.raf_ref = r.image(
+    item.img_ref.src,
+    item.xloc-10,
+    item.yloc-10,
+    item.width,
+    item.height
+  );
+  item.raf_ref.mouseover(function(){
+    $('#keep_name').html(item.name);
+    $('#keep_owner').html(real_name(item.owner));
+    $('#keep_time').html(item.time);
+  });
+  return item.raf_ref;
+}
+</script>
 </body>
 </html>
