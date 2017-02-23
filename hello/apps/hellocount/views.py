@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 
+from datetime import timedelta
 from datetime import datetime
 import json, logging, boto3
 
