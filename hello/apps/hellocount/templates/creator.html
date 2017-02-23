@@ -62,13 +62,22 @@ Race
   {% endfor %}
 </select>
 
-Min level
-<input type="number" id="minlevel" value="1"></input>
-Min rps
-<input type="number" id="minrps" value="0"></input>
-
-Guild name
-<input id="guildname"></input>
+<table id="eader" class="table table-striped">
+  <tbody>
+    <tr>
+      <td>Min level</td>
+      <td><input type="number" id="minlevel" value="1"></input></td>
+    </tr>
+    <tr>
+      <td>Min RPs</td>
+      <td><input type="number" id="minrps" value="1"></input></td>
+    </tr>
+    <tr>
+      <td>Guild (optional)</td>
+      <td><input id="guildname"></input></td>
+    </tr>
+  </tbody>
+</table>
 
 <button id="gobut">Create Leaderboard</button>
 
