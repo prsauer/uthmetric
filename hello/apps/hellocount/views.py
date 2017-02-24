@@ -75,7 +75,7 @@ def history_for(p):
 @csrf_exempt
 def history_api(request, player):
 	try:
-		p = Player.objects.get(rawname=player)
+		p = Player.objects.get(rawname__iexact=player)
 		hist = history_for(p)
 		return JsonResponse({"data": hist})
 	except Player.DoesNotExist:
@@ -83,7 +83,7 @@ def history_api(request, player):
 
 def history(request, player):
 	try:
-		p = Player.objects.get(rawname=player)
+		p = Player.objects.get(rawname__iexact=player)
 		hist = history_for(p)
 		ctx = {'data': hist}
 	except Player.DoesNotExist:
@@ -304,7 +304,7 @@ def charts(request):
 
 def get_by_name(request, rawname):
 	try:
-		p = Player.objects.get(rawname=rawname)
+		p = Player.objects.get(rawname__iexact=rawname)
 		return JsonResponse(json.loads(p.raw_data))
 	except Player.DoesNotExist:
 		return HttpResponse("Failed %s"%rawname)
