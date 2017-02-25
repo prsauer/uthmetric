@@ -10,6 +10,7 @@
     <title>RP Leaderboard</title>
     <div class="container">
     {% if query %}
+    {{query}}
       <h1>RP Leaderboard</h1>
       {% for key, value in query %}
       <h4>{{key}}</h4><h3>{{value}}</h3>
