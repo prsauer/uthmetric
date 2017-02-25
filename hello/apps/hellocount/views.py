@@ -139,7 +139,7 @@ def custom_leaders(request):
 	players = json.loads(data.content)['results']
 	for i in xrange(0, len(players)):
 		players[i]['rank'] = i+1
-	cdict =  {'timestamp': most_recent(), 'realm': '[Custom]', 'players': players}
+	cdict =  {'timestamp': most_recent(), 'realm': data['input'], 'players': players}
 	return TemplateResponse(request, 'leaders.html', cdict)
 
 @csrf_exempt
