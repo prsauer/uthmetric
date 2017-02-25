@@ -65,7 +65,14 @@ $(document).ready(function() {
     minlevel = $('#minlevel')[0].value
     minrps = $('#minrps')[0].value
 
-    args = "?minlevel=" + minlevel + "&"
+    args = ""
+    if (minlevel && parseInt(minlevel) > 1) {
+      args = "?minlevel=" + minlevel + "&"
+    }
+    else {
+      args = "?"
+    }
+
     if (sel_class != 'Any') {
       args = args + 'class=' + sel_class + '&'
     }
@@ -78,7 +85,9 @@ $(document).ready(function() {
       args = args + 'guild=' + sel_guild + '&'
     }
 
-    args = args + "minrps=" + minrps
+    if (minrps && parseInt(minrps) > 1) {
+      args = args + "minrps=" + minrps
+    }
 
     window.open('/leaders/' + args)
   })
