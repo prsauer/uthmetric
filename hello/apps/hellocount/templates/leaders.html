@@ -12,7 +12,7 @@
     {% if query %}
     {{query}}
       <h1>RP Leaderboard</h1>
-      {% for key, value in query %}
+      {% for key, value in query.items %}
       <h4>{{key}}</h4><h3>{{value}}</h3>
       {% endfor %}
     {% else %}
