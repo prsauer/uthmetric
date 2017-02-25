@@ -5,7 +5,7 @@ import time,requests,json
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        alldata = requests.get('https://uthgard.org/herald/api/dump')
+        alldata = requests.get('https://www2.uthgard.net/herald/api/dump')
         jdata = json.loads(alldata.content)
         for k in jdata.keys():
             d = jdata[k]
