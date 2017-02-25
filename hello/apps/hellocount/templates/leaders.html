@@ -28,7 +28,7 @@ th {text-align: center;}
 .realm_Albion {
   color: red;
 }
-td {
+td.linkable {
     cursor: pointer;
 }
 </style>
@@ -55,10 +55,10 @@ td {
           <tr>
             <td>{{p.rank}}</td>
             <td><a target='_blank' href="http://uthgard.riftmetric.com/history/{{p.rawname}}/">{{p.rawname}}</a></td>
-            <td onclick="window.location.assign('http://uthgard.riftmetric.com/leaders/{{p.realmname}}')" class="realm_{{p.realmname}}">{{p.realmname}}</td>
-            <td onclick="window.location.assign('http://uthgard.riftmetric.com/custom_leaders/?guild={{p.guildname}}')">{% if p.guildname %}{{p.guildname}}{% else %}<i>No Guild</i>{% endif %}</td>
-            <td onclick="window.location.assign('http://uthgard.riftmetric.com/custom_leaders/?race={{p.racename}}')">{{p.racename}}</td>
-            <td onclick="window.location.assign('http://uthgard.riftmetric.com/custom_leaders/?class={{p.classname}}')">{{p.classname}}</td>
+            <td onclick="window.location.assign('http://uthgard.riftmetric.com/leaders/{{p.realmname}}')" class="realm_{{p.realmname}} linkable">{{p.realmname}}</td>
+            <td class="linkable" onclick="window.location.assign('http://uthgard.riftmetric.com/custom_leaders/?guild={{p.guildname}}')">{% if p.guildname %}{{p.guildname}}{% else %}<i>No Guild</i>{% endif %}</td>
+            <td class="linkable" onclick="window.location.assign('http://uthgard.riftmetric.com/custom_leaders/?race={{p.racename}}')">{{p.racename}}</td>
+            <td class="linkable" onclick="window.location.assign('http://uthgard.riftmetric.com/custom_leaders/?class={{p.classname}}')">{{p.classname}}</td>
             <td>{{p.rps|intcomma}}</td>
             <td>{{p.realmrank}}</td>
           </tr>
