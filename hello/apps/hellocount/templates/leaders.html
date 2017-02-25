@@ -10,7 +10,8 @@
     <title>RP Leaderboard</title>
     <div class="container">
     {% if query %}
-      <h1>RP Leaderboard {% for key, value in query.items %} {{key}}: {{value}} {% endfor %}</h1>
+      <h1>RP Leaderboard</h1>
+      <h4>{% for key, value in query.items %} {{key}}: {{value}} {% endfor %}</h4>
     {% else %}
     <h1>RP Leaderboard {% if realm %}{{realm}}{%endif%}</h1>
     {% endif %}
