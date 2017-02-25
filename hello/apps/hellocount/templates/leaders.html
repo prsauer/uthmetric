@@ -52,7 +52,7 @@ th {text-align: center;}
           <tr>
             <td>{{p.rank}}</td>
             <td><a target='_blank' href="http://uthgard.riftmetric.com/history/{{p.rawname}}/">{{p.rawname}}</a></td>
-            <td class="realm_{{p.realmname}}">{{p.realmname}}</td>
+            <td onclick="window.location.assign('http://uthgard.riftmetric.com/leaders/{{p.realmname}}')" class="realm_{{p.realmname}}">{{p.realmname}}</td>
             <td>{% if p.guildname %}{{p.guildname}}{% else %}<i>No Guild</i>{% endif %}</td>
             <td>{{p.racename}}</td>
             <td>{{p.classname}}</td>
