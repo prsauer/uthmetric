@@ -131,7 +131,7 @@ keep_data = [
     xloc: 67,yloc: 145},
 ]
 
-$.getJSON('http://uthgard.riftmetric.com/realmwarjson', function(data) {
+$.getJSON('/realmwarjson', function(data) {
     for (i = 0; i < data.all_keeps.length; i++) {
       for (j = 0; j < keep_data.length; j++) {
         if (data.all_keeps[i].name == keep_data[j].name) {
