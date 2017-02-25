@@ -3,35 +3,8 @@
 <html>
 <head>
 <title>Realm War: 2001</title>
-<style type="text/css">
-  body {
-    margin: 0px;
-    padding: 0px;
-  }
-  #holder {
-    background-image: url('/static/Frontier_map.jpg');
-    background-repeat: no-repeat;
-  }
-</style>
- <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+{% include 'head.html' %}
   </head>
-  <style>
-  * {font-family: 'Roboto', sans-serif;}
-  td {text-align: center;}
-  th {text-align: center;}
-  .realm_Midgard {
-    color: blue;
-  }
-  .realm_Hibernia {
-    color: green;
-  }
-  .realm_Albion {
-    color: red;
-  }
-  </style>
 
  <body>
    {% include 'navbar.html' %}
