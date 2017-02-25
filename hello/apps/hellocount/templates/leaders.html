@@ -9,7 +9,14 @@
     {% include "navbar.html" %}
     <title>RP Leaderboard</title>
     <div class="container">
+    {% if query %}
+      <h1>RP Leaderboard</h1>
+      {% for key, value in query %}
+      <h4>{{key}}</h4><h3>{{value}}</h3>
+      {% endfor %}
+    {% else %}
     <h1>RP Leaderboard {% if realm %}{{realm}}{%endif%}</h1>
+    {% endif %}
     <div class="col-md-10 col-md-offset-1">
       <table id="eader" class="table table-striped">
         <thead>
