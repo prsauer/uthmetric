@@ -135,8 +135,8 @@ def leaders_api(request):
 	return JsonResponse(json.loads(enc.encode({'input': the_args, 'results': res})))
 
 def custom_leaders(request):
-	data = leaders_api(request)
-	players = json.loads(data.content)['results']
+	data = json.loads(leaders_api(request).content)
+	players = data['results']
 	for i in xrange(0, len(players)):
 		players[i]['rank'] = i+1
 	cdict =  {'timestamp': most_recent(), 'realm': data['input'], 'players': players}
