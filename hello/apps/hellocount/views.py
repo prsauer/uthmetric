@@ -336,7 +336,7 @@ def leaders(request, realm=None):
 	# https://uthgard.org/herald/api/top/rvr
 	if realm is not None and realm not in ["Albion","Midgard","Hibernia"]:
 		return HttpResponse("404")
-	if len(request.GET.keys() > 0):
+	if request.GET:
 		return custom_leaders(request)
 	if not realm:
 		db_players = list(Player.objects.all().filter(rps__gt=0).order_by('-rps')[0:25])
