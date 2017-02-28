@@ -181,12 +181,12 @@ def weekly_guild_leaders(request):
 			gdata.append(this_g)
 	gdata.sort(key=lambda x: x['rps_last7'])
 	gdata.reverse()
-	gdata = gdata[0:25]
+	gdata = gdata[0:50]
 
 	for i in xrange(0, len(gdata)):
 		gdata[i]['rank'] = i+1
 
-	cdict =  {'timestamp': most_recent(), 'guilds': gdata[0:25], 'realm': 'by Guild'}
+	cdict =  {'timestamp': most_recent(), 'guilds': gdata[0:50], 'realm': 'by Guild'}
 	return TemplateResponse(request, 'guilds_weekly.html', cdict)
 
 @csrf_exempt
@@ -371,12 +371,12 @@ def by_guild(request):
 			gdata.append(this_g)
 	gdata.sort(key=lambda x: x['rps'])
 	gdata.reverse()
-	gdata = gdata[0:25]
+	gdata = gdata[0:50]
 
 	for i in xrange(0, len(gdata)):
 		gdata[i]['rank'] = i+1
 
-	cdict =  {'timestamp': most_recent(), 'guilds': gdata[0:25], 'realm': 'by Guild'}
+	cdict =  {'timestamp': most_recent(), 'guilds': gdata[0:50], 'realm': 'by Guild'}
 	return TemplateResponse(request, 'guilds.html', cdict)
 
 def leaders(request, realm=None):
@@ -386,9 +386,9 @@ def leaders(request, realm=None):
 	if request.GET:
 		return custom_leaders(request)
 	if not realm:
-		db_players = list(Player.objects.all().filter(rps__gt=0).order_by('-rps')[0:25])
+		db_players = list(Player.objects.all().filter(rps__gt=0).order_by('-rps')[0:50])
 	else:
-		db_players = list(Player.objects.all().order_by('-rps').filter(realmname=realm)[0:25])
+		db_players = list(Player.objects.all().order_by('-rps').filter(realmname=realm)[0:50])
 
 	players = []
 	for i in xrange(0, len(db_players)):
