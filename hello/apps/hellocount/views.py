@@ -157,10 +157,13 @@ def weekly_solo_leaders(request):
 
 def weekly_realm_leaders(request):
 	cdict = {}
+	cdict['alb_7'] = Player.objects.filter(realmname="Albion").aggregate(total_rps=Sum('rps_last7'))
+	cdict['hib_7'] = Player.objects.filter(realmname="Hibernia").aggregate(total_rps=Sum('rps_last7'))
+	cdict['mid_7'] = Player.objects.filter(realmname="Midgard").aggregate(total_rps=Sum('rps_last7'))
 	cdict['alb'] = Player.objects.filter(realmname="Albion").aggregate(total_rps=Sum('rps'))
 	cdict['hib'] = Player.objects.filter(realmname="Hibernia").aggregate(total_rps=Sum('rps'))
 	cdict['mid'] = Player.objects.filter(realmname="Midgard").aggregate(total_rps=Sum('rps'))
-	return JsonResponse(cdict)
+	return TemplateResponse(request, 'leaders_realm.html', cdict)
 
 def weekly_guild_leaders(request):
 	pass

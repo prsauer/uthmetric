@@ -1,0 +1,37 @@
+{% load humanize %}
+<html>
+<head>
+  {% include 'head.html' %}
+    <title>RP Leaderboard</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+    <title>RP Leaderboard</title>
+    <div class="container">
+    <h1>RP Leaderboard - Past 7 Days Total by Realm</h1>
+    <div class="col-md-10 col-md-offset-1">
+      <table id="eader" class="table table-striped">
+        <thead>
+          <th>Realm</th>
+          <th>+RPs</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Albion</td>
+            <td>{{alb_7}}</td>
+          </tr>
+          <tr>
+            <td>Hibernia</td>
+            <td>{{hib_7}}</td>
+          </tr>
+          <tr>
+            <td>Midgard</td>
+            <td>{{mid_7}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
