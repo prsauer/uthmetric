@@ -138,7 +138,7 @@ class Player(models.Model):
             logger.info("Couldnt decode %s"%(jdata))
         else:
             self.save()
-            logger.info("Saved %s"%(jdata))
+            #logger.info("Saved %s"%(jdata))
         return True
 
     def refresh_from_uth(self):
