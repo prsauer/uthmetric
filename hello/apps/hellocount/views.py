@@ -146,7 +146,7 @@ def custom_leaders(request):
 	return TemplateResponse(request, 'leaders.html', cdict)
 
 def weekly_solo_leaders(request):
-	db_players = Player.objects.order_by('-rps_last7')[0:50]
+	db_players = Player.objects.filter(rps_last7__gt=1000).order_by('-rps_last7')[0:50]
 	players = []
 	for i in xrange(0, len(db_players)):
 		players.append(db_players[i].to_json())
