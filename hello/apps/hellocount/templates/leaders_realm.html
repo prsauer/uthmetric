@@ -10,9 +10,9 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Realm', 'RPs gained last 7 days'],
-          ['Midgard', '{{mid_7.total_rps}}'],
-          ['Albion', '{{alb_7.total_rps}}'],
-          ['Hibernia', '{{hib_7.total_rps}}'],
+          ['Midgard', {{mid_7.total_rps}}],
+          ['Albion', {{alb_7.total_rps}}],
+          ['Hibernia', {{hib_7.total_rps}}],
         ]);
         var options = {
         };
@@ -21,9 +21,9 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Realm', 'RPs Total'],
-          ['Midgard', '{{mid.total_rps}}'],
-          ['Albion', '{{alb.total_rps}}'],
-          ['Hibernia', '{{hib.total_rps}}'],
+          ['Midgard', {{mid.total_rps}}],
+          ['Albion', {{alb.total_rps}}],
+          ['Hibernia', {{hib.total_rps}}],
         ]);
         var options = {
         };
