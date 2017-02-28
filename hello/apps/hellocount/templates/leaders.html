@@ -24,6 +24,7 @@
           <th>Guild</th>
           <th>Race</th>
           <th>Class</th>
+          <th>Level</th>
           <th>RPs</th>
           <th>RealmRank</th>
         </thead>
@@ -36,6 +37,7 @@
             <td class="linkable" onclick="window.location.assign('/leaders/?guild={{p.guildname}}')">{% if p.guildname %}{{p.guildname}}{% else %}<i>No Guild</i>{% endif %}</td>
             <td class="linkable" onclick="window.location.assign('/leaders/?race={{p.racename}}')">{{p.racename}}</td>
             <td class="linkable" onclick="window.location.assign('/leaders/?class={{p.classname}}')">{{p.classname}}</td>
+            <td>{{p.level}}</td>
             <td>{{p.rps|intcomma}}</td>
             <td>{{p.realmrank}}</td>
           </tr>
