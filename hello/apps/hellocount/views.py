@@ -145,6 +145,13 @@ def custom_leaders(request):
 	cdict =  {'timestamp': most_recent(), 'realm': 'custom', 'query': request.GET, 'players': players}
 	return TemplateResponse(request, 'leaders.html', cdict)
 
+def weekly_solo_leaders(request):
+	players = Player.objects.order_by('-rps_last7')[0:50]
+	for i in xrange(0, len(players)):
+		players[i]['rank'] = i+1
+	cdict =  {'timestamp': most_recent(), 'realm': 'weekly_solo', 'query': 'Players ranked by RP gains in the past 7 days', 'players': players}
+	return TemplateResponse(request, 'leaders.html', cdict)
+
 @csrf_exempt
 def update_keep(request):
 	jdata = json.loads(request.body)
