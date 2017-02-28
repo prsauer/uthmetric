@@ -2,15 +2,15 @@
 <html>
 <head>
   {% include 'head.html' %}
-    <title>Guild RP Leaderboard</title>
+    <title>Guild Realm Point Leaderboard</title>
 </head>
 
 
 <body>
     {% include "navbar.html" %}
-    <title>RP Leaderboard</title>
+    <title>Realm Point Leaderboard</title>
     <div class="container">
-    <h1>RP Leaderboard {% if realm %}{{realm}}{%endif%}</h1>
+    <h1>Realm Point Leaderboard {% if realm %}{{realm}}{%endif%}</h1>
     <h4><a href="{% url 'weekly_guild' %}">Last 7 days</a></h4>
     <div class="col-md-8 col-md-offset-2">
       <table id="eader" class="table table-striped">
