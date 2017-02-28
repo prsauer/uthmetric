@@ -146,8 +146,10 @@ def custom_leaders(request):
 	return TemplateResponse(request, 'leaders.html', cdict)
 
 def weekly_solo_leaders(request):
-	players = Player.objects.order_by('-rps_last7')[0:50]
-	for i in xrange(0, len(players)):
+	db_players = Player.objects.order_by('-rps_last7')[0:50]
+	players = []
+	for i in xrange(0, len(db_players)):
+		players.append(db_players[i].to_json())
 		players[i]['rank'] = i+1
 	cdict =  {'timestamp': most_recent(), 'realm': 'weekly_solo', 'query': 'Players ranked by RP gains in the past 7 days', 'players': players}
 	return TemplateResponse(request, 'leaders.html', cdict)
