@@ -24,7 +24,7 @@
           {% for g in guilds %}
           <tr>
             <td>{{g.rank}}</td>
-            <td>{{g.guildname}}</td>
+            <td class="linkable" onclick="window.location.assign('/leaders/?guild={{p.guildname}}')">{{g.guildname}}</td>
             <td class="realm_{{g.realmname}}">{{g.realmname}}</td>
             <td>{{g.rps_last7|intcomma}}</td>
             <td>{{g.size}}</td>
