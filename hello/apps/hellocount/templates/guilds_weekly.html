@@ -1,0 +1,38 @@
+{% load humanize %}
+<html>
+<head>
+  {% include 'head.html' %}
+    <title>Guild RP Leaderboard</title>
+</head>
+
+
+<body>
+    {% include "navbar.html" %}
+    <title>RP Leaderboard</title>
+    <div class="container">
+    <h1>RPs Gained Last 7 Days by Guild</h1>
+    <div class="col-md-8 col-md-offset-2">
+      <table id="eader" class="table table-striped">
+        <thead>
+          <th>#</th>
+          <th>Guild</th>
+          <th>Realm</th>
+          <th>+RPs</th>
+          <th># of Players</th>
+        </thead>
+        <tbody>
+          {% for g in guilds %}
+          <tr>
+            <td>{{g.rank}}</td>
+            <td>{{g.guildname}}</td>
+            <td class="realm_{{g.realmname}}">{{g.realmname}}</td>
+            <td>{{g.rps_last7|intcomma}}</td>
+            <td>{{g.size}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

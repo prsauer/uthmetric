@@ -166,7 +166,27 @@ def weekly_realm_leaders(request):
 	return TemplateResponse(request, 'leaders_realm.html', cdict)
 
 def weekly_guild_leaders(request):
-	pass
+	guilds = Player.objects.values('guildname').distinct()
+	gdata = []
+	for g in [g['guildname'] for g in guilds]:
+		if g:
+			players = Player.objects.filter(guildname=g)
+			this_g = {}
+			this_g['guildname'] = g
+			this_g['rank'] = 0
+			this_g['realmname'] = players.first().realmname
+			this_g['rps_last7'] = sum(players.values_list('rps_last7',flat=True))
+			this_g['size'] = players.count()
+			gdata.append(this_g)
+	gdata.sort(key=lambda x: x['rps_last7'])
+	gdata.reverse()
+	gdata = gdata[0:25]
+
+	for i in xrange(0, len(gdata)):
+		gdata[i]['rank'] = i+1
+
+	cdict =  {'timestamp': most_recent(), 'guilds': gdata[0:25], 'realm': 'by Guild'}
+	return TemplateResponse(request, 'guilds_weekly.html', cdict)
 
 @csrf_exempt
 def update_keep(request):
