@@ -14,6 +14,9 @@
       <h4>{% for key, value in query.items %} {{key}}: {{value}} {% endfor %}</h4>
     {% else %}
     <h1>RP Leaderboard {% if realm %}{{realm}}{%endif%}</h1>
+    {% if not realm %}
+    <h3><a href="{% url 'weekly_solo' %}">Last 7 days</a></h3>
+    {% endif %}
     {% endif %}
     <div class="col-md-10 col-md-offset-1">
       <table id="eader" class="table table-striped">
