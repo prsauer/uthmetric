@@ -175,7 +175,7 @@ def weekly_guild_leaders(request):
 			this_g['guildname'] = g
 			this_g['rank'] = 0
 			this_g['realmname'] = players.first().realmname
-			this_g['rps_last7'] = sum(players.values_list('rps_last7',flat=True))
+			this_g['rps_last7'] = sum(players.filter(rps_last7__gt=0).values_list('rps_last7',flat=True))
 			this_g['size'] = players.count()
 			gdata.append(this_g)
 	gdata.sort(key=lambda x: x['rps_last7'])
