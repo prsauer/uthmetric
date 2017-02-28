@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from hellocount.models import Player,Keep,DFalls,MasterEncoder
+from django.db.models import Count, Min, Sum, Avg
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
@@ -153,6 +154,16 @@ def weekly_solo_leaders(request):
 		players[i]['rank'] = i+1
 	cdict =  {'timestamp': most_recent(), 'realm': 'weekly_solo', 'query': 'Players ranked by RP gains in the past 7 days', 'players': players}
 	return TemplateResponse(request, 'leaders_weekly.html', cdict)
+
+def weekly_realm_leaders(request):
+	cdict = {}
+	cdict['alb'] = Player.objects.filter(realmname="ALBION", aggregate(total_rps=Sum('rps'))
+	cdict['hib'] = Player.objects.filter(realmname="HIBERNIA", aggregate(total_rps=Sum('rps'))
+	cdict['mid'] = Player.objects.filter(realmname="MIDGARD", aggregate(total_rps=Sum('rps'))
+	return JsonResponse(cdict)
+
+def weekly_guild_leaders(request):
+	pass
 
 @csrf_exempt
 def update_keep(request):
