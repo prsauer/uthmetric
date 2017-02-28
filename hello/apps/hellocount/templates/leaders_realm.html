@@ -2,6 +2,35 @@
 <html>
 <head>
   {% include 'head.html' %}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Realm', 'RPs gained last 7 days'],
+          ['Midgard', '{{mid_7.total_rps}}'],
+          ['Albion', '{{alb_7.total_rps}}'],
+          ['Hibernia', '{{hib_7.total_rps}}'],
+        ]);
+        var options = {
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('pie_7'));
+        chart.draw(data, options);
+
+        var data = google.visualization.arrayToDataTable([
+          ['Realm', 'RPs Total'],
+          ['Midgard', '{{mid.total_rps}}'],
+          ['Albion', '{{alb.total_rps}}'],
+          ['Hibernia', '{{hib.total_rps}}'],
+        ]);
+        var options = {
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('pie_all'));
+        chart.draw(data, options);
+      }
+    </script>
     <title>RP Leaderboard</title>
 </head>
 
@@ -11,26 +40,10 @@
     <div class="container">
     <h1>RP Leaderboard - Past 7 Days Total by Realm</h1>
     <div class="col-md-10 col-md-offset-1">
-      <table id="eader" class="table table-striped">
-        <thead>
-          <th>Realm</th>
-          <th>+RPs</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Albion</td>
-            <td>{{alb_7}}</td>
-          </tr>
-          <tr>
-            <td>Hibernia</td>
-            <td>{{hib_7}}</td>
-          </tr>
-          <tr>
-            <td>Midgard</td>
-            <td>{{mid_7}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div id="pie_7"></div>
+    </div>
+    <div class="col-md-10 col-md-offset-1">
+      <div id="pie_all"></div>
     </div>
   </div>
 </body>
