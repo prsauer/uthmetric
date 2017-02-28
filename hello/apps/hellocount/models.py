@@ -86,6 +86,7 @@ class Player(models.Model):
                 'xp': self.xp,
                 'level': self.level,
                 'lastupdated': self.lastupdated,
+                'rps_last7': self.rps_last7,
                 }
 
     def age(self):
