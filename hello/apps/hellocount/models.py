@@ -2,6 +2,7 @@ import requests,json,logging
 from django.db import models
 from simple_history.models import HistoricalRecords
 from datetime import datetime
+from datetime import timedelta
 from django.utils import timezone
 import pytz
 
@@ -71,6 +72,8 @@ class Player(models.Model):
     level = models.IntegerField(null=True,db_index=True)
     lastupdated = models.DateTimeField(null=True)
 
+    rps_last7 = models.BigIntegerField(null=True,db_index=True)
+
     def to_json(self):
         return {'fullname': self.fullname,
                 'rawname': self.rawname,
@@ -124,6 +127,12 @@ class Player(models.Model):
             self.xp = jdata['Xp']
             self.lastupdated = pytz.UTC.localize(datetime.fromtimestamp(int(jdata['LastUpdated'])))
             self.raw_data = json.dumps(jdata)
+
+            try:
+                seven_ago = timezone.now() - timedelta(days=7)
+                self.rps_last7 = self.rps - self.history.as_of(seven_ago).rps
+            except:
+                logger.info("History decode failed %s"%(jdata))
         except:
             logger.info("Couldnt decode %s"%(jdata))
         else:
