@@ -15,7 +15,10 @@
           ['Hibernia', {{hib_7.total_rps}}],
         ]);
         var options = {
-          title: 'RPs gained last 7 days'
+          title: 'RPs gained last 7 days',
+          titleTextStyle: {fontSize: 22},
+          colors: ['blue','red','green'],
+          legend: {position: 'none'}
         };
         var chart = new google.visualization.PieChart(document.getElementById('pie_7'));
         chart.draw(data, options);
@@ -28,7 +31,8 @@
         ]);
         var options = {
           title: 'RPs total',
-          titleTextStyle: {fontSize: 22}
+          titleTextStyle: {fontSize: 22},
+          colors: ['blue','red','green']
         };
         var chart = new google.visualization.PieChart(document.getElementById('pie_all'));
         chart.draw(data, options);
