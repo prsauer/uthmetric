@@ -1,0 +1,50 @@
+{% load humanize %}
+<html>
+<head>
+  {% include 'head.html' %}
+    <title>RP Leaderboard</title>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+    <title>RP Leaderboard</title>
+    <div class="container">
+    {% if query %}
+      <h1>RP Leaderboard</h1>
+      <h4>{{query}}</h4>
+    {% else %}
+    <h1>RP Leaderboard {% if realm %}{{realm}}{%endif%}</h1>
+    {% endif %}
+    <div class="col-md-10 col-md-offset-1">
+      <table id="eader" class="table table-striped">
+        <thead>
+          <th>#</th>
+          <th>Name</th>
+          <th>Realm</th>
+          <th>Guild</th>
+          <th>Race</th>
+          <th>Class</th>
+          <th>Level</th>
+          <th>+RPs</th>
+          <th>RealmRank</th>
+        </thead>
+        <tbody>
+          {% for p in players %}
+          <tr>
+            <td>{{p.rank}}</td>
+            <td><a target='_blank' href="/history/{{p.rawname}}/">{{p.rawname}}</a></td>
+            <td onclick="window.location.assign('/leaders/{{p.realmname}}')" class="realm_{{p.realmname}} linkable">{{p.realmname}}</td>
+            <td class="linkable" onclick="window.location.assign('/leaders/?guild={{p.guildname}}')">{% if p.guildname %}{{p.guildname}}{% else %}<i>No Guild</i>{% endif %}</td>
+            <td class="linkable" onclick="window.location.assign('/leaders/?race={{p.racename}}')">{{p.racename}}</td>
+            <td class="linkable" onclick="window.location.assign('/leaders/?class={{p.classname}}')">{{p.classname}}</td>
+            <td>{{p.level}}</td>
+            <td>{{p.rps_last7|intcomma}}</td>
+            <td>{{p.realmrank}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

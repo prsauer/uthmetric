@@ -152,7 +152,7 @@ def weekly_solo_leaders(request):
 		players.append(db_players[i].to_json())
 		players[i]['rank'] = i+1
 	cdict =  {'timestamp': most_recent(), 'realm': 'weekly_solo', 'query': 'Players ranked by RP gains in the past 7 days', 'players': players}
-	return TemplateResponse(request, 'leaders.html', cdict)
+	return TemplateResponse(request, 'leaders_weekly.html', cdict)
 
 @csrf_exempt
 def update_keep(request):
