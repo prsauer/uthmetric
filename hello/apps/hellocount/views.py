@@ -127,8 +127,8 @@ def leaders_api(request):
 		limit = request.GET.get('limit')
 	try:
 		limit = int(limit)
-		if limit > 25:
-			limit = 25
+		if limit > 150:
+			limit = 150
 	except:
 		limit = 25
 	res = Player.objects.filter(rps__isnull=False).filter(**the_args).order_by('-rps')[0:limit]
