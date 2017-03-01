@@ -72,6 +72,7 @@ class Player(models.Model):
     level = models.IntegerField(null=True,db_index=True)
     lastupdated = models.DateTimeField(null=True)
 
+    global_rank = models.IntegerField(null=True,db_index=True)
     rps_last7 = models.BigIntegerField(null=True,db_index=True)
 
     def to_json(self):
@@ -87,6 +88,7 @@ class Player(models.Model):
                 'level': self.level,
                 'lastupdated': self.lastupdated,
                 'rps_last7': self.rps_last7,
+                'global_rank': self.global_rank,
                 }
 
     def age(self):
