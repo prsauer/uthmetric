@@ -139,7 +139,8 @@ class Player(models.Model):
         except:
             logger.info("Couldnt decode %s"%(jdata))
         else:
-            self.save()
+            if self.level > 10:
+                self.save()
             #logger.info("Saved %s"%(jdata))
         return True
 
