@@ -8,7 +8,7 @@ import pytz
 
 logger = logging.getLogger('django')
 
-realms = {"ALBION": "Albion", "MIDGARD": "Midgard", "HIBERNIA": "Hibernia"}
+realms = {"ALBION": "Albion", "MIDGARD": "Midgard", "HIBERNIA": "Hibernia", "7": "Banned"}
 
 class CustomQuerySetManager(models.Manager):
     """A re-usable Manager to access a custom QuerySet"""
