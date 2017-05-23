@@ -395,7 +395,7 @@ def leaders(request, realm=None):
 		players.append(db_players[i].to_json())
 		players[i]['rank'] = i+1
 
-	cdict =  {'timestamp': most_recent(), 'realm': realm, 'players': players, 'timer': timezone.now()}
+	cdict =  {'timestamp': most_recent(), 'realm': realm, 'players': players}
 	
 	return TemplateResponse(request, 'leaders.html', cdict)
 
