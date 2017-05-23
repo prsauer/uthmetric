@@ -47,7 +47,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'middleware.SmartUpdateCacheMiddleware',
+    'hellocount.middleware.SmartUpdateCacheMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware', # MUST BE FIRST
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
