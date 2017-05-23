@@ -132,8 +132,9 @@ class Player(models.Model):
             self.raw_data = json.dumps(jdata)
 
             try:
-                seven_ago = timezone.now() - timedelta(days=7)
-                self.rps_last7 = self.rps - self.history.as_of(seven_ago).rps
+                if self.level >= 40:
+                    seven_ago = timezone.now() - timedelta(days=7)
+                    self.rps_last7 = self.rps - self.history.as_of(seven_ago).rps
             except:
                 logger.info("History decode failed %s"%(jdata))
         except:
