@@ -131,12 +131,12 @@ class Player(models.Model):
             self.lastupdated = pytz.UTC.localize(datetime.fromtimestamp(int(jdata['LastUpdated'])))
             self.raw_data = json.dumps(jdata)
 
-            try:
-                if self.level >= 40:
+            if self.level >= 40:
+                try:
                     seven_ago = timezone.now() - timedelta(days=7)
                     self.rps_last7 = self.rps - self.history.as_of(seven_ago).rps
-            except:
-                logger.info("History decode failed %s"%(jdata))
+                except:
+                    logger.info("History decode failed %s"%(jdata))
         except:
             logger.info("Couldnt decode %s"%(jdata))
         else:
