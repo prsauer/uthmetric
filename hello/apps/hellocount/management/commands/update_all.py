@@ -9,9 +9,10 @@ class Command(BaseCommand):
         jdata = json.loads(alldata.content)
         for k in jdata.keys():
             d = jdata[k]
-            n = d['Name']
-            p = Player.objects.get_or_create(rawname=n)[0]
-            p.update_from_json(d)
+            if d['Level'] > 20:
+                n = d['Name']
+                p = Player.objects.get_or_create(rawname=n)[0]
+                p.update_from_json(d)
 
         all_players = list(Player.objects.filter(rps__gt=50000).order_by('-rps')[0:1000])
         for i in xrange(0,len(all_players)):
